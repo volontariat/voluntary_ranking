@@ -1,4 +1,6 @@
-require "voluntary_ranking/engine"
+require 'voluntary_core_module_emberjs'
+
+require 'voluntary_ranking/engine'
 
 module VoluntaryRanking
 end
