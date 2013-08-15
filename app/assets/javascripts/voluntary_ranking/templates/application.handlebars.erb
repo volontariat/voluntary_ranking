@@ -1,0 +1,16 @@
+{{render 'voluntary_ranking/templates/navigation'}}
+
+<section id="dialog">
+  <img alt="Ajax-loader-small" class="hide " id="dialog_body_spinner" src="<%=asset_path('voluntary_core_module_emberjs/spinner.gif')%>"/>
+  <div id="dialog_body"/>
+</section>
+
+<div class='container-fluid'>
+  <div class="row-fluid">
+    <div class="span12">  
+      {{outlet}}
+    </div>
+  </div>
+</div>
+
+{{!render modal}}

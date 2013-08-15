@@ -7,7 +7,7 @@
         <span class="icon-bar"/>
       </a>
       
-      <a id="plattform_brand" class="brand" href="#">Volontari.at /</a>
+      <a id="plattform_brand" class="brand" href="/">Volontari.at /</a>
       <a id="product_brand" class="brand" href="#">Ranking</a>
       
       {{#if view.currentUser}}
@@ -18,7 +18,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li>{{#linkTo user.movies view.currentUser tagName='li'}}<a>Movies</a>{{/linkTo}}</li>
+              <li>Dummy</li>
             </ul>
           </li>
         </ul>
@@ -29,53 +29,10 @@
           <li>
             <form class="navbar-form pull-left">
               {{view 
-                Ember.Select contentBinding="VoluntaryOnEmberjs.NavigationController.listContexts" valueBinding="listContext"
+                Ember.Select contentBinding="VoluntaryRanking.NavigationController.listContexts" valueBinding="listContext"
               }}
             </form>
           </li>
-          
-          <li>{{#linkTo things.index tagName='li'}}<a>Things</a>{{/linkTo}}</li>
-          
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Music
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>{{#linkTo music.artists tagName='li'}}<a>Music Artists</a>{{/linkTo}}</li>
-              <li>{{#linkTo music.albums tagName='li'}}<a>Music Albums</a>{{/linkTo}}</li>
-              <li>{{#linkTo music.tracks tagName='li'}}<a>Music Tracks</a>{{/linkTo}}</li>
-            </ul>
-          </li>
-          
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Movie & Television
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-submenu">
-                <a href="#">Movie</a>
-                <ul class="dropdown-menu">
-                  <li>{{#linkTo movies.index tagName='li'}}<a>Movies</a>{{/linkTo}}</li>
-                  <li>{{#linkTo movie.actors tagName='li'}}<a>Movie Actors</a>{{/linkTo}}</li>
-                  <li>{{#linkTo movie.directors tagName='li'}}<a>Movie Directors</a>{{/linkTo}}</li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#">Television</a>
-                <ul class="dropdown-menu">
-                  <li>{{#linkTo tv.series tagName='li'}}<a>Television Series</a>{{/linkTo}}</li>
-                  <li>{{#linkTo tv.actors tagName='li'}}<a>Television Actors</a>{{/linkTo}}</li>
-                  <li>{{#linkTo tv.directors tagName='li'}}<a>Television Directors</a>{{/linkTo}}</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          
-          <li>{{#linkTo places tagName='li'}}<a>Places</a>{{/linkTo}}</li>
-          
-          <li>{{#linkTo users tagName='li'}}<a>Users</a>{{/linkTo}}</li>
         </ul>
       </div>
     </div>
