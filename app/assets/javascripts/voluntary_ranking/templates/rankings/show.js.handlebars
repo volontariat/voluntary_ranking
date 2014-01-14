@@ -1,0 +1,41 @@
+{{partial 'voluntary_ranking/templates/rankings/form'}}
+
+{{#if yourList}}
+  {{partial 'voluntary_ranking/templates/ranking_items/form'}}
+{{/if}}
+
+<table class="table" style="margin-bottom: 0px">
+  <thead>
+    <tr>
+      <th width="5%" style="vertical-align:top;">Position</th>
+      <th width="65%" style="vertical-align:top;">Name</th>
+      <th width="15%" style="vertical-align:top;">Type</th>
+      <th width="10%" style="vertical-align:top;">Stars</th>
+      <th width="5%" style="vertical-align:top;">Best<br/>Worst</th>
+    </tr>
+  </thead>
+</table>
+
+<ul class="nav nav-tabs nav-stacked list-striped" id="ranking">
+  {{#each model}}
+    <li data-id="{{unbound id}}" data-position="{{unbound position}}">
+      <table class="table">
+        <tr>
+          <td class="list-element-striped" width="5%" style="text-align:right">{{position}}</td>
+          <td class="list-element-striped" width="65%">
+            {{thingName}}
+          </td>
+          <td class="list-element-striped" width="15%">{{thingType}}</td>
+          <td class="list-element-striped" width="10%">
+            <div class="stars">
+              {{#if is5StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is4StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is3StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is2StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is1StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+            </div>
+          </td>
+          <td class="list-element-striped" width="5%">
+            {{#if best}}Best{{else}}Worst{{/if}}
+          </td>
+        </tr>
+      </table>
+    </li>
+  {{/each}}
+</ul>

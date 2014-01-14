@@ -1,0 +1,15 @@
+<form class="form-inline" id="new_ranking_form">
+  <p>
+    {{view Ember.TextField valueBinding="controller.adjective" placeholder="Adjective" class="adjective"}} 
+    &nbsp;&nbsp;
+    and 
+    &nbsp;&nbsp;
+    {{view Ember.TextField valueBinding="controller.negativeAdjective" placeholder="Negative adjective" class="negative_adjective"}}
+    &nbsp;&nbsp;
+    {{view Ember.TextField valueBinding="controller.topic" placeholder="Topic" class="topic"}}
+    &nbsp;&nbsp;
+    {{view Ember.TextField valueBinding="controller.scope" placeholder="Scope" class="scope"}} 
+    &nbsp;&nbsp;
+    <button class="btn" type="button" {{action getRanking}}>Switch Ranking</button>
+  </p>
+</form>

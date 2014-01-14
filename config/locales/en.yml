@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      movie: Movie
+      
+    attributes:
+      general:
+        name: Name 
+        parent: Parent
+        user_id: User

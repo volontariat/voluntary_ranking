@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814161252) do
+ActiveRecord::Schema.define(:version => 20130817122701) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -92,6 +92,25 @@ ActiveRecord::Schema.define(:version => 20130814161252) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "list_items", :force => true do |t|
+    t.integer  "list_id"
+    t.integer  "user_id"
+    t.string   "thing_type"
+    t.integer  "thing_id"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "lists", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
+
   create_table "mongo_db_documents", :force => true do |t|
     t.string   "mongo_db_object_id"
     t.string   "klass_name"
@@ -151,6 +170,27 @@ ActiveRecord::Schema.define(:version => 20130814161252) do
   add_index "projects_users", ["user_id"], :name => "index_projects_users_on_user_id"
   add_index "projects_users", ["vacancy_id"], :name => "index_projects_users_on_vacancy_id"
 
+  create_table "ranking_items", :force => true do |t|
+    t.integer  "ranking_id"
+    t.string   "thing_type"
+    t.integer  "thing_id"
+    t.integer  "position"
+    t.boolean  "best"
+    t.integer  "stars"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "rankings", :force => true do |t|
+    t.string   "adjective"
+    t.string   "topic"
+    t.string   "scope"
+    t.string   "negative_adjective"
+    t.string   "thing_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "state"
@@ -159,6 +199,28 @@ ActiveRecord::Schema.define(:version => 20130814161252) do
     t.boolean  "public",     :default => false
     t.string   "type"
   end
+
+  create_table "things", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "things", ["name"], :name => "index_things_on_name", :unique => true
+
+  create_table "user_ranking_items", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "ranking_item_id"
+    t.integer  "position"
+    t.boolean  "boolean"
+    t.integer  "stars"
+    t.integer  "ranking_id"
+    t.integer  "thing_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "user_ranking_items", ["user_id", "ranking_id", "position"], :name => "index_user_ranking_items_on_user_id_and_ranking_id_and_position", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

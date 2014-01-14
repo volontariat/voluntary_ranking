@@ -1,0 +1,28 @@
+<form id="new_ranking_item_form">
+  <div>
+    <button class="btn" type="button" {{action addItem}}>Add</button>
+  
+    &nbsp;&nbsp;
+  
+    {{view Ember.TextField valueBinding="controller.thingName" placeholder="Thing" style="margin-bottom: 0px;"}}
+    
+    &nbsp;&nbsp;
+    
+    to
+    
+    &nbsp;&nbsp;
+    
+    <span class="btn-group" data-toggle-name="ranking_item_best" data-toggle="buttons-radio">
+      <button {{bindAttr class="isBestClass"}} type="button" data-toggle-value="1" {{action setBest}}>Best?</button>
+      <button {{bindAttr class="isWorstClass"}} type="button" data-toggle-value="0" {{action setWorst}}>Worst?</button>
+    </span> 
+    
+    &nbsp;&nbsp;
+    
+    <div class="stars" style="display: inline; position: relative; top: 5px;">
+      <span {{bindAttr class="is5Star"}} {{action set5Star}}></span><span {{bindAttr class="is4Star"}} {{action set4Star}}></span>
+      <span {{bindAttr class="is3Star"}} {{action set3Star}}></span><span {{bindAttr class="is2Star"}} {{action set2Star}}></span>
+      <span {{bindAttr class="is1Star"}} {{action set1Star}}></span>
+    </div>
+  </div>
+</form>

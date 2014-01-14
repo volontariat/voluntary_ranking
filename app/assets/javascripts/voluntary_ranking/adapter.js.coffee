@@ -3,19 +3,15 @@ VoluntaryOnEmberjs.Adapter = DS.RESTAdapter.extend
     root = @rootForType(type)
     url = @buildURL(root)
     
-    if type.toString().match('ListItem')
-      topic = query['topic']
-      url = ''
-      
-      if type.toString().match('UserListItem')
-        url = 'users/' + query['user_id'] + '/'
-        delete query['user_id']
-        
-      url += 'topics/' + topic + '.json'
-        
-      delete query['topic']
+    if type.toString().match('UserRankingItem')
+      url = url.split('api')
+      url = '/api/users/' + query['user_id'] + url[1]
+      delete query['user_id']
     
-      camelCaseAttributes = { 'thingType': 'thing_type', 'negativeAdjective': 'negative_adjective' }
+    if type.toString().match('RankingItem')
+      camelCaseAttributes = { 
+        'thingType': 'thing_type', 'negativeAdjective': 'negative_adjective'
+      }
       
       $.each camelCaseAttributes, (camelCaseAttribute, attribute) =>
         query[attribute] = query[camelCaseAttribute]
@@ -49,14 +45,14 @@ VoluntaryOnEmberjs.Adapter = DS.RESTAdapter.extend
       adapter.didError store, type, record, xhr
       throw xhr
       
-VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.List",
-  alias: "list"
+VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.Ranking",
+  alias: "ranking"
 
-VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.ListItem",
-  alias: "list_item"
+VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.RankingItem",
+  alias: "ranking_item"
 
-VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.UserListItem",
-  alias: "user_list_item"
+VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.UserRankingItem",
+  alias: "user_ranking_item"
      
 VoluntaryOnEmberjs.Adapter.configure "VoluntaryOnEmberjs.Thing",
   alias: "thing"

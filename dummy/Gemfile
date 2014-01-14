@@ -3,7 +3,8 @@ source "http://rubygems.org"
 
 gemspec path: File.expand_path(File.dirname(__FILE__) + "/../")
 
-gem 'voluntary', '0.1.0.rc2', path: '../../voluntary'
+gem 'voluntary', path: '../../voluntary' # '0.1.0.rc2'
+#gem 'voluntary_list', '0.0.1', path: '../../voluntary_list'
 gem 'voluntary_core_module_emberjs', path: '../../voluntary_core_module_emberjs' # '0.0.1'
 gem "bundler", "> 1.1.0"
 gem "rack-cors", "~> 0.2.4", :require => "rack/cors"
@@ -18,11 +19,13 @@ gem "addressable", "~> 2.2", :require => "addressable/uri"
 gem "jasmine", :git => "https://github.com/pivotal/jasmine-gem.git"
 
 group :development do
+  gem 'mysql2',                 '0.3.13'
   gem "linecache", "0.46", :platforms => :mri_18
   gem "capistrano", :require => false
   gem "capistrano_colors", :require => false
   gem "capistrano-ext", :require => false
   gem "yard", :require => false
+  gem "sextant"
 end
 
 group :test do

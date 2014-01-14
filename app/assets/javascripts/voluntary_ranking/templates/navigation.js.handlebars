@@ -18,7 +18,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li>Dummy</li>
+              <li>{{#link-to 'profile.index' tagName='li'}}<a>Profile</a>{{/link-to}}</li>
             </ul>
           </li>
         </ul>
@@ -29,10 +29,11 @@
           <li>
             <form class="navbar-form pull-left">
               {{view 
-                Ember.Select contentBinding="VoluntaryRanking.NavigationController.listContexts" valueBinding="listContext"
+                Ember.Select contentBinding="VoluntaryOnEmberjs.NavigationController.listContexts" valueBinding="listContext"
               }}
             </form>
           </li>
+          <li>{{#link-to 'things.index' tagName='li'}}<a>Things</a>{{/link-to}}</li>
         </ul>
       </div>
     </div>

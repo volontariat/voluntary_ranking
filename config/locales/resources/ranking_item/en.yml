@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        list_item:
+          attributes:
+            thing_type: 
+              no_valid_type_for_list: is not a valid thing type for the list.

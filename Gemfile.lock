@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     voluntary_ranking (0.0.1)
+      voluntary
       voluntary_core_module_emberjs (= 0.0.1)
 
 PATH
@@ -50,7 +51,7 @@ PATH
       omniauth-tumblr
       paper_trail
       pg
-      rails (~> 3.2.14)
+      rails (~> 3.2.13)
       rails-api
       rails-i18n
       rails_autolink
