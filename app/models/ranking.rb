@@ -9,6 +9,13 @@ class Ranking < ActiveRecord::Base
   
   #pusherable "#{Rails.env}_channel"
   
+  def self.find_by_params(params)
+    where(
+      adjective: params[:adjective], negative_adjective: params[:negative_adjective],
+      topic: params[:topic], scope: params[:scope]
+    ).first
+  end
+  
   def self.find_or_create_by_params(params)
     attributes = (params[:user_ranking_item] || params[:ranking_item] || params).clone
     attributes.symbolize_keys! unless params.is_a?(ActiveSupport::HashWithIndifferentAccess)

@@ -3,7 +3,7 @@ VoluntaryOnEmberjs.Router.reopen location: 'hash'
 VoluntaryOnEmberjs.Router.map ->
   @_super
   
-  @route 'about'
+  @route 'profile'
   
   @route 'product_ranking',
     path: '/products/ranking/'
@@ -20,10 +20,12 @@ VoluntaryOnEmberjs.Router.map ->
   @resource 'movies', ->
     @resource 'movie', path: ':movie_id'    
       
-  @resource 'rankings', ->
-    
-    @route 'reload', path: '/' 
-    @route 'show', path: ':topic'   
+  #@resource 'rankings', ->
+  #  @route 'show', path: ':adjective/:topic/:scope'   
+      
+  @route 'rankings.show', path: ':adjective/and/:negative_adjective/:topic/:scope'    
+  @route 'ranking'
+  #@route 'user.rankings.show', path: 'users/:user_id/:adjective/:topic/:scope'    
       
 VoluntaryOnEmberjs.ProductRankingRoute = Ember.Route.extend
   model: ->

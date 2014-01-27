@@ -5,7 +5,6 @@ class Api::V1::RankingItemsController < ActionController::Base
   respond_to :json
   
   def index
-    #respond_with list.present? ? list.items.includes(:thing) : []
     respond_with ranking.present? ? ranking.items.includes(:thing) : []
   end
 end
