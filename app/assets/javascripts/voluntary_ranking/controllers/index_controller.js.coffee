@@ -1,7 +1,5 @@
-VoluntaryOnEmberjs.IndexController = VoluntaryOnEmberjs.ArrayController.extend
-  listContext: 'Global', yourList: false,
+VoluntaryOnEmberjs.IndexController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController,
+  listContext: 'Global', yourRanking: false
+  yourRankingClass: 'btn', globalRankingClass: 'btn active'
   thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
-  
-  actions:  
-    getRanking: ->
-      @transitionToRoute('rankings.show', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'))
+)

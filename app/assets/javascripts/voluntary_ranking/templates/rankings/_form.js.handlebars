@@ -1,5 +1,10 @@
 <form class="form-inline" id="new_ranking_form">
-  <p>
+	<p>
+	  <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
+	    <button {{bind-attr class="globalRankingClass"}} type="button" data-toggle-value="1" {{action setGlobalRanking}}>Global</button>
+	    <button {{bind-attr class="yourRankingClass"}} type="button" data-toggle-value="0" {{action setYourRanking}}>Your</button>
+	  </span> 
+    &nbsp;&nbsp; 
     {{view Ember.TextField valueBinding="controller.adjective" placeholder="Adjective" class="adjective"}} 
     &nbsp;&nbsp;
     and 
@@ -10,6 +15,6 @@
     &nbsp;&nbsp;
     {{view Ember.TextField valueBinding="controller.scope" placeholder="Scope" class="scope"}} 
     &nbsp;&nbsp;
-    <button class="btn" type="button" {{action getRanking}}>Switch Ranking</button>
+    <button class="btn" type="button" {{action getRanking}}>Get</button>  
   </p>
 </form>

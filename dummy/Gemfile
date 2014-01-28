@@ -17,6 +17,7 @@ gem "will_paginate", :github => "mislav/will_paginate"
 gem "sinatra", :require => false
 gem "addressable", "~> 2.2", :require => "addressable/uri"
 gem "jasmine", :git => "https://github.com/pivotal/jasmine-gem.git"
+gem 'ember-source', path: '../../ember.js'
 
 group :development do
   gem 'mysql2',                 '0.3.13'

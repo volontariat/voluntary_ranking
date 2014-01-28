@@ -1,5 +1,6 @@
-VoluntaryOnEmberjs.RankingController = VoluntaryOnEmberjs.ArrayController.extend
-  listContext: 'Your', yourList: false, routeName: ''  
+VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController,
+  listContext: 'Your', yourRanking: true, routeName: ''  
+  yourRankingClass: 'btn active', globalRankingClass: 'btn'
   thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
   thingName: '', best: true, stars: 3
   isBestClass: 'btn active', isWorstClass: 'btn'
@@ -50,8 +51,4 @@ VoluntaryOnEmberjs.RankingController = VoluntaryOnEmberjs.ArrayController.extend
     @set('is4Star', ''); @set('is5Star', '');
     
     @transitionToRoute('rankings.reload')
-  
-  actions:  
-    getRanking: ->
-      console.log 'get ranking'
-      @transitionToRoute('rankings.show', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'))
+)
