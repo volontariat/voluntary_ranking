@@ -18,11 +18,6 @@ VoluntaryOnEmberjs.UserRankingItem = DS.Model.extend
   is3StarClass: (-> @get('stars') >= 3).property('stars')
   is4StarClass: (-> @get('stars') >= 4).property('stars')
   is5StarClass: (-> @get('stars') == 5).property('stars')
-    
-  adjective: DS.attr('string')
-  negativeAdjective: DS.attr('string')
-  topic: DS.attr('string')
-  scope: DS.attr('string')
   
   url: (->
     '/users/' + @get('user.id') + '/ranking_items'
