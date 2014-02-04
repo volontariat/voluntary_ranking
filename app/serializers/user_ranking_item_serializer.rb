@@ -1,0 +1,2 @@
+class UserRankingItemSerializer < BaseRankingItemSerializer
+end

@@ -1,0 +1,2 @@
+class RankingItemSerializer < BaseRankingItemSerializer
+end
