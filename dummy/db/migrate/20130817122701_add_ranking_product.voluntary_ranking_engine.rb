@@ -33,9 +33,10 @@ class AddRankingProduct < ActiveRecord::Migration
       t.integer :user_id
       t.integer :ranking_item_id
       t.integer :position
-      t.boolean :boolean
+      t.boolean :best
       t.integer :stars
       t.integer :ranking_id # cache column
+      t.string :thing_type
       t.integer :thing_id # cache column
       t.timestamps
     end
