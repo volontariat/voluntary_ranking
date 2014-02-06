@@ -9,6 +9,8 @@ module VoluntaryRanking
     
     config.to_prepare do
       User.send :include, Concerns::Model::User::Ranking
+      
+      ::Ability.add_after_initialize_callback('VoluntaryRanking::Ability.after_initialize')
     end
   end
 end
