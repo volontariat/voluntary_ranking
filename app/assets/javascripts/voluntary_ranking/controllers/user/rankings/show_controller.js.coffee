@@ -45,15 +45,15 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
         alert 'Please set thing, adjective, negative adjective, topic and scope.'
         return
         
-      user = VoluntaryOnEmberjs.User.current()
-      user_ranking_item = user.get('user_ranking_items').createRecord(
+      user_ranking_item = @store.createRecord(
+        'user_ranking_item',
         thingName: @get('thingName'), best: @get('best'), stars: @get('stars'),
         adjective: @get('adjective'), negativeAdjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope') 
       )
-      @get('store').commit()
+      user_ranking_item.save()
       @set('thingName', ''); @_setStars(3)
       @send('reload')
       
     reload: ->
-      @set('model', VoluntaryOnEmberjs.UserRankingItem.find(user_id: VoluntaryOnEmberjs.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope')))
+      @set('model', @store.find('user_ranking_item', user_id: VoluntaryOnEmberjs.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope')))
 )

@@ -15,18 +15,17 @@ VoluntaryOnEmberjs.RankingItemsCollectionView = Ember.View.extend
       update: (event, ui) =>
         source_item = $(ui.item).closest('li')
         
-        current_position = first_position
+        VoluntaryOnEmberjs.current_position = first_position
         previous_element = null
         
         $.each $('#ranking li'), (index, element) ->
-          user_ranking_item = VoluntaryOnEmberjs.UserRankingItem.find($(element).data('id'))
-          
-          $(element).data('position', current_position)  
-          user_ranking_item.set('position', current_position)
-          
-          user_ranking_item.save() if $(element).data('id') == $(source_item).data('id')
-          
-          previous_element = $(element)
-          current_position += 1
+          VoluntaryOnEmberjs.__container__.lookup('store:main').find('user_ranking_item', $(element).data('id')).then (user_ranking_item) ->
+            $(element).data('position', VoluntaryOnEmberjs.current_position)  
+            user_ranking_item.set('position', VoluntaryOnEmberjs.current_position)
+            
+            user_ranking_item.save() if $(element).data('id') == $(source_item).data('id')
+            
+            previous_element = $(element)
+            VoluntaryOnEmberjs.current_position += 1
           
     #@$( '#ranking' ).disableSelection()

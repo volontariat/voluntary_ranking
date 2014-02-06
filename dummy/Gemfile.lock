@@ -120,6 +120,7 @@ PATH
   specs:
     voluntary_core_module_emberjs (0.0.1)
       active_model_serializers
+      ember-data-source (= 1.0.0.beta.6)
       ember-rails
       ember-source
       voluntary (= 0.1.0.rc2)
@@ -254,7 +255,7 @@ GEM
     diffy (3.0.1)
     dotenv (0.9.0)
     easy_diff (0.0.2)
-    ember-data-source (0.14)
+    ember-data-source (1.0.0.beta.6)
       ember-source
     ember-rails (0.14.1)
       active_model_serializers

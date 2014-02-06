@@ -1,6 +1,6 @@
 VoluntaryOnEmberjs.RankingItem = DS.Model.extend
-  ranking: DS.belongsTo('VoluntaryOnEmberjs.Ranking')
-  #thing: DS.belongsTo('VoluntaryOnEmberjs.Thing', { polymorphic: true })
+  ranking: DS.belongsTo('ranking')
+  #thing: DS.belongsTo('thing', { polymorphic: true })
   thingType: DS.attr('string')
   thingName: DS.attr('string')
   position: DS.attr('number')

@@ -1,5 +1,5 @@
 VoluntaryOnEmberjs.Movie = DS.Model.extend
-  #rankings: DS.hasMany('VoluntaryOnEmberjs.Ranking')
-  userRankingItems: DS.hasMany('VoluntaryOnEmberjs.UserRankingItem')
+  #rankings: DS.hasMany('ranking')
+  userRankingItems: DS.hasMany('userRankingItem')
   
   name: DS.attr('string')

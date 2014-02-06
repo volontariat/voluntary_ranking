@@ -7,10 +7,12 @@ VoluntaryOnEmberjs.RankingsShowRoute = Ember.Route.extend
     @controllerFor('rankings.show').set('topic', params.topic)
     @controllerFor('rankings.show').set('scope', params.scope)
     
-    VoluntaryOnEmberjs.RankingItem.find
+    @store.find(
+      'ranking_item',
       adjective: params.adjective, negative_adjective: params.negative_adjective, topic: params.topic, 
       scope: params.scope
-      
+    )
+    
   setupController: (controller, model) ->
     @controllerFor('rankings.show').set('model', model)
     

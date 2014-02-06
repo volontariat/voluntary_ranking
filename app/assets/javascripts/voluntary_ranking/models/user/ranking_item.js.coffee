@@ -1,9 +1,9 @@
 VoluntaryOnEmberjs.UserRankingItem = DS.Model.extend
-  user: DS.belongsTo('VoluntaryOnEmberjs.User')
-  #ranking: DS.belongsTo('VoluntaryOnEmberjs.Ranking')
-  #thing: DS.belongsTo('VoluntaryOnEmberjs.Thing', { polymorphic: true })
-  #thing: DS.belongsTo('VoluntaryOnEmberjs.Thing')
-  #thing: DS.belongsTo('VoluntaryOnEmberjs.Thing',
+  user: DS.belongsTo('user')
+  #ranking: DS.belongsTo('ranking')
+  #thing: DS.belongsTo('thing', { polymorphic: true })
+  #thing: DS.belongsTo('thing')
+  #thing: DS.belongsTo('thing',
   #  polymorphic: true
   #)
   position: DS.attr('number')
@@ -18,6 +18,8 @@ VoluntaryOnEmberjs.UserRankingItem = DS.Model.extend
   is3StarClass: (-> @get('stars') >= 3).property('stars')
   is4StarClass: (-> @get('stars') >= 4).property('stars')
   is5StarClass: (-> @get('stars') == 5).property('stars')
+  
+  adjective: DS.attr('string'), negativeAdjective: DS.attr('string'), topic: DS.attr('string'), scope: DS.attr('string')
   
   url: (->
     '/users/' + @get('user.id') + '/ranking_items'
