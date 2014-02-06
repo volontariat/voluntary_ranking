@@ -5,7 +5,24 @@ class Api::V1::UserRankingItemsController < ActionController::Base
   respond_to :json
   
   def index
-    respond_with ranking.present? ? user.ranking_items.where(ranking_id: ranking.id).includes(:thing) : []
+    options = {}
+    
+    if ranking.present?
+      options[:json] = user.ranking_items.where(ranking_id: ranking.id).includes(:thing).paginate(page: params[:page], per_page: 3)
+      
+      options[:meta] = { 
+        pagination: {
+          total_pages: options[:json].total_pages, current_page: options[:json].current_page,
+          previous_page: options[:json].previous_page, next_page: options[:json].next_page
+        }
+      }
+    else
+      options[:json] = []
+    end
+    
+    respond_with do |format|
+      format.json { render options }
+    end
   end
   
   def create
@@ -14,6 +31,11 @@ class Api::V1::UserRankingItemsController < ActionController::Base
     respond_to do |format|
       format.json { render json: current_user.add_ranking_item(params[:user_ranking_item]) }
     end
+  end
+  
+  def update
+    user_ranking_item = UserRankingItem.find(params[:id])
+    raise CanCan::AccessDenied unless can? :update, user_ranking_item
   end
   
   private
