@@ -55,5 +55,12 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
       @send('reload')
       
     reload: ->
-      @set('model', @store.find('user_ranking_item', user_id: VoluntaryOnEmberjs.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope')))
+      @set(
+        'model', 
+        @store.find(
+          'user_ranking_item', 
+          user_id: VoluntaryOnEmberjs.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
+          topic: @get('topic'), scope: @get('scope')
+        )
+      )
 )
