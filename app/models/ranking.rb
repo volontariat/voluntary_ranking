@@ -27,11 +27,6 @@ class Ranking < ActiveRecord::Base
       attributes.each {|param, value| attributes.delete(param) unless ranking.respond_to?(param) }
       
       Ranking.where(attributes).first || Ranking.create(attributes)
-    elsif attributes[:topic].present?
-      begin 
-        attributes[:topic].classify.constantize.ranking
-      rescue NameError
-      end
     end
   end
 end
