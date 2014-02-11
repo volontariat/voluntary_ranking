@@ -9,6 +9,3 @@ VoluntaryOnEmberjs.RankingItem = DS.Model.extend
   stars: DS.attr('number')
   topic: DS.attr('string')
   scope: DS.attr('string')
-  #url: (->
-  #  '/users/' + @get('user.id') + '/ranking_items'
-  #).property('user')
