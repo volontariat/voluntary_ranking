@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       resources :users
       resources :rankings
       resources :ranking_items
-      resources :user_ranking_items
+      resources :user_ranking_items do
+        member do
+          put :move_to_page
+        end
+      end
     end
   end
 end
