@@ -8,7 +8,7 @@ class Api::V1::UserRankingItemsController < ActionController::Base
     options = {}
     
     if ranking.present?
-      options[:json] = user.ranking_items.where(ranking_id: ranking.id).includes(:thing).paginate(page: params[:page], per_page: 3)
+      options[:json] = user.ranking_items.order('position').where(ranking_id: ranking.id).includes(:thing).paginate(page: params[:page], per_page: 3)
       
       options[:meta] = { 
         pagination: {
@@ -18,6 +18,7 @@ class Api::V1::UserRankingItemsController < ActionController::Base
       }
     else
       options[:json] = []
+      options[:meta] = { pagination: { total_pages: 0, current_page: 0, previous_page: 0, next_page: 0 } }
     end
     
     respond_with do |format|
@@ -36,6 +37,16 @@ class Api::V1::UserRankingItemsController < ActionController::Base
   def update
     user_ranking_item = UserRankingItem.find(params[:id])
     raise CanCan::AccessDenied unless can? :update, user_ranking_item
+  end
+  
+  def move_to_page
+    user_ranking_item = UserRankingItem.find(params[:id])
+    position = current_user.ranking_items.order('position').where(ranking_id: user_ranking_item.ranking_id).paginate(page: params[:page], per_page: 3).first.position
+    user_ranking_item.insert_at(position)
+    
+    respond_to do |format|
+      format.json { render json: user_ranking_item }
+    end
   end
   
   private

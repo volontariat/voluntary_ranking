@@ -1,10 +1,11 @@
-VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController,
+VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController, VoluntaryOnEmberjs.PaginationController,
   listContext: 'Your', yourRanking: true, routeName: ''  
   yourRankingClass: 'btn active', globalRankingClass: 'btn'
   thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
   thingName: '', best: true, stars: 3
   isBestClass: 'btn active', isWorstClass: 'btn'
   is1Star: '', is2Star: '', is3Star: 'active', is4Star: '', is5Star: ''
+  paginationResource: 'user_ranking_item', paginationRoute: 'profile.rankings'
   
   _setBest: (without_stars) ->
     return if @get('best') 
@@ -30,7 +31,7 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
       @_setWorst(true)
   
   actions:
-        
+      
     setBest: -> @_setBest()    
     setWorst: -> @_setWorst()  
           
@@ -52,7 +53,7 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
       )
       user_ranking_item.save()
       @set('thingName', ''); @_setStars(3)
-      @send('reload')
+      window.location.reload()
       
     reload: ->
       @set(
@@ -60,7 +61,28 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
         @store.find(
           'user_ranking_item', 
           user_id: VoluntaryOnEmberjs.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
-          topic: @get('topic'), scope: @get('scope')
+          topic: @get('topic'), scope: @get('scope'), page: @get('page')
         )
       )
+      
+    moveToPreviousPage: (id) ->
+      if @get('previousPage') <= 0
+        alert 'No previous page available.'
+        return
+        
+      $.post '/api/v1/user_ranking_items/' + id + '/move_to_page', { _method: 'put', page: @get('previousPage') }, (data) =>
+        @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('previousPage'))
+        @send('reload')
+        return
+
+       
+    moveToNextPage: (id) ->
+      if @get('nextPage') > @get('totalPages')
+        alert 'No next page available.'
+        return
+        
+      $.post '/api/v1/user_ranking_items/' + id + '/move_to_page', { _method: 'put', page: @get('nextPage') }, (data) =>
+        @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('nextPage'))
+        @send('reload')
+        return 
 )

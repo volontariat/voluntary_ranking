@@ -6,15 +6,17 @@ VoluntaryOnEmberjs.RankingsShowRoute = Ember.Route.extend
     @controllerFor('rankings.show').set('negativeAdjective', params.negative_adjective)
     @controllerFor('rankings.show').set('topic', params.topic)
     @controllerFor('rankings.show').set('scope', params.scope)
+    @controllerFor('rankings.show').set('page', parseInt(params.page))
     
     @store.find(
       'ranking_item',
       adjective: params.adjective, negative_adjective: params.negative_adjective, topic: params.topic, 
-      scope: params.scope
+      scope: params.scope, page: params.page
     )
     
   setupController: (controller, model) ->
-    @controllerFor('rankings.show').set('model', model)
+    controller.send('goToPageWithoutRedirect', controller.get('page'))
+    controller.set('model', model)
     
   renderTemplate: ->
     @render 'voluntary_ranking/templates/rankings/show'

@@ -1,7 +1,8 @@
-VoluntaryOnEmberjs.RankingsShowController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController,
+VoluntaryOnEmberjs.RankingsShowController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController, VoluntaryOnEmberjs.PaginationController,
   listContext: 'Global', yourRanking: false, routeName: ''  
   yourRankingClass: 'btn', globalRankingClass: 'btn active'
   thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
+  paginationResource: 'ranking_item', paginationRoute: 'rankings.show'
   
   actions:
   
@@ -11,7 +12,7 @@ VoluntaryOnEmberjs.RankingsShowController = VoluntaryOnEmberjs.ArrayController.e
         @store.find(
           'ranking_item', 
           adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
-          topic: @get('topic'), scope: @get('scope')
+          topic: @get('topic'), scope: @get('scope'), page: @get('page')
         )
       )
 )
