@@ -3,7 +3,6 @@ VoluntaryOnEmberjs.RankingItemsCollectionView = Ember.View.extend
   templateName: 'voluntary_ranking/templates/ranking_items/_collection'
   
   didInsertElement: ->
-    #@modelChanged()
     first_position = $('#ranking li:first').data('position')
     last_position = $('#ranking li:last').data('position')
 
@@ -23,9 +22,8 @@ VoluntaryOnEmberjs.RankingItemsCollectionView = Ember.View.extend
             $(element).data('position', VoluntaryOnEmberjs.current_position)  
             user_ranking_item.set('position', VoluntaryOnEmberjs.current_position)
             
-            user_ranking_item.save() if $(element).data('id') == $(source_item).data('id')
+            if $(element).data('id') == $(source_item).data('id')
+              $.post '/api/v1/user_ranking_items/' + $(element).data('id') + '/move', { _method: 'put', position: VoluntaryOnEmberjs.current_position }
             
             previous_element = $(element)
             VoluntaryOnEmberjs.current_position += 1
-          
-    #@$( '#ranking' ).disableSelection()

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :user_ranking_items do
         member do
           put :move_to_page
+          put :move
         end
       end
     end
