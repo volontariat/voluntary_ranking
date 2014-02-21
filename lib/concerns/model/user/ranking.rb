@@ -21,7 +21,7 @@ module Concerns
           
           def add_ranking_item(attributes)
             ranking = ::Ranking.find_or_create_by_params(attributes)
-            thing = Thing.find_or_create_by_name(attributes[:thing_name])
+            thing = Thing.find_or_create_by(name: attributes[:thing_name])
             ranking_item_attributes = { 
               thing_type: 'Thing', thing_id: thing.id, best: attributes[:best], stars: attributes[:stars]
             }
@@ -33,8 +33,24 @@ module Concerns
               ranking_item_attributes.merge(ranking_id: ranking.id)
             )
             user_ranking_item.ranking_item_id = ranking_item.id
-            user_ranking_item.save
+           
+            position = if attributes[:best]
+              ranking_items.order('stars ASC, position DESC').where('stars >= ?', attributes[:stars]).first.try(:position).to_i + 1 || 1
+            else
+              item = ranking_items.order('stars DESC, position ASC').where('stars <= ?', attributes[:stars]).first
+              
+              if item.present?
+                item.position
+              else
+                ranking_items.order('stars ASC, position DESC').where('stars >= ?', attributes[:stars]).first.try(:position).to_i + 1
+              end
+            end
             
+            begin
+              user_ranking_item.insert_at(position)
+            rescue ActiveRecord::RecordInvalid
+            end
+              
             user_ranking_item
           end
         end
