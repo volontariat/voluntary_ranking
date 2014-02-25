@@ -52,7 +52,6 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
         adjective: @get('adjective'), negativeAdjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope') 
       )
       user_ranking_item.save()
-      @set('thingName', ''); @_setStars(3)
       window.location.reload()
       
     reload: ->
