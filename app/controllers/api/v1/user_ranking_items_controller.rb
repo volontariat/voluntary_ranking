@@ -54,8 +54,10 @@ class Api::V1::UserRankingItemsController < ActionController::Base
   
   def move_to_page
     user_ranking_item = UserRankingItem.find(params[:id])
-    position = current_user.ranking_items.order('position').where(ranking_id: user_ranking_item.ranking_id).paginate(page: params[:page], per_page: 3).first.position
-    user_ranking_item.insert_at(position)
+    
+    raise CanCan::AccessDenied unless can? :update, user_ranking_item
+    
+    user_ranking_item.move_to_top_of_page(params[:page])
     
     respond_to do |format|
       format.json { render json: user_ranking_item }

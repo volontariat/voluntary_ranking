@@ -15,6 +15,12 @@ class UserRankingItem < ActiveRecord::Base
   
   acts_as_list scope: [:user_id, :ranking_id]
   
+  def move_to_top_of_page(page)
+    position = user.ranking_items.order('position').where(ranking_id: ranking_id).paginate(page: page, per_page: 3).first.position
+    insert_at(position)
+  end
+  
+  # TODO: still needed?
   def set_position(value)
 =begin    
     user_ranking_items = UserRankingItem.where(
