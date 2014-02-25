@@ -8,7 +8,7 @@ class Api::V1::RankingItemsController < ActionController::Base
     options = {}
     
     if ranking.present?
-      options[:json] = ranking.items.order('position').includes(:thing).paginate(page: params[:page], per_page: 3)
+      options[:json] = ranking.items.order('position').includes(:thing).paginate(page: params[:page], per_page: 10)
       
       options[:meta] = { 
         pagination: {
