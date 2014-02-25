@@ -16,8 +16,10 @@ class UserRankingItem < ActiveRecord::Base
   acts_as_list scope: [:user_id, :ranking_id]
   
   def move_to_top_of_page(page)
-    position = user.ranking_items.order('position').where(ranking_id: ranking_id).paginate(page: page, per_page: 3).first.position
-    insert_at(position)
+    item_on_top_of_page = user.ranking_items.where(ranking_id: ranking_id).order('position').paginate(page: page, per_page: 10).first
+    self.stars = item_on_top_of_page.stars
+    self.best = item_on_top_of_page.best
+    insert_at(item_on_top_of_page.position)
   end
   
   # TODO: still needed?
