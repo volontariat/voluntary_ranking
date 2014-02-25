@@ -41,8 +41,8 @@ describe User do
                 
                 subject.ranking_items.where(ranking_id: @ranking.id, position: 2).first.thing.name.should == 'Dummy'
                 
-                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                  'Thing 1', 'Dummy', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'
+                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                  [1, 'Thing 1'], [2, 'Dummy'], [3, 'Thing 2'], [4, 'Thing 3'], [5, 'Thing 4'], [6, 'Thing 5'], [7, 'Thing 6']
                 ]
               end
             end
@@ -53,8 +53,8 @@ describe User do
                 
                 subject.ranking_items.where(ranking_id: @ranking.id, position: 3).first.thing.name.should == 'Dummy'
                 
-                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                  'Thing 1', 'Thing 2', 'Dummy', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'
+                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                  [1, 'Thing 1'], [2, 'Thing 2'], [3, 'Dummy'], [4, 'Thing 3'], [5, 'Thing 4'], [6, 'Thing 5'], [7, 'Thing 6']
                 ]
               end
             end
@@ -65,8 +65,8 @@ describe User do
                 
                 subject.ranking_items.where(ranking_id: @ranking.id, position: 4).first.thing.name.should == 'Dummy'
                 
-                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                  'Thing 1', 'Thing 2', 'Thing 3', 'Dummy', 'Thing 4', 'Thing 5', 'Thing 6'
+                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                  [1, 'Thing 1'], [2, 'Thing 2'], [3, 'Thing 3'], [4, 'Dummy'], [5, 'Thing 4'], [6, 'Thing 5'], [7, 'Thing 6']
                 ]
               end
             end
@@ -79,8 +79,8 @@ describe User do
                 
                 subject.ranking_items.where(ranking_id: @ranking.id, position: 4).first.thing.name.should == 'Dummy'
                 
-                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                  'Thing 1', 'Thing 2', 'Thing 3', 'Dummy', 'Thing 4', 'Thing 5', 'Thing 6'
+                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                  [1, 'Thing 1'], [2, 'Thing 2'], [3, 'Thing 3'], [4, 'Dummy'], [5, 'Thing 4'], [6, 'Thing 5'], [7, 'Thing 6']
                 ]
               end
             end
@@ -91,8 +91,8 @@ describe User do
                 
                 subject.ranking_items.where(ranking_id: @ranking.id, position: 5).first.thing.name.should == 'Dummy'
                 
-                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                  'Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Dummy', 'Thing 5', 'Thing 6'
+                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                  [1, 'Thing 1'], [2, 'Thing 2'], [3, 'Thing 3'], [4, 'Thing 4'], [5, 'Dummy'], [6, 'Thing 5'], [7, 'Thing 6']
                 ]
               end
             end
@@ -103,8 +103,8 @@ describe User do
                 
                 subject.ranking_items.where(ranking_id: @ranking.id, position: 6).first.thing.name.should == 'Dummy'
                 
-                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                  'Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5',  'Dummy', 'Thing 6'
+                subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                  [1, 'Thing 1'], [2, 'Thing 2'], [3, 'Thing 3'], [4, 'Thing 4'], [5, 'Thing 5'], [6, 'Dummy'], [7, 'Thing 6']
                 ]
               end
             end
@@ -119,8 +119,8 @@ describe User do
               
               subject.add_ranking_item @attributes.merge(thing_name: 'Dummy', best: true, stars: 5)
               
-              subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                'Thing 1', 'Thing 2', 'Dummy'
+              subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                [1, 'Thing 1'], [2, 'Thing 2'], [3, 'Dummy']
               ]
             end
           end
@@ -132,8 +132,8 @@ describe User do
               
               subject.add_ranking_item @attributes.merge(thing_name: 'Dummy', best: false, stars: 0)
               
-              subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| i.thing.name}.should == [
-                'Dummy', 'Thing 1', 'Thing 2'
+              subject.ranking_items.where(ranking_id: @ranking.id).order('position ASC').to_a.map{|i| [i.position, i.thing.name]}.should == [
+                [1, 'Dummy'], [2, 'Thing 1'], [3, 'Thing 2']
               ]
             end
           end
