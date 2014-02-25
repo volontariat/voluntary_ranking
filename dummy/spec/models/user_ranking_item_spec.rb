@@ -7,6 +7,20 @@ describe 'UserRankingItem' do
     @attributes = { adjective: 'best', negative_adjective: 'worst', topic: 'movie', scope: 'ever' }
   end
   
+  describe '#set_position' do
+    it 'copies stars from the item in the list to replace' do
+      user.add_ranking_item @attributes.merge(thing_name: 'Thing 1', best: true, stars: 5)
+      user.add_ranking_item @attributes.merge(thing_name: 'Thing 2', best: true, stars: 4)
+      user_ranking_item = user.add_ranking_item @attributes.merge(thing_name: 'Thing 3', best: true, stars: 3)
+      
+      user_ranking_item.set_position(2); user_ranking_item.reload
+      
+      user_ranking_item.position.should == 2
+      user_ranking_item.stars.should == 4
+      user_ranking_item.best.should be_true
+    end
+  end
+  
   describe '#move_to_top_of_page' do
     context '1 page available' do
       it 'inserts item at 1st position' do
