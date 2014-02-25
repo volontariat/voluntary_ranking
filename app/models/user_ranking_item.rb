@@ -22,35 +22,7 @@ class UserRankingItem < ActiveRecord::Base
     insert_at(item_on_top_of_page.position)
   end
   
-  # TODO: still needed?
   def set_position(value)
-=begin    
-    user_ranking_items = UserRankingItem.where(
-      'ranking_item_id = :ranking_item_id AND (position >= :position - 1 AND position <= :position + 1)', 
-      ranking_item_id: ranking_item_id, position: value
-    ).order('position ASC')
-    
-    previous_item = user_ranking_items.select{|item| item.position < value}.first
-    item = user_ranking_items.select{|item| item.position == value}.first
-    next_item = user_ranking_items.select{|item| item.position > value}.first
-    
-    item_to_copy_stars_from = if position > value
-      # 2 > 1
-      # 4 > 2
-      # down
-      previous_item.present? ? previous_item : item
-    else
-      # 1 > 2
-      # 2 > 4
-      # up
-      previous_item.present? ? previous_item : item
-    end
-=end
-
-    #raise [UserRankingItem.all.map{|item| [item.position, item.ranking_item_id]}, UserRankingItem.where(
-    #  'ranking_item_id = :ranking_item_id AND position = :position', ranking_item_id: ranking_item_id, position: value
-    #).to_sql].inspect
-
     item = UserRankingItem.where(
       'ranking_id = :ranking_id AND position = :position', ranking_id: ranking_id, position: value
     ).first
