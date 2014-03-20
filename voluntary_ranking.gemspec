@@ -7,11 +7,11 @@ require 'voluntary_ranking/version'
 Gem::Specification.new do |s|
   s.name        = 'voluntary_ranking'
   s.version     = VoluntaryRanking::VERSION
-  s.authors     = ['TODO: Your name']
-  s.email       = ['TODO: Your email']
-  s.homepage    = 'TODO'
-  s.summary     = 'TODO: Summary of VoluntaryRanking.'
-  s.description = 'TODO: Description of VoluntaryRanking.'
+  s.authors     = ["Mathias Gawlista"]
+  s.email       = ["gawlista@gmail.com"]
+  s.homepage    = "http://github.com/volontariat/voluntary_ranking"
+  s.summary     = "Ranking product for crowdsourcing engine voluntary."
+  s.description = "Ranking product for crowdsourcing engine voluntary."
 
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
