@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130817122701) do
+ActiveRecord::Schema.define(version: 20140307113522) do
 
   create_table "areas", force: true do |t|
     t.string   "ancestry"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20130817122701) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", using: :btree
@@ -219,9 +220,8 @@ ActiveRecord::Schema.define(version: 20130817122701) do
     t.integer  "thing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "formatted_position"
   end
-
-  add_index "user_ranking_items", ["user_id", "ranking_id", "position"], name: "index_user_ranking_items_on_user_id_and_ranking_id_and_position", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
