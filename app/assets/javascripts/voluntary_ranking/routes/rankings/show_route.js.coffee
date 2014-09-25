@@ -17,6 +17,3 @@ VoluntaryOnEmberjs.RankingsShowRoute = Ember.Route.extend
   setupController: (controller, model) ->
     controller.send('goToPageWithoutRedirect', controller.get('page'))
     controller.set('model', model)
-    
-  renderTemplate: ->
-    @render 'voluntary_ranking/templates/rankings/show'

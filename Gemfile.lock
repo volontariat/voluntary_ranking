@@ -91,7 +91,7 @@ PATH
       ember-data-source
       ember-rails
       ember-source
-      voluntary
+      voluntary (~> 0.2.0)
 
 GEM
   remote: http://rubygems.org/
@@ -541,7 +541,7 @@ GEM
     websocket (1.1.2)
     wicked (1.0.3)
       rails (>= 3.0.7)
-    will_paginate (3.0.5)
+    will_paginate (3.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yard (0.8.7.4)

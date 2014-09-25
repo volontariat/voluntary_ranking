@@ -6,7 +6,6 @@ gemspec path: File.expand_path(File.dirname(__FILE__) + "/../")
 gem 'voluntary', path: '../../voluntary' # '0.1.0.rc2'
 #gem 'voluntary_list', '0.0.1', path: '../../voluntary_list'
 gem 'voluntary_core_module_emberjs', path: '../../voluntary_core_module_emberjs' # '0.0.1'
-gem 'ember-source', path: '../../ember.js'
 
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'

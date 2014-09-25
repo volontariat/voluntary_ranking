@@ -1,6 +1,6 @@
 VoluntaryOnEmberjs.RankingItemsCollectionView = Ember.View.extend
   # {{view Ember.Select contentBinding="VoluntaryOnEmberjs.Ranking.thingTypes" valueBinding="controller.thingType" class="thing_type" }}
-  templateName: 'voluntary_ranking/templates/ranking_items/_collection'
+  templateName: 'ranking_items/_collection'
   
   didInsertElement: ->
     first_position = $('#ranking li:first').data('position')

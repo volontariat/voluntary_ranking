@@ -2,24 +2,24 @@
 	<p>
 	  {{#if currentUser}}
 	  <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
-	    <button {{bind-attr class="globalRankingClass"}} type="button" data-toggle-value="1" {{action setGlobalRanking}}>Global</button>
-	    <button {{bind-attr class="yourRankingClass"}} type="button" data-toggle-value="0" {{action setYourRanking}}>Your</button>
+	    <button {{bind-attr class="globalRankingClass"}} type="button" data-toggle-value="1" {{action 'setGlobalRanking'}}>Global</button>
+	    <button {{bind-attr class="yourRankingClass"}} type="button" data-toggle-value="0" {{action 'setYourRanking'}}>Your</button>
 	  </span> 
     &nbsp;&nbsp; 
     {{/if}}
     
-    {{view Ember.TextField valueBinding="controller.adjective" placeholder="Adjective" class="adjective"}} 
+    {{view Ember.TextField valueBinding="adjective" placeholder="Adjective" class="adjective"}} 
     &nbsp;&nbsp;
     and 
     &nbsp;&nbsp;
-    {{view Ember.TextField valueBinding="controller.negativeAdjective" placeholder="Negative adjective" class="negative_adjective"}}
+    {{view Ember.TextField valueBinding="negativeAdjective" placeholder="Negative adjective" class="negative_adjective"}}
     &nbsp;&nbsp;
-    {{view Ember.TextField valueBinding="controller.topic" placeholder="Topic" class="topic"}}
+    {{view Ember.TextField valueBinding="topic" placeholder="Topic" class="topic"}}
     &nbsp;&nbsp;
-    {{view Ember.TextField valueBinding="controller.scope" placeholder="Scope" class="scope"}} 
+    {{view Ember.TextField valueBinding="scope" placeholder="Scope" class="scope"}} 
     &nbsp;&nbsp;
-    <button class="btn" type="button" {{action getRanking}}>Get</button>  
+    <button class="btn" type="button" {{action 'getRanking'}}>Get</button>  
     &nbsp;&nbsp;
-    <button class="btn" type="button" {{action reload}}>Reload</button>  
+    <button class="btn" type="button" {{action 'reload'}}>Reload</button>  
   </p>
 </form>
