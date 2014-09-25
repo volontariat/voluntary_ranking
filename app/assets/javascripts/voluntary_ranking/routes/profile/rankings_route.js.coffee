@@ -20,4 +20,4 @@ VoluntaryOnEmberjs.ProfileRankingsRoute = Ember.Route.extend
     controller.set('content', model)
     
   renderTemplate: ->
-    @render 'user/rankings/show'
+    @render 'user/rankings/details'
