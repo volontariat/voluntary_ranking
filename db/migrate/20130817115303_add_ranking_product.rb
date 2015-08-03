@@ -1,8 +1,7 @@
 class AddRankingProduct < ActiveRecord::Migration
   def up
-    Product.create(name: 'Ranking', text: 'Ranking')
+    Product::Ranking.create(name: 'Ranking', text: 'Ranking')
     
-    # MongoDB to the rescue?
     create_table :rankings, force:  true do |t|
       t.string :adjective # best
       t.string :topic
@@ -44,7 +43,7 @@ class AddRankingProduct < ActiveRecord::Migration
   end
   
   def down
-    Product.where(name: 'Ranking').first.destroy
+    Product::Ranking.first.destroy
     
     [:rankings, :ranking_items, :user_ranking_items].each do |table|
       drop_table table
