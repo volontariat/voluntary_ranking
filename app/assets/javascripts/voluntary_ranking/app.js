@@ -7,3 +7,4 @@
 //= require ./router.js.coffee
 //= require_tree ./routes
 //= require_self
+//= require ./base.js.coffee

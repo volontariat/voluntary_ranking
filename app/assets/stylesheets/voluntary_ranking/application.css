@@ -9,7 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require voluntary_core_module_emberjs/application
+ *= require ./base
  *= require ./bootstrap_and_overrides
  *= require ./stars
+ *= require ./twitter-typeahead
  *= require_self
  */

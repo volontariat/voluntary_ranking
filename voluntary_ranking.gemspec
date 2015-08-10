@@ -18,8 +18,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'voluntary'
   #s.add_dependency 'voluntary_list', '0.0.1'
   s.add_dependency 'voluntary_core_module_emberjs', '0.0.1'
+  s.add_dependency 'twitter-typeahead-rails', '~> 0.10.5'
   
   # group :development
+  
   s.add_development_dependency 'letter_opener', '~> 1.0.0'
 
   # for tracing AR object instantiation and memory usage per request
@@ -30,9 +32,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 2.0' 
   
   # group :test
-  s.add_development_dependency 'capybara', '~> 2.1.0'
-  s.add_development_dependency 'capybara-webkit', '~> 1.1.1'
-  s.add_development_dependency 'cucumber-rails', '~> 1.3.0'
+  s.add_development_dependency 'capybara', '~> 2.4.4'
+  s.add_development_dependency 'capybara-webkit', '~> 1.6.0'
   s.add_development_dependency 'cucumber-rails-training-wheels', '~> 1.0.0'
   s.add_development_dependency 'timecop', '~> 0.6.1'
   s.add_development_dependency 'factory_girl_rails', '~> 1.7.0'
@@ -43,7 +44,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-spork', '~> 1.5.1'
   s.add_development_dependency 'guard-cucumber', '~> 1.4.0'
   s.add_development_dependency 'launchy', '~> 2.1.2'
-
-  # group :cucumber, :test
-  s.add_development_dependency 'database_cleaner', '~> 0.7.1'
 end
