@@ -1,0 +1,17 @@
+{{#modal-dialog action="close"}}
+  <form class="form-inline" id="new_argument_form" value="{{thingId}}">
+    <input type="hidden" name="thing_id" id="thing_id"/>
+	  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>New Argument</h3>
+		</div>
+		<div style="padding:25px">
+		  {{view Ember.TextField valueBinding="topicName" placeholder="Topic" data-autocomplete="/api/v1/argument_topics/autocomplete"}}
+		  {{input type="text" value=value placeholder="Value" class="moveToBottom4px"}}
+		  <button {{action 'create'}}>Submit</button>
+		</div>
+		<div class="modal-footer">
+	    Save button here
+		</div>
+  </form>
+{{/modal-dialog}}

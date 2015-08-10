@@ -4,15 +4,25 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, path: 'v1' do
       # TODO: remove manual routing when get rid of this resource using root UsersController
-      resources :users
+      resources :argument_topics, only: [] do
+        collection do
+          get :autocomplete
+        end  
+      end
+      
+      resources :arguments
       resources :rankings
       resources :ranking_items
+      resources :things
+      
       resources :user_ranking_items do
         member do
           put :move_to_page
           put :move
         end
       end
+      
+      resources :users
     end
   end
 end

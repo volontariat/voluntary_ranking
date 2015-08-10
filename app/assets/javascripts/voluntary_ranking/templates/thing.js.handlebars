@@ -1,0 +1,8 @@
+<h1>{{name}}</h1>
+
+<ul class="nav nav-pills">
+  {{#link-to 'rankings.index' id 1 tagName="li"}}<a {{bind-attr href="view.href"}}>Rankings</a>{{/link-to}}
+  {{#link-to 'arguments.index' id 1 tagName="li"}}<a {{bind-attr href="view.href"}}>Arguments</a>{{/link-to}}
+</ul>
+
+{{outlet}}

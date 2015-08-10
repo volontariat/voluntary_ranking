@@ -1,0 +1,15 @@
+{{#if anyItems}}
+<table class="table table-striped">
+  {{#each model}}
+  <tr>
+    <td>
+      {{#link-to 'rankings.show' adjective negativeAdjective topic scope 1}}{{adjective}} and {{negativeAdjective}} {{topic}} {{scope}}{{/link-to}}
+    </td>
+  </tr>
+  {{/each}}
+</table>
+{{else}}
+  No rankings found.
+{{/if}}
+
+{{partial 'shared/pagination'}}

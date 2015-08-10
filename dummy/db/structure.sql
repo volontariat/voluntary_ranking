@@ -76,29 +76,37 @@ CREATE TABLE `areas_users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `candidatures`
+-- Table structure for table `argument_topics`
 --
 
-DROP TABLE IF EXISTS `candidatures`;
+DROP TABLE IF EXISTS `argument_topics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `candidatures` (
+CREATE TABLE `argument_topics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vacancy_id` int(11) DEFAULT NULL,
-  `offeror_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `text` text COLLATE utf8_unicode_ci,
-  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_candidatures_on_slug` (`slug`),
-  UNIQUE KEY `index_candidatures_on_vacancy_id_and_name` (`vacancy_id`,`name`),
-  UNIQUE KEY `index_candidatures_on_user_id_and_vacancy_id` (`user_id`,`vacancy_id`),
-  KEY `index_candidatures_on_vacancy_id` (`vacancy_id`),
-  KEY `index_candidatures_on_user_id` (`user_id`)
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `arguments`
+--
+
+DROP TABLE IF EXISTS `arguments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `arguments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `topic_id` int(11) DEFAULT NULL,
+  `thing_id` int(11) DEFAULT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,6 +153,26 @@ CREATE TABLE `friendly_id_slugs` (
   UNIQUE KEY `index_friendly_id_slugs_on_slug_and_sluggable_type` (`slug`,`sluggable_type`),
   KEY `index_friendly_id_slugs_on_sluggable_id` (`sluggable_id`),
   KEY `index_friendly_id_slugs_on_sluggable_type` (`sluggable_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `likes`
+--
+
+DROP TABLE IF EXISTS `likes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `positive` tinyint(1) DEFAULT '1',
+  `target_id` int(11) DEFAULT NULL,
+  `target_type` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_likes_on_target_id_and_user_id_and_target_type` (`target_id`,`user_id`,`target_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -219,6 +247,7 @@ CREATE TABLE `organizations` (
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_organizations_on_slug` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -238,7 +267,7 @@ CREATE TABLE `professions` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,15 +307,11 @@ DROP TABLE IF EXISTS `projects_users`;
 CREATE TABLE `projects_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project_id` int(11) DEFAULT NULL,
-  `vacancy_id` int(11) DEFAULT NULL,
-  `role_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `index_projects_users_on_project_id_and_user_id_and_vacancy_id` (`project_id`,`user_id`,`vacancy_id`),
+  UNIQUE KEY `index_projects_users_on_project_id_and_user_id` (`project_id`,`user_id`) USING BTREE,
   KEY `index_projects_users_on_project_id` (`project_id`),
-  KEY `index_projects_users_on_vacancy_id` (`vacancy_id`),
-  KEY `index_projects_users_on_role_id` (`role_id`),
   KEY `index_projects_users_on_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -309,7 +334,7 @@ CREATE TABLE `ranking_items` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,26 +354,7 @@ CREATE TABLE `rankings` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `public` tinyint(1) DEFAULT '0',
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -378,7 +384,7 @@ CREATE TABLE `things` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_things_on_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,9 +406,9 @@ CREATE TABLE `user_ranking_items` (
   `thing_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_user_ranking_items_on_user_id_and_ranking_id_and_position` (`user_id`,`ranking_id`,`position`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `formatted_position` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +435,7 @@ CREATE TABLE `users` (
   `date_of_birth` date DEFAULT NULL,
   `place_of_birth` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `citizenship` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   `encrypted_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `reset_password_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `reset_password_sent_at` datetime DEFAULT NULL,
@@ -455,64 +461,19 @@ CREATE TABLE `users` (
   `interface_language` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `employment_relationship` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `profession_id` int(11) DEFAULT NULL,
-  `main_role_id` int(11) DEFAULT NULL,
   `foreign_languages` text COLLATE utf8_unicode_ci,
+  `provider` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `uid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastfm_user_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `api_key` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `roles` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_slug` (`slug`),
   UNIQUE KEY `index_users_on_name` (`name`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   KEY `index_users_on_profession_id` (`profession_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `users_roles`
---
-
-DROP TABLE IF EXISTS `users_roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users_roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_users_roles_on_user_id_and_role_id` (`user_id`,`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `vacancies`
---
-
-DROP TABLE IF EXISTS `vacancies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `vacancies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `project_id` int(11) DEFAULT NULL,
-  `offeror_id` int(11) DEFAULT NULL,
-  `author_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `project_user_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8_unicode_ci,
-  `limit` int(11) DEFAULT '1',
-  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_vacancies_on_slug` (`slug`),
-  UNIQUE KEY `index_vacancies_on_project_id_and_name` (`project_id`,`name`),
-  KEY `index_vacancies_on_project_id` (`project_id`),
-  KEY `index_vacancies_on_offeror_id` (`offeror_id`),
-  KEY `index_vacancies_on_user_id` (`user_id`),
-  KEY `index_vacancies_on_project_user_id` (`project_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -524,7 +485,7 @@ CREATE TABLE `vacancies` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-31 15:54:42
+-- Dump completed on 2015-08-09 17:56:42
 INSERT INTO schema_migrations (version) VALUES ('20130814161240');
 
 INSERT INTO schema_migrations (version) VALUES ('20130814161241');
@@ -552,3 +513,22 @@ INSERT INTO schema_migrations (version) VALUES ('20130814161251');
 INSERT INTO schema_migrations (version) VALUES ('20130817122700');
 
 INSERT INTO schema_migrations (version) VALUES ('20130817122701');
+
+INSERT INTO schema_migrations (version) VALUES ('20140307113522');
+
+INSERT INTO schema_migrations (version) VALUES ('20141028123344');
+
+INSERT INTO schema_migrations (version) VALUES ('20141028123345');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809155612');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809155613');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809155614');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809155615');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809155616');
+
+INSERT INTO schema_migrations (version) VALUES ('20150809155617');
+

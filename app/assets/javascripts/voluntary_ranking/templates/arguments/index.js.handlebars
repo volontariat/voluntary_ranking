@@ -1,0 +1,23 @@
+{{#if anyItems}}
+<table class="table table-striped">
+  {{#each model}}
+  <tr>
+    <td>
+      {{topicName}}
+    </td>
+    <td>
+      {{value}}
+    </td>
+  </tr>
+  {{/each}}
+</table>
+{{else}}
+  No arguments found.
+{{/if}}
+
+{{partial 'shared/pagination'}}
+
+<button {{action 'openModal' 'arguments.new'}}><i class="icon-plus"></i> Add argument</button>
+
+{{outlet}}
+{{outlet modal}}

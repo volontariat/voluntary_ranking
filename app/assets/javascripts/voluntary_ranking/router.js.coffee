@@ -1,6 +1,6 @@
-VoluntaryOnEmberjs.Router.reopen location: 'hash'
+Volontariat.Router.reopen location: 'hash'
 
-VoluntaryOnEmberjs.Router.map ->
+Volontariat.Router.map ->
   @_super
   
   @resource 'profile', ->
@@ -12,5 +12,14 @@ VoluntaryOnEmberjs.Router.map ->
  
   @resource 'rankings', ->
     @route 'show', path: ':adjective/and/:negative_adjective/:topic/:scope/page/:page'
+
+  @resource 'thing', path: '/things/:thing_id', ->
+    @resource 'rankings', ->
+      @route 'index', path: 'page/:page'
+      @route 'new'
+    @resource 'arguments', ->
+      @route 'index', path: 'page/:page'
+      @route 'new' 
         
-  #@route 'user.rankings.show', path: 'users/:user_id/rankings/:adjective/and/:negative_adjective/:topic/:scope'    
+  # This route will be used to reload the current route by going to this route and then back to the current route
+  @route 'no_data'
