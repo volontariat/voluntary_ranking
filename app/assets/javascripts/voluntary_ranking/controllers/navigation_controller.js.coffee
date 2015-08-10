@@ -1,9 +1,13 @@
 # TODO: why .reopen and not .extend?
-VoluntaryOnEmberjs.NavigationController = VoluntaryOnEmberjs.Controller.reopen
+Volontariat.NavigationController = Volontariat.Controller.reopen
   listContext: 'Global'
   
   listContextDidChange: ((sender, key, value, rev) ->
-    @transitionToRoute('rankings.reload')
+    unless $('.topic').val() == undefined
+      if @get('listContext') == 'Your'
+        @transitionToRoute('profile.rankings', $('.adjective').val(), $('.negative_adjective').val(), $('.topic').val(), $('.scope').val(), 1)
+      else
+        @transitionToRoute('rankings.show', $('.adjective').val(), $('.negative_adjective').val(), $('.topic').val(), $('.scope').val(), 1)
   ).observes('listContext')
 
-VoluntaryOnEmberjs.NavigationController.listContexts = ['Global', 'Your']
+Volontariat.NavigationController.listContexts = ['Global', 'Your']
