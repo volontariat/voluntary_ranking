@@ -1,5 +1,5 @@
-VoluntaryOnEmberjs.PaginationController = Em.Mixin.create
-  pages: [], totalPages: 0, page: 1
+Volontariat.PaginationController = Em.Mixin.create
+  pages: [], totalPages: 1, page: 1
   
   showFirstPageLink: (-> @get('page') != 1).property('page')
   showPreviousPageLink: (-> @get('page') - 1 > 0).property('page')
@@ -33,8 +33,12 @@ VoluntaryOnEmberjs.PaginationController = Em.Mixin.create
   actions:
     goToPage: (page) ->
       @_goToPage(page)
-      @transitionToRoute(@get('paginationRoute'), @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), page)
-      #@send('reload')
-      
+
+      switch @get('paginationRoute')
+        when 'rankings.show', 'profile.rankings'
+          @transitionToRoute(@get('paginationRoute'), @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), page)
+        when 'rankings.index', 'arguments.index'
+          @transitionToRoute(@get('paginationRoute'), @get('thingId'), page)
+          
     goToPageWithoutRedirect: (page) ->
       @_goToPage(page)
