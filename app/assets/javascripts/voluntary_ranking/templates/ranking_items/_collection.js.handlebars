@@ -7,9 +7,7 @@
 	      <th width="10%" style="vertical-align:top;">Move to</th>
 	{{/if}}
 	      <th width="55%" style="vertical-align:top;">Name</th>
-	      <th width="15%" style="vertical-align:top;">Type</th>
 	      <th width="10%" style="vertical-align:top;">Stars</th>
-	      <th width="5%" style="vertical-align:top;">Best<br/>Worst</th>
 	    </tr>
 	  </thead>
 	</table>
@@ -20,23 +18,19 @@
 	      <table class="table">
 	        <tr>
 	          <td class="list-element-striped" width="5%" style="text-align:right">{{position}}</td>        
+	    {{#if controller.yourRanking}} 
 	          <td class="list-element-striped" width="10%">
-      {{#if controller.yourRanking}}	          
-	            <a {{action 'moveToPreviousPage' id}}>previous page</a>
+              <a {{action 'moveToPreviousPage' id}}>previous page</a><br/>
 	            <a {{action 'moveToNextPage' id}}>next page</a>
-	    {{/if}}
 	          </td> 
+	    {{/if}}
 	          <td class="list-element-striped" width="55%">
-	            {{thingName}}
+	            {{#link-to 'thing' thingId}}{{thingName}}{{/link-to}}
 	          </td>
-	          <td class="list-element-striped" width="15%">{{thingType}}</td>
 	          <td class="list-element-striped" width="10%">
 	            <div class="stars">
 	              {{#if is5StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is4StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is3StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is2StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is1StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
 	            </div>
-	          </td>
-	          <td class="list-element-striped" width="5%">
-	            {{#if best}}Best{{else}}Worst{{/if}}
 	          </td>
 	        </tr>
 	      </table>
