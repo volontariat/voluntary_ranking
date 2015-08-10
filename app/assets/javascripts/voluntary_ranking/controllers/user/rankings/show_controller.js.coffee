@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayController.extend(VoluntaryOnEmberjs.RankingController, VoluntaryOnEmberjs.PaginationController,
+Volontariat.UserRankingsShowController = Volontariat.ArrayController.extend(Volontariat.RankingController, Volontariat.PaginationController,
   listContext: 'Your', yourRanking: true, routeName: ''  
   yourRankingClass: 'btn active', globalRankingClass: 'btn'
   thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
@@ -51,15 +51,16 @@ VoluntaryOnEmberjs.UserRankingsShowController = VoluntaryOnEmberjs.ArrayControll
         thingName: @get('thingName'), best: @get('best'), stars: @get('stars'),
         adjective: @get('adjective'), negativeAdjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope') 
       )
-      user_ranking_item.save()
-      window.location.reload()
-      
+      user_ranking_item.save().then =>
+        @transitionToRoute('no_data')
+        @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('page'))
+          
     reload: ->
       @set(
         'model', 
         @store.find(
           'user_ranking_item', 
-          user_id: VoluntaryOnEmberjs.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
+          user_id: Volontariat.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
           topic: @get('topic'), scope: @get('scope'), page: @get('page')
         )
       )
