@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.ProfileRankingsRoute = Ember.Route.extend
+Volontariat.ProfileRankingsRoute = Ember.Route.extend
   model: (params) ->
     @controllerFor('profile.rankings').set('yourRanking', true); @controllerFor('profile.rankings').set('yourRankingClass', 'btn active'); 
     @controllerFor('profile.rankings').set('globalRankingClass', 'btn')
@@ -8,12 +8,15 @@ VoluntaryOnEmberjs.ProfileRankingsRoute = Ember.Route.extend
     @controllerFor('profile.rankings').set('scope', params.scope)
     @controllerFor('profile.rankings').set('page', parseInt(params.page))
    
-    @store.findQuery(
-      'user_ranking_item',
-      user_id: VoluntaryOnEmberjs.User.current().id, adjective: params.adjective, 
-      negative_adjective: params.negative_adjective, topic: params.topic, 
-      scope: params.scope, page: params.page
-    )
+    if Volontariat.User.current() == undefined
+      alert 'Please sign in to see your ranking!'
+    else
+      @store.findQuery(
+        'user_ranking_item',
+        user_id: Volontariat.User.current().id, adjective: params.adjective, 
+        negative_adjective: params.negative_adjective, topic: params.topic, 
+        scope: params.scope, page: params.page
+      )
     
   setupController: (controller, model) ->
     controller.send('goToPageWithoutRedirect', controller.get('page'))
