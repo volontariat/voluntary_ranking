@@ -3,6 +3,10 @@ class Ranking < ActiveRecord::Base
   
   has_many :items, class_name: 'RankingItem', dependent: :destroy
   
+  scope :for_thing, ->(thing_id) do
+    select('DISTINCT(rankings.id), rankings.*').joins(:items).where('ranking_items.thing_id = ?', thing_id)
+  end 
+  
   validates :adjective, presence: true
   validates :topic, presence: true, uniqueness: { scope: [:adjective, :scope] }
   validates :scope, presence: true
