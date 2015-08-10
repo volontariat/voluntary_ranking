@@ -1,3 +1,3 @@
-VoluntaryOnEmberjs.ApplicationRoute.reopen
+Volontariat.ApplicationRoute.reopen
   renderTemplate: ->
     @render 'application'

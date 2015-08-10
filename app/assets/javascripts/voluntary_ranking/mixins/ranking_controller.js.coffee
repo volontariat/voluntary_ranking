@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.RankingController = Em.Mixin.create
+Volontariat.RankingController = Em.Mixin.create
   page: 1
   
   anyItems: (-> @get('content.length') > 0).property('content')

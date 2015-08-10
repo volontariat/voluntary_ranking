@@ -1,1 +1,1 @@
-VoluntaryOnEmberjs.ObjectController = Ember.ObjectController.extend(VoluntaryOnEmberjs.HasCurrentUser);
+Volontariat.ObjectController = Ember.ObjectController.extend(Volontariat.HasCurrentUser);

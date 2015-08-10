@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.RankingsShowRoute = Ember.Route.extend
+Volontariat.RankingsShowRoute = Ember.Route.extend
   model: (params) ->
     @controllerFor('rankings.show').set('yourRanking', false); @controllerFor('rankings.show').set('yourRankingClass', 'btn'); 
     @controllerFor('rankings.show').set('globalRankingClass', 'btn active')

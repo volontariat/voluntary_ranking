@@ -1,1 +1,1 @@
-VoluntaryOnEmberjs.ProfileIndexView = Ember.View.extend()
+Volontariat.ProfileIndexView = Ember.View.extend()

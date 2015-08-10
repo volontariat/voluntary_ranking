@@ -1,5 +1,2 @@
-VoluntaryOnEmberjs.Thing = DS.Model.extend
-  #rankings: DS.hasMany('ranking')
-  userRankingItems: DS.hasMany('userRankingItem')
-  
+Volontariat.Thing = DS.Model.extend
   name: DS.attr('string')

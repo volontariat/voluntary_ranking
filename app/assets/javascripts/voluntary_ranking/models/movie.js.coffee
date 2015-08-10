@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.Movie = DS.Model.extend
+Volontariat.Movie = DS.Model.extend
   #rankings: DS.hasMany('ranking')
   userRankingItems: DS.hasMany('userRankingItem')
   

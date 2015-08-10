@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.HasCurrentUser = Em.Mixin.create
+Volontariat.HasCurrentUser = Em.Mixin.create
   currentUser: (->
-    VoluntaryOnEmberjs.User.current()
+    Volontariat.User.current()
   ).property().volatile()

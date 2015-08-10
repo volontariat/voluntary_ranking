@@ -1,1 +1,1 @@
-VoluntaryOnEmberjs.ProfileIndexRoute = Ember.Route.extend()
+Volontariat.ProfileIndexRoute = Ember.Route.extend()

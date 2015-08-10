@@ -1,5 +1,5 @@
-VoluntaryOnEmberjs.RankingItemsCollectionView = Ember.View.extend
-  # {{view Ember.Select contentBinding="VoluntaryOnEmberjs.Ranking.thingTypes" valueBinding="controller.thingType" class="thing_type" }}
+Volontariat.RankingItemsCollectionView = Ember.View.extend
+  # {{view Ember.Select contentBinding="Volontariat.Ranking.thingTypes" valueBinding="controller.thingType" class="thing_type" }}
   templateName: 'ranking_items/_collection'
   
   didInsertElement: ->
@@ -14,16 +14,16 @@ VoluntaryOnEmberjs.RankingItemsCollectionView = Ember.View.extend
       update: (event, ui) =>
         source_item = $(ui.item).closest('li')
         
-        VoluntaryOnEmberjs.current_position = first_position
+        Volontariat.current_position = first_position
         previous_element = null
         
         $.each $('#ranking li'), (index, element) ->
-          VoluntaryOnEmberjs.__container__.lookup('store:main').find('user_ranking_item', $(element).data('id')).then (user_ranking_item) ->
-            $(element).data('position', VoluntaryOnEmberjs.current_position)  
-            user_ranking_item.set('position', VoluntaryOnEmberjs.current_position)
+          Volontariat.__container__.lookup('store:main').find('user_ranking_item', $(element).data('id')).then (user_ranking_item) ->
+            $(element).data('position', Volontariat.current_position)  
+            user_ranking_item.set('position', Volontariat.current_position)
             
             if $(element).data('id') == $(source_item).data('id')
-              $.post '/api/v1/user_ranking_items/' + $(element).data('id') + '/move', { _method: 'put', position: VoluntaryOnEmberjs.current_position }
+              $.post '/api/v1/user_ranking_items/' + $(element).data('id') + '/move', { _method: 'put', position: Volontariat.current_position }
             
             previous_element = $(element)
-            VoluntaryOnEmberjs.current_position += 1
+            Volontariat.current_position += 1

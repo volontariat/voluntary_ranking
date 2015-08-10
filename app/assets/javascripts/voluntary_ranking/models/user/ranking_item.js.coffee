@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.UserRankingItem = DS.Model.extend
+Volontariat.UserRankingItem = DS.Model.extend
   user: DS.belongsTo('user')
   #ranking: DS.belongsTo('ranking')
   #thing: DS.belongsTo('thing', { polymorphic: true })

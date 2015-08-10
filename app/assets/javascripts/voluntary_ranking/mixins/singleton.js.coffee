@@ -1,4 +1,4 @@
-VoluntaryOnEmberjs.Singleton = Em.Mixin.create(
+Volontariat.Singleton = Em.Mixin.create(
   current: ->
     @_current = @createCurrent()  unless @_current
     @_current
