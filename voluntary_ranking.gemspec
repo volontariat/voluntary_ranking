@@ -44,4 +44,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-spork', '~> 1.5.1'
   s.add_development_dependency 'guard-cucumber', '~> 1.4.0'
   s.add_development_dependency 'launchy', '~> 2.1.2'
+
+  # group :cucumber, :test
+  s.add_development_dependency 'database_cleaner', '~> 0.7.1'
+  s.add_development_dependency 'test-unit', '~> 3.0.9'
 end
