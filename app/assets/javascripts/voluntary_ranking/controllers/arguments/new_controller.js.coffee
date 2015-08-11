@@ -1,4 +1,4 @@
-Volontariat.ArgumentsNewController = Ember.ObjectController.extend(
+Volontariat.ArgumentsNewController = Ember.ObjectController.extend
   topicName: '', value: ''
   
   actions:
@@ -14,4 +14,3 @@ Volontariat.ArgumentsNewController = Ember.ObjectController.extend(
     
     close: ->
       @send "closeModal"
-)
