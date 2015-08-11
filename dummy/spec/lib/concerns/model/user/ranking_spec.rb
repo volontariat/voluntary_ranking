@@ -163,7 +163,7 @@ describe User do
             
             user_ranking_item = subject.add_ranking_item @attributes.merge(thing_name: 'Dummy', best: true, stars: 3)
             
-            user_ranking_item.valid?.should be_false
+            user_ranking_item.valid?.should be_falsey
           end
         end 
       end

@@ -17,7 +17,7 @@ describe 'UserRankingItem' do
       
       user_ranking_item.position.should == 2
       user_ranking_item.stars.should == 4
-      user_ranking_item.best.should be_true
+      user_ranking_item.best.should be_truthy
     end
   end
   
