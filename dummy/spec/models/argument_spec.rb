@@ -28,9 +28,9 @@ describe 'Argument' do
     
     context 'argument invalid' do
       it 'returns an error' do
-        argument = Argument.create_with_topic(topic_name: 'Dummy', value: 'Dummy')
+        response = Argument.create_with_topic(topic_name: 'Dummy', value: 'Dummy')
         
-        argument.errors[:thing_id].should == ["can't be blank"]
+        response[:errors][:thing_id].should == ["can't be blank"]
       end
     end
   end
