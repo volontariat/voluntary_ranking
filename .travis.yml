@@ -11,7 +11,6 @@ addons:
     repo_token: 5f4fbff43acb3b747d39955a26f2327b6dd161a37aad8a652089480ba3f72556
 script:
   - cd dummy
-  - bundle install
   - ln -s ../.git .git
   - cp config/database.travis.yml config/database.yml
   - RAILS_ENV=test bundle exec rake db:create
