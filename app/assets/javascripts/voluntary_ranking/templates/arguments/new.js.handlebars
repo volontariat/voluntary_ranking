@@ -6,12 +6,11 @@
 			<h3>New Argument</h3>
 		</div>
 		<div style="padding:25px">
-		  {{view Ember.TextField valueBinding="topicName" placeholder="Topic" data-autocomplete="/api/v1/argument_topics/autocomplete"}}
+		  {{input type="text" value=topicName placeholder="Topic" data-autocomplete="/api/v1/argument_topics/autocomplete"}}
 		  {{input type="text" value=value placeholder="Value" class="moveToBottom4px"}}
-		  <button {{action 'create'}}>Submit</button>
 		</div>
 		<div class="modal-footer">
-	    Save button here
+	    <button class="save_argument_button" {{action 'create'}}>Submit</button>
 		</div>
   </form>
 {{/modal-dialog}}
