@@ -5,8 +5,8 @@ class Argument < ActiveRecord::Base
   scope :compare_two_things, ->(side, left_thing_name, right_thing_name) do
     left_thing_name, right_thing_name = right_thing_name, left_thing_name if side == 'right'
       
-    left_thing = Thing.where('LOWER(name) = ?', left_thing_name).first
-    right_thing = Thing.where('LOWER(name) = ?', right_thing_name).first
+    left_thing = Thing.where('LOWER(name) = ?', left_thing_name.downcase).first
+    right_thing = Thing.where('LOWER(name) = ?', right_thing_name.downcase).first
     
     scope = joins(:topic).select('arguments.id, arguments.value, arguments.topic_id, argument_topics.name AS topic_name, arguments2.id AS right_id, arguments2.value AS right_value').
     joins("#{side == 'both' ? 'INNER' : 'LEFT'} JOIN arguments arguments2 ON arguments2.thing_id = #{sanitize(right_thing.id)} AND arguments2.topic_id = arguments.topic_id")
