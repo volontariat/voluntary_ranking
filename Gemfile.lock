@@ -1,13 +1,6 @@
-PATH
-  remote: .
-  specs:
-    voluntary_ranking (0.0.1)
-      twitter-typeahead-rails (~> 0.10.5)
-      voluntary
-      voluntary_core_module_emberjs (= 0.0.1)
-
-PATH
-  remote: ../voluntary
+GIT
+  remote: git://github.com/volontariat/voluntary.git
+  revision: 572a937defc4d68ec7e0d7b607ac7d2d8b1c3268
   specs:
     voluntary (0.4.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -74,8 +67,9 @@ PATH
       will_paginate_mongoid (~> 2.0.1)
       zip-zip (~> 0.2)
 
-PATH
-  remote: ../voluntary_core_module_emberjs
+GIT
+  remote: git://github.com/volontariat/voluntary_core_module_emberjs.git
+  revision: 818ae07116f5967258d54f59f62aab2feee42ee0
   specs:
     voluntary_core_module_emberjs (0.0.1)
       active_model_serializers
@@ -83,6 +77,14 @@ PATH
       ember-rails (= 0.15.0)
       ember-source (= 1.7.0)
       voluntary (~> 0.4.0)
+
+PATH
+  remote: .
+  specs:
+    voluntary_ranking (0.0.1)
+      twitter-typeahead-rails (~> 0.10.5)
+      voluntary
+      voluntary_core_module_emberjs (= 0.0.1)
 
 GEM
   remote: http://rubygems.org/

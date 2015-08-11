@@ -5,5 +5,5 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'voluntary', path: '../voluntary'
-gem 'voluntary_core_module_emberjs', path: '../voluntary_core_module_emberjs' # '0.0.1'
+gem 'voluntary', github: 'volontariat/voluntary'
+gem 'voluntary_core_module_emberjs', github: 'volontariat/voluntary_core_module_emberjs' # '0.0.1'
