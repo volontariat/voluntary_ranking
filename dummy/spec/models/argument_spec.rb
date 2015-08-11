@@ -1,6 +1,53 @@
 require 'spec_helper'
 
 describe 'Argument' do
+  describe 'scopes' do
+    describe '.compare_two_things' do
+      before :each do
+        @left_thing = Factory(:thing, name: 'Left thing')
+        @right_thing = Factory(:thing, name: 'Right thing')
+        
+        Argument.create_with_topic(thing_id: @left_thing.id, topic_name: 'Both', value: 1)
+        Argument.create_with_topic(thing_id: @right_thing.id, topic_name: 'Both', value: 2)
+        Argument.create_with_topic(thing_id: @left_thing.id, topic_name: 'Left', value: 3)
+        Argument.create_with_topic(thing_id: @right_thing.id, topic_name: 'Right', value: 4)
+      end
+      
+      context 'side is both' do
+        it 'returns data for both sides' do
+          arguments = Argument.compare_two_things('both', @left_thing.name, @right_thing.name).to_a
+          
+          arguments.length.should == 1
+          arguments.first.topic_name.should == 'Both'
+          arguments.first.value.should == '1'
+          arguments.first.right_value.should == '2'
+        end
+      end
+      
+      context 'side is left' do
+        it 'returns only data for left side' do
+          arguments = Argument.compare_two_things('left', @left_thing.name, @right_thing.name).to_a
+          
+          arguments.length.should == 1
+          arguments.first.topic_name.should == 'Left'
+          arguments.first.value.should == '3'
+          arguments.first.right_value.should == nil
+        end
+      end
+      
+      context 'side is right' do
+        it 'returns only data for right side' do
+          arguments = Argument.compare_two_things('right', @left_thing.name, @right_thing.name).to_a
+          
+          arguments.length.should == 1
+          arguments.first.topic_name.should == 'Right'
+          arguments.first.value.should == '4'
+          arguments.first.right_value.should == nil     
+        end
+      end
+    end 
+  end
+  
   describe '.create_with_topic' do
     context 'topic_name is blank' do
       it 'returns an error' do
