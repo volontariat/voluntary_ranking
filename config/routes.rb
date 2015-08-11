@@ -13,7 +13,14 @@ Rails.application.routes.draw do
       resources :arguments
       resources :rankings
       resources :ranking_items
-      resources :things
+      
+      resources :things, only: [:show] do
+        collection do
+          get :autocomplete
+        end  
+      end
+      
+      get '/things/:left_thing_name/vs/:right_thing_name/arguments', to: 'things/arguments#comparison'
       
       resources :user_ranking_items do
         member do

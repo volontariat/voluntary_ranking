@@ -1,0 +1,14 @@
+<h1>
+{{input type="text" value=leftThingName placeholder="One thing" data-autocomplete="/api/v1/things/autocomplete"}} 
+vs. 
+{{input type="text" value=rightThingName placeholder="Other thing" data-autocomplete="/api/v1/things/autocomplete"}}
+<button class="compare_button" {{action 'compare'}}>Compare</button>
+</h1>
+
+<ul class="nav nav-pills">
+  {{#link-to 'compare_things.arguments' leftThingName rightThingName 'both' 1 tagName="li"}}<a {{bind-attr href="view.href"}}>Both Arguments</a>{{/link-to}}
+  {{#link-to 'compare_things.arguments' leftThingName rightThingName 'left' 1 tagName="li"}}<a {{bind-attr href="view.href"}}>Left's only Arguments</a>{{/link-to}}
+  {{#link-to 'compare_things.arguments' leftThingName rightThingName 'right' 1 tagName="li"}}<a {{bind-attr href="view.href"}}>Right's only Arguments</a>{{/link-to}}
+</ul>
+
+{{outlet}}

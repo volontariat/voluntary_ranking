@@ -1,5 +1,5 @@
 Volontariat.PaginationController = Em.Mixin.create
-  pages: [], totalPages: 1, page: 1
+  pages: [], totalPages: 1, page: 1, metadata: null
   
   showFirstPageLink: (-> @get('page') != 1).property('page')
   showPreviousPageLink: (-> @get('page') - 1 > 0).property('page')
@@ -10,7 +10,7 @@ Volontariat.PaginationController = Em.Mixin.create
 
   _goToPage: (page) ->
     @set('page', parseInt(page))
-    @set('totalPages', @store.metadataFor(@get('paginationResource')).pagination.total_pages)
+    @set('totalPages', (@get('metadata') || @store.metadataFor(@get('paginationResource'))).pagination.total_pages)
     pages = []; i = page - 4
     
     while i <= page
@@ -39,6 +39,8 @@ Volontariat.PaginationController = Em.Mixin.create
           @transitionToRoute(@get('paginationRoute'), @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), page)
         when 'rankings.index', 'arguments.index'
           @transitionToRoute(@get('paginationRoute'), @get('thingId'), page)
+        when 'compare_things.arguments'
+          @transitionToRoute(@get('paginationRoute'), @get('leftThingName'), @get('rightThingName'), @get('side'), page)
           
     goToPageWithoutRedirect: (page) ->
       @_goToPage(page)

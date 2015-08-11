@@ -1,0 +1,24 @@
+{{#if anyItems}}
+<table class="table table-striped">
+  {{#each model}}
+  <tr>
+    <td>
+      {{topic.name}}
+    </td>
+    <td>
+      {{left.value}}
+    </td>
+    <td>
+      vs
+    </td>
+    <td>
+      {{right.value}}
+    </td>
+  </tr>
+  {{/each}}
+</table>
+{{else}}
+  No arguments found.
+{{/if}}
+
+{{partial 'shared/pagination'}}

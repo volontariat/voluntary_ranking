@@ -1,4 +1,9 @@
-<h1>{{name}}</h1>
+<h1>
+{{name}} 
+vs. 
+{{input type="text" value=otherThingName placeholder="Other thing" data-autocomplete="/api/v1/things/autocomplete"}}
+<button class="compare_button" {{action 'compare'}}>Compare</button>
+</h1>
 
 <ul class="nav nav-pills">
   {{#link-to 'rankings.index' id 1 tagName="li"}}<a {{bind-attr href="view.href"}}>Rankings</a>{{/link-to}}
