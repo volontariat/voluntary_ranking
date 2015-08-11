@@ -1,7 +1,7 @@
 Volontariat.RankingsShowRoute = Ember.Route.extend
   model: (params) ->
-    @controllerFor('rankings.show').set('yourRanking', false); @controllerFor('rankings.show').set('yourRankingClass', 'btn'); 
-    @controllerFor('rankings.show').set('globalRankingClass', 'btn active')
+    @controllerFor('rankings.show').set('yourRanking', false); @controllerFor('rankings.show').set('yourRankingClass', 'your_ranking_button btn'); 
+    @controllerFor('rankings.show').set('globalRankingClass', 'global_ranking_button btn active')
     @controllerFor('rankings.show').set('adjective', params.adjective)
     @controllerFor('rankings.show').set('negativeAdjective', params.negative_adjective)
     @controllerFor('rankings.show').set('topic', params.topic)

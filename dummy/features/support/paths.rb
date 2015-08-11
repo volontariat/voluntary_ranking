@@ -30,6 +30,10 @@ module NavigationHelpers
     when /the edit area page/
       edit_area_path(@area)
 
+    # arguments
+    when /the thing arguments page/
+      "/products/ranking#/things/#{@thing.id}/arguments/page/1"
+
     # product
     when /the product page/
       product_path(@product)

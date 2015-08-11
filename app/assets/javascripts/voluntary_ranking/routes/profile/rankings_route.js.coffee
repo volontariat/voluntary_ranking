@@ -1,7 +1,7 @@
 Volontariat.ProfileRankingsRoute = Ember.Route.extend
   model: (params) ->
-    @controllerFor('profile.rankings').set('yourRanking', true); @controllerFor('profile.rankings').set('yourRankingClass', 'btn active'); 
-    @controllerFor('profile.rankings').set('globalRankingClass', 'btn')
+    @controllerFor('profile.rankings').set('yourRanking', true); @controllerFor('profile.rankings').set('yourRankingClass', 'your_ranking_button btn active'); 
+    @controllerFor('profile.rankings').set('globalRankingClass', 'global_ranking_button btn')
     @controllerFor('profile.rankings').set('adjective', params.adjective)
     @controllerFor('profile.rankings').set('negativeAdjective', params.negative_adjective)
     @controllerFor('profile.rankings').set('topic', params.topic)

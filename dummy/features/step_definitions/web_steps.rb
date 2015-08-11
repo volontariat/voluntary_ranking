@@ -53,12 +53,20 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )press "([^"]*)" by JavaScript$/ do |path|
+  page.execute_script %Q{ $('#{path}').click(); }
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+end
+
+When /^(?:|I )fill in xpath "([^"]*)" with "([^"]*)"$/ do |xpath, value|
+  find(:xpath, xpath).set(value)
 end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
@@ -268,4 +276,8 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+Then /^wait (\d+) second(?:s)?$/ do |seconds|
+  sleep(seconds.to_i)
 end

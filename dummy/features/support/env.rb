@@ -10,6 +10,7 @@ if ENV['COVERAGE_REPORT']
 end
 
 require 'cucumber/rails'
+require 'cucumber/rails/rspec'
 require 'factory_girl'
 require 'capybara/webkit'
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/factories')
@@ -21,6 +22,10 @@ require File.join(File.dirname(__FILE__), "integration_sessions_controller")
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
 
 Capybara.javascript_driver = ENV['JAVASCRIPT_DRIVER'] ? ENV['JAVASCRIPT_DRIVER'].to_sym : :webkit
 
@@ -83,4 +88,3 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
-
