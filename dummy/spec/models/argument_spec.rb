@@ -7,10 +7,10 @@ describe 'Argument' do
         @left_thing = Factory(:thing, name: 'Left thing')
         @right_thing = Factory(:thing, name: 'Right thing')
         
-        Argument.create_with_topic(thing_id: @left_thing.id, topic_name: 'Both', value: 1)
-        Argument.create_with_topic(thing_id: @right_thing.id, topic_name: 'Both', value: 2)
-        Argument.create_with_topic(thing_id: @left_thing.id, topic_name: 'Left', value: 3)
-        Argument.create_with_topic(thing_id: @right_thing.id, topic_name: 'Right', value: 4)
+        Argument.create_with_topic(thing_name: @left_thing.name, topic_name: 'Both', value: 1)
+        Argument.create_with_topic(thing_name: @right_thing.name, topic_name: 'Both', value: 2)
+        Argument.create_with_topic(thing_name: @left_thing.name, topic_name: 'Left', value: 3)
+        Argument.create_with_topic(thing_name: @right_thing.name, topic_name: 'Right', value: 4)
       end
       
       context 'side is both' do
