@@ -4,4 +4,5 @@ Volontariat.CompareThingsController = Ember.ObjectController.extend
   actions:
     
     compare: ->
-      @transitionToRoute('compare_things', @get('leftThingName'), @get('rightThingName'))
+      @transitionToRoute 'no_data'
+      @transitionToRoute 'compare_things', @get('leftThingName'), @get('rightThingName')

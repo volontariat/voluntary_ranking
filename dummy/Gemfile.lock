@@ -77,17 +77,6 @@ GIT
       zip-zip (~> 0.2)
 
 GIT
-  remote: git://github.com/volontariat/voluntary_core_module_emberjs.git
-  revision: 818ae07116f5967258d54f59f62aab2feee42ee0
-  specs:
-    voluntary_core_module_emberjs (0.0.1)
-      active_model_serializers
-      ember-data-source (= 1.0.0.beta.10)
-      ember-rails (= 0.15.0)
-      ember-source (= 1.7.0)
-      voluntary (~> 0.4.0)
-
-GIT
   remote: https://github.com/binarylogic/settingslogic.git
   revision: 0ae134bc6b93463bb0bc406e5b0df82ed07fc53f
   specs:
@@ -104,12 +93,22 @@ GIT
       rake
 
 PATH
+  remote: ../../voluntary-ember_js
+  specs:
+    voluntary-ember_js (0.0.1)
+      active_model_serializers
+      ember-data-source (= 1.0.0.beta.10)
+      ember-rails (= 0.15.0)
+      ember-source (= 1.7.0)
+      voluntary (~> 0.4.0)
+
+PATH
   remote: /Users/gawlim/workspace/voluntary/voluntary_ranking
   specs:
     voluntary_ranking (0.0.1)
       twitter-typeahead-rails (~> 0.10.5)
       voluntary
-      voluntary_core_module_emberjs (= 0.0.1)
+      voluntary-ember_js (= 0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -639,7 +638,7 @@ DEPENDENCIES
   thin (~> 1.3.1)
   timecop (~> 0.6.1)
   voluntary!
-  voluntary_core_module_emberjs!
+  voluntary-ember_js!
   voluntary_ranking!
   webmock (~> 1.8.11)
   yard (~> 0.7)

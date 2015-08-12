@@ -1,16 +1,16 @@
-class Product::RankingController < VoluntaryCoreModuleEmberjs::ApplicationController
-  layout Proc.new { |controller| controller.request.xhr? || request.format.try('json?') ? false : 'core_module/emberjs' }
+class Product::RankingController < Voluntary::EmberJs::ApplicationController
+  layout Proc.new { |controller| controller.request.xhr? || request.format.try('json?') ? false : 'voluntary/ember_js' }
   
   def index
   end
   
   protected
   
-  def voluntary_core_module_emberjs_stylesheets
+  def voluntary_ember_js_stylesheets
     ['voluntary_ranking/application']
   end
   
-  def voluntary_core_module_emberjs_javascripts
+  def voluntary_ember_js_javascripts
     ['voluntary_ranking/application']
   end
 end

@@ -1,4 +1,4 @@
-//= require voluntary_core_module_emberjs/application
+//= require voluntary/ember_js/application
 //= require twitter/typeahead
 //= require twitter/typeahead/bloodhound
 //= require_self

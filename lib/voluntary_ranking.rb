@@ -3,7 +3,7 @@ require 'voluntary'
 require 'devise/orm/active_record'
 require 'twitter-typeahead-rails'
 
-require 'voluntary_core_module_emberjs'
+require 'voluntary/ember_js'
 
 require 'voluntary_ranking/ability'
 

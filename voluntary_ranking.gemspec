@@ -16,8 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency 'voluntary'
-  #s.add_dependency 'voluntary_list', '0.0.1'
-  s.add_dependency 'voluntary_core_module_emberjs', '0.0.1'
+  s.add_dependency 'voluntary-ember_js', '0.0.1'
   s.add_dependency 'twitter-typeahead-rails', '~> 0.10.5'
   
   # group :development
