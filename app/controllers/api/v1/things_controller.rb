@@ -4,7 +4,9 @@ class Api::V1::ThingsController < ActionController::Base
   respond_to :json
 
   def show
-    @thing = Thing.find(params[:id])
+    @thing = Thing.where('LOWER(name) = ?', params[:id].downcase).first
+    
+    raise ActiveRecord::RecordNotFound if @thing.blank?
     
     respond_with do |format|
       format.json { render json: @thing, root: true }
