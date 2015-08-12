@@ -8,8 +8,19 @@ GIT
       rdiscount
 
 GIT
+  remote: git://github.com/volontariat/voluntary-ember_js.git
+  revision: d783e2711f6edc54c0bc6e3d9c1c5fb2351e5563
+  specs:
+    voluntary-ember_js (0.0.1)
+      active_model_serializers
+      ember-data-source (= 1.0.0.beta.10)
+      ember-rails (= 0.15.0)
+      ember-source (= 1.7.0)
+      voluntary (~> 0.4.0)
+
+GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 572a937defc4d68ec7e0d7b607ac7d2d8b1c3268
+  revision: 6d48a1319bb8c276420a331dd5fd01d5c63b7a39
   specs:
     voluntary (0.4.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -20,7 +31,7 @@ GIT
       auto_html (~> 1.6.4)
       bitmask_attributes (~> 1.0.0)
       bootstrap-datetimepicker-rails (~> 0.0.11)
-      bootstrap-sass-rails (~> 2.3.2.1)
+      bootstrap-sass-rails (~> 3.1.0.0)
       cancan (~> 1.6.10)
       coffee-rails (~> 4.1.0)
       coffee-script (~> 2.2.0)
@@ -66,7 +77,7 @@ GIT
       selectize-rails (~> 0.12.0)
       simple-navigation (~> 3.11.0)
       simple-navigation-bootstrap (~> 1.0.0)
-      simple_form (~> 3.0.0)
+      simple_form (~> 3.1.0)
       slim (~> 2.0.2)
       state_machine (~> 1.2.0)
       typhoeus (~> 0.5.3)
@@ -91,16 +102,6 @@ GIT
       phantomjs
       rack (>= 1.2.1)
       rake
-
-PATH
-  remote: ../../voluntary-ember_js
-  specs:
-    voluntary-ember_js (0.0.1)
-      active_model_serializers
-      ember-data-source (= 1.0.0.beta.10)
-      ember-rails (= 0.15.0)
-      ember-source (= 1.7.0)
-      voluntary (~> 0.4.0)
 
 PATH
   remote: /Users/gawlim/workspace/voluntary/voluntary_ranking
@@ -172,9 +173,12 @@ GEM
     bitmask_attributes (1.0.0)
       activerecord (>= 3.1)
     bootstrap-datetimepicker-rails (0.0.11)
-    bootstrap-sass-rails (2.3.2.1)
-      railties (>= 3.1.0)
-      sass-rails (>= 3.1.0)
+    bootstrap-sass (3.1.0.2)
+      sass (~> 3.2)
+    bootstrap-sass-rails (3.1.0.0)
+      bootstrap-sass (~> 3.1.0.0)
+      railties (>= 3.2.0)
+      sass-rails (>= 3.2.0)
     bson (3.2.1)
     builder (3.2.2)
     byebug (4.0.5)
@@ -523,7 +527,7 @@ GEM
     simple-navigation-bootstrap (1.0.2)
       railties (>= 3.1)
       simple-navigation (>= 3.7.0, < 4.0.0)
-    simple_form (3.0.4)
+    simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simplecov (0.7.1)

@@ -5,10 +5,10 @@ Volontariat.RankingController = Em.Mixin.create
   
   actions:  
     setGlobalRanking: ->
-      @set('yourRanking', false); @set('yourRankingClass', 'your_ranking_button btn'); @set('globalRankingClass', 'global_ranking_button btn active')
+      @set('yourRanking', false); @set('yourRankingClass', 'your_ranking_button btn-default btn'); @set('globalRankingClass', 'global_ranking_button btn btn-default active')
       
     setYourRanking: ->
-      @set('yourRanking', true); @set('yourRankingClass', 'your_ranking_button btn active'); @set('globalRankingClass', 'global_ranking_button btn')
+      @set('yourRanking', true); @set('yourRankingClass', 'your_ranking_button btn btn-default active'); @set('globalRankingClass', 'global_ranking_button btn btn-default')
       
     getRanking: ->
       if @get('yourRanking')

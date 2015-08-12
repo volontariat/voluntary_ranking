@@ -1,20 +1,20 @@
 Volontariat.UserRankingsShowController = Volontariat.ArrayController.extend(Volontariat.RankingController, Volontariat.PaginationController,
-  listContext: 'Your', yourRanking: true, routeName: ''  
-  yourRankingClass: 'your_ranking_button btn active', globalRankingClass: 'global_ranking_button btn'
+  yourRanking: true, routeName: ''  
+  yourRankingClass: 'your_ranking_button btn btn-default active', globalRankingClass: 'global_ranking_button btn-default btn'
   thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
   thingName: '', best: true, stars: 3
-  isBestClass: 'btn active', isWorstClass: 'btn'
+  isBestClass: 'btn btn-default active', isWorstClass: 'btn btn-default'
   is1Star: '', is2Star: '', is3Star: 'active', is4Star: '', is5Star: ''
   paginationResource: 'user_ranking_item', paginationRoute: 'profile.rankings'
   
   _setBest: (without_stars) ->
     return if @get('best') 
-    @set('best', true); @set('isBestClass', 'btn active'); @set('isWorstClass', 'btn')
+    @set('best', true); @set('isBestClass', 'btn btn-default active'); @set('isWorstClass', 'btn btn-default')
     @_setStars(3) if !without_stars and @get('stars') <= 2
     
   _setWorst: (without_stars) -> 
     return unless @get('best', 'btn active')
-    @set('best', false); @set('isBestClass', 'btn'); @set('isWorstClass', 'btn active')
+    @set('best', false); @set('isBestClass', 'btn btn-default'); @set('isWorstClass', 'btn btn-default active')
     @_setStars(0) if !without_stars and @get('stars') > 0
   
   _setStars: (stars) ->
