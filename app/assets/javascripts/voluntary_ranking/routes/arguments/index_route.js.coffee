@@ -1,7 +1,7 @@
 Volontariat.ArgumentsIndexRoute = Ember.Route.extend
   model: (params) ->
     @controllerFor('arguments.index').set 'page', parseInt(params.page)
-    @controllerFor('arguments.index').set 'thingId', @modelFor('thing').id
+    @controllerFor('arguments.index').set 'thingName', @modelFor('thing')._data.name
     
     @store.find 'argument', thing_id: @modelFor('thing').id, page: params.page
   
@@ -16,9 +16,13 @@ Volontariat.ArgumentsIndexRoute = Ember.Route.extend
         into: "arguments.index"
         outlet: "modal"
       $('#modal').modal('show')
+      $('#modal').removeClass('hide')
         
     closeModal: ->
       @disconnectOutlet
         outlet: "modal"
         parentView: "arguments.index"
       $('#modal').modal('hide')
+      $('#modal').addClass('hide')
+      $('body').removeClass('modal-open')
+      $('.modal-backdrop').remove()
