@@ -11,7 +11,7 @@ Volontariat.ProfileRankingsRoute = Ember.Route.extend
     if Volontariat.User.current() == undefined
       alert 'Please sign in to see your ranking!'
     else
-      @store.findQuery(
+      @store.query(
         'user_ranking_item',
         user_id: Volontariat.User.current().id, adjective: params.adjective, 
         negative_adjective: params.negative_adjective, topic: params.topic, 

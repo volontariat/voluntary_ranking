@@ -8,7 +8,7 @@ Volontariat.RankingsShowRoute = Ember.Route.extend
     @controllerFor('rankings.show').set('scope', params.scope)
     @controllerFor('rankings.show').set('page', parseInt(params.page))
     
-    @store.find(
+    @store.query(
       'ranking_item',
       adjective: params.adjective, negative_adjective: params.negative_adjective, topic: params.topic, 
       scope: params.scope, page: params.page

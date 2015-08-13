@@ -1,5 +1,5 @@
-Volontariat.ThingController = Ember.ObjectController.extend
-  otherThingName: ''
+Volontariat.ThingController = Ember.Controller.extend
+  name: ''
   
   actions:
     

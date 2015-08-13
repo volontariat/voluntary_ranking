@@ -9,7 +9,7 @@ Volontariat.RankingsShowController = Volontariat.ArrayController.extend(Volontar
     reload: ->
       @set(
         'model', 
-        @store.find(
+        @store.query(
           'ranking_item', 
           adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
           topic: @get('topic'), scope: @get('scope'), page: @get('page')

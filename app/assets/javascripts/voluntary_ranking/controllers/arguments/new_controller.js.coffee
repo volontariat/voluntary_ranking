@@ -1,4 +1,4 @@
-Volontariat.ArgumentsNewController = Ember.ObjectController.extend
+Volontariat.ArgumentsNewController = Ember.Controller.extend
   topicName: '', value: ''
   
   actions:

@@ -1,4 +1,4 @@
-Volontariat.CompareThingsController = Ember.ObjectController.extend
+Volontariat.CompareThingsController = Ember.Controller.extend
   leftThingName: '', rightThingName: ''
   
   actions:

@@ -45,7 +45,7 @@ Volontariat.UserRankingsShowController = Volontariat.ArrayController.extend(Volo
       if !@get('thingName').trim() || !@get('adjective').trim() || !@get('negativeAdjective').trim() || !@get('topic').trim() || !@get('scope').trim()
         alert 'Please set thing, adjective, negative adjective, topic and scope.'
         return
-        
+
       user_ranking_item = @store.createRecord(
         'user_ranking_item',
         thingName: @get('thingName'), best: @get('best'), stars: @get('stars'),
@@ -58,7 +58,7 @@ Volontariat.UserRankingsShowController = Volontariat.ArrayController.extend(Volo
     reload: ->
       @set(
         'model', 
-        @store.find(
+        @store.query(
           'user_ranking_item', 
           user_id: Volontariat.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
           topic: @get('topic'), scope: @get('scope'), page: @get('page')
