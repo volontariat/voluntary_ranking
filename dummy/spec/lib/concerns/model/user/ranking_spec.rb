@@ -179,6 +179,24 @@ describe User do
           ranking.send(attribute).should == value
         end
       end
+      
+      it 'considers user and ranking id at inserting at position by stars' do
+        subject.add_ranking_item(
+          { adjective: 'best', negative_adjective: 'worst', topic: 'topic1', scope: 'ever', 
+            thing_name: 'Thing 1', best: true, stars: 5
+          }
+        )
+        subject.add_ranking_item(
+          { adjective: 'best', negative_adjective: 'worst', topic: 'topic2', scope: 'ever', 
+            thing_name: 'Thing 1', best: true, stars: 5
+          }
+        )
+        
+        ranking = Ranking.where(adjective: 'best', negative_adjective: 'worst', topic: 'topic2', scope: 'ever').first
+        
+        UserRankingItem.where(ranking_id: ranking.id).count.should == 1
+        UserRankingItem.where(ranking_id: ranking.id).first.position.should == 1
+      end
     end
   end
 end
