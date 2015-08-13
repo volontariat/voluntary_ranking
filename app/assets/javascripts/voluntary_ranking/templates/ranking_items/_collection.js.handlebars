@@ -17,7 +17,11 @@
 	    <li data-id="{{unbound id}}" data-position="{{unbound position}}">
 	      <table class="table">
 	        <tr>
-	          <td class="list-element-striped" width="5%" style="text-align:right">{{position}}</td>        
+	          <td class="list-element-striped" width="5%" style="text-align:right">
+	            {{#link-to 'ranking_item' thingName positiveOrNegativeAdjective rankingTopic rankingScope}}
+                {{position}}
+              {{/link-to}}
+	          </td>        
 	    {{#if controller.yourRanking}} 
 	          <td class="list-element-striped" width="10%">
               <a {{action 'moveToPreviousPage' id}}>previous page</a><br/>
@@ -40,5 +44,5 @@
 
   {{partial 'shared/pagination'}}
 {{else}}
-  No items found.
+  <p style="padding-top:10px;">No items found.</p>
 {{/if}}

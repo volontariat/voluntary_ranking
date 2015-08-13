@@ -25,4 +25,19 @@ class Api::V1::RankingItemsController < ActionController::Base
       format.json { render options }
     end
   end
+  
+  def show
+    ranking = Ranking.where(
+      '(LOWER(adjective) = :adjective OR LOWER(negative_adjective) = :adjective) AND LOWER(topic) = :topic AND LOWER(scope) = :scope',
+      adjective: params[:adjective].downcase, topic: params[:topic].downcase, scope: params[:scope].downcase
+    ).first
+    thing = Thing.where('LOWER(name) = ?', params[:thing_name].downcase).first
+    ranking_item = RankingItem.where(ranking_id: ranking.try(:id), thing_id: thing.try(:id)).first
+    
+    raise ActiveRecord::RecordNotFound if ranking_item.blank?
+    
+    respond_with do |format|
+      format.json { render json: ranking_item }
+    end
+  end
 end

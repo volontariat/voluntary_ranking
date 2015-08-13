@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       end
       
       get '/things/:left_thing_name/vs/:right_thing_name/arguments', to: 'things/arguments#comparison'
+      get '/things/:thing_name/is_one_of_the/:adjective/:topic/:scope', to: 'ranking_items#show'
       
       resources :user_ranking_items do
         member do

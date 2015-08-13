@@ -1,22 +1,31 @@
 <form class="form-inline" id="new_ranking_form">
 	<p>
-	  {{#if currentUser}}
+{{#if rankingItemThingName}}
+	  {{#link-to 'thing' rankingItemThingName}}{{rankingItemThingName}}{{/link-to}} 
+	  &nbsp;&nbsp;is&nbsp;&nbsp; 
+{{/if}}
+	  
+{{#if currentUser}}
 	  <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
 	    <button {{bind-attr class="globalRankingClass"}} type="button" data-toggle-value="1" {{action 'setGlobalRanking'}}>Global</button>
 	    <button {{bind-attr class="yourRankingClass"}} type="button" data-toggle-value="0" {{action 'setYourRanking'}}>Your</button>
 	  </span> 
     &nbsp;&nbsp; 
-    {{/if}}
+{{/if}}
     
-    {{view Ember.TextField valueBinding="adjective" placeholder="Adjective" class="adjective"}} 
+{{#if position}}
+    #{{position}}
+{{/if}}
+    
+    {{input value=adjective placeholder="Adjective" class="adjective"}} 
     &nbsp;&nbsp;
     and 
     &nbsp;&nbsp;
-    {{view Ember.TextField valueBinding="negativeAdjective" placeholder="Negative adjective" class="negative_adjective"}}
+    {{input value=negativeAdjective placeholder="Negative adjective" class="negative_adjective"}}
     &nbsp;&nbsp;
-    {{view Ember.TextField valueBinding="topic" placeholder="Topic" class="topic"}}
+    {{input value=topic placeholder="Topic" class="topic"}}
     &nbsp;&nbsp;
-    {{view Ember.TextField valueBinding="scope" placeholder="Scope" class="scope"}} 
+    {{input value=scope placeholder="Scope" class="scope"}} 
     &nbsp;&nbsp;
     <button class="get_ranking_button btn btn-default" type="button" {{action 'getRanking'}}>Get</button>  
     &nbsp;&nbsp;

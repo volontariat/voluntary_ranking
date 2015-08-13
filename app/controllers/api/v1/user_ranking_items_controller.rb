@@ -8,7 +8,16 @@ class Api::V1::UserRankingItemsController < ActionController::Base
     options = {}
     
     if ranking.present?
-      options[:json] = user.ranking_items.order('position').where(ranking_id: ranking.id).includes(:thing).paginate(page: params[:page], per_page: 10)
+      options[:json] = (params[:user_id].present? ? user.ranking_items : UserRankingItem)
+      
+      if params[:thing_name].present?
+        options[:json] = options[:json].where(
+          thing_id: Thing.where('LOWER(name) = ?', params[:thing_name].downcase).first.id
+        )
+      end
+      
+      options[:json] = options[:json].order('position').where(ranking_id: ranking.id).includes(:thing)
+      options[:json] = options[:json].paginate(page: params[:page], per_page: 10)
       
       options[:meta] = { 
         pagination: {

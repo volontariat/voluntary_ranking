@@ -5,8 +5,23 @@ Volontariat.RankingItem = DS.Model.extend
   thingType: DS.attr('string')
   thingName: DS.attr('string')
   position: DS.attr('number')
-  
   best: DS.attr('boolean')
   stars: DS.attr('number')
+  is1StarClass: (-> @get('stars') >= 1).property('stars')
+  is2StarClass: (-> @get('stars') >= 2).property('stars')
+  is3StarClass: (-> @get('stars') >= 3).property('stars')
+  is4StarClass: (-> @get('stars') >= 4).property('stars')
+  is5StarClass: (-> @get('stars') == 5).property('stars')
   topic: DS.attr('string')
   scope: DS.attr('string')
+  rankingAdjective: DS.attr('string')
+  rankingNegativeAdjective: DS.attr('string')
+  rankingTopic: DS.attr('string')
+  rankingScope: DS.attr('string')
+  
+  positiveOrNegativeAdjective: Ember.computed('rankingAdjective', 'rankingNegativeAdjective', 'best', ->
+    if @get('best')
+      @get('rankingAdjective')
+    else
+      @get('rankingNegativeAdjective')
+  )

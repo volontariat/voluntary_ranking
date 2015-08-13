@@ -1,0 +1,31 @@
+{{partial 'rankings/form'}}
+
+<h2>User votes</h2>
+
+{{#if anyUserRankingItems}}
+<table class="table table-striped" style="margin-top:15px;">
+  <tbody>
+  {{#each userRankingItems}}
+    <tr>
+      <td style="width:50px;">
+        {{position}}
+      </td>
+      <td>
+        {{#link-to 'user_ranking' user_name ranking_adjective ranking_negative_adjective ranking_topic ranking_scope 1}}
+          {{user_name}}
+        {{/link-to}}
+      </td>
+      <td>
+        <div class="stars">
+          {{#if is5StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is4StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is3StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is2StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is1StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+        </div>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+{{else}}
+  <span style="position:relative; top:10px;">No user votes found.</span>
+{{/if}}
+
+{{partial 'shared/pagination'}}
