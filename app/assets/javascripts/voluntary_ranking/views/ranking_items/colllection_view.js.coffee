@@ -1,5 +1,4 @@
 Volontariat.RankingItemsCollectionView = Ember.View.extend
-  # {{view Ember.Select contentBinding="Volontariat.Ranking.thingTypes" valueBinding="controller.thingType" class="thing_type" }}
   templateName: 'ranking_items/_collection'
   
   didInsertElement: ->

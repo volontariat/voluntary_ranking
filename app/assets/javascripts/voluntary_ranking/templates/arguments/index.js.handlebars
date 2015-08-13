@@ -2,16 +2,18 @@
 
 {{#if anyItems}}
 <table class="table table-striped" style="margin-top:15px;">
+  <tbody>
   {{#each model}}
-  <tr>
-    <td>
-      {{topicName}}
-    </td>
-    <td>
-      {{value}}
-    </td>
-  </tr>
+    <tr>
+      <td>
+        {{topicName}}
+      </td>
+      <td>
+        {{value}}
+      </td>
+    </tr>
   {{/each}}
+  </tbody>
 </table>
 {{else}}
   <span style="position:relative; top:10px;">No arguments found.</span>

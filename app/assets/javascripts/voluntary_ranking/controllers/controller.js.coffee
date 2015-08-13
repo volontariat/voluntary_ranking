@@ -1,1 +1,1 @@
-Volontariat.Controller = Ember.Controller.extend(Volontariat.HasCurrentUser);
+Volontariat.Controller = Ember.Controller.extend(Volontariat.HasCurrentUser)

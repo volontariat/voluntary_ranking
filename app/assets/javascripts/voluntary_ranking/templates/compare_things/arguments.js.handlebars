@@ -1,21 +1,23 @@
 {{#if anyItems}}
-<table class="table table-striped">
+<table class="table table-striped" style="margin-top:15px;">
+  <tbody>
   {{#each model}}
-  <tr>
-    <td>
-      {{topic.name}}
-    </td>
-    <td>
-      {{left.value}}
-    </td>
-    <td>
-      vs
-    </td>
-    <td>
-      {{right.value}}
-    </td>
-  </tr>
+    <tr>
+      <td>
+        {{topic.name}}
+      </td>
+      <td>
+        {{left.value}}
+      </td>
+      <td>
+        vs
+      </td>
+      <td>
+        {{right.value}}
+      </td>
+    </tr>
   {{/each}}
+  </tbody>
 </table>
 {{else}}
   <span style="position:relative; top:10px;">No arguments found.</span>
