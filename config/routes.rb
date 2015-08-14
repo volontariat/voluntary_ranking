@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :things, only: [:show] do
         collection do
           get :autocomplete
+          get :suggest
         end  
       end
       

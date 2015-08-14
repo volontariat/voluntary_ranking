@@ -19,4 +19,8 @@ class Api::V1::ThingsController < ActionController::Base
       map{|t| { id: t.id, name: t.name }}
     ), root: false
   end
+  
+  def suggest
+    render json: Thing.suggest(params[:term]), root: false
+  end
 end
