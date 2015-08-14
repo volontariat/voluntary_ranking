@@ -3,4 +3,4 @@
 //= require twitter/typeahead/bloodhound
 //= require_self
 //= require ./app
-VoluntaryRanking = {}
+VoluntaryRanking = {};
