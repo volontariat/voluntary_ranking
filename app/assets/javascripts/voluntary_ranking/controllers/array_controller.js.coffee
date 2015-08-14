@@ -1,1 +1,0 @@
-Volontariat.ArrayController = Ember.ArrayController.extend(Volontariat.HasCurrentUser)
