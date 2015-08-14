@@ -4,7 +4,7 @@
 	    <tr>
 	      <th width="5%" style="vertical-align:top;">Position</th>  
   {{#if yourRanking}}	          
-	      <th width="10%" style="vertical-align:top;">Move to</th>
+	      <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
 	{{/if}}
 	      <th width="55%" style="vertical-align:top;">Name</th>
 	      <th width="10%" style="vertical-align:top;">Stars</th>
@@ -23,12 +23,12 @@
               {{/link-to}}
 	          </td>        
 	    {{#if controller.yourRanking}} 
-	          <td class="list-element-striped" width="10%">
-              <a {{action 'moveToPreviousPage' id}}>previous page</a><br/>
-	            <a {{action 'moveToNextPage' id}}>next page</a>
+	          <td class="list-element-striped" width="5%" style="text-align:center">
+              <a {{action 'moveToPreviousPage' id}}><span class="glyphicon glyphicon-chevron-left"></span></a> 
+              <a {{action 'moveToNextPage' id}}><span class="glyphicon glyphicon-chevron-right"></span></a>
 	          </td> 
 	    {{/if}}
-	          <td class="list-element-striped" width="55%">
+	          <td class="list-element-striped" width="55%" style="padding-left:10px;">
 	            {{#link-to 'thing' thingName}}{{thingName}}{{/link-to}}
 	          </td>
 	          <td class="list-element-striped" width="10%">
