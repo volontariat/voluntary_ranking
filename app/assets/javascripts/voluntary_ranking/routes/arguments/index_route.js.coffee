@@ -14,14 +14,10 @@ Volontariat.ArgumentsIndexRoute = Ember.Route.extend
     openModal: (modalName) ->
       @render modalName,
         into: "arguments.index"
-        outlet: "modal"
       $('#modal').modal('show')
       $('#modal').removeClass('hide')
         
     closeModal: ->
-      @disconnectOutlet
-        outlet: "modal"
-        parentView: "arguments.index"
       $('#modal').modal('hide')
       $('#modal').addClass('hide')
       $('body').removeClass('modal-open')

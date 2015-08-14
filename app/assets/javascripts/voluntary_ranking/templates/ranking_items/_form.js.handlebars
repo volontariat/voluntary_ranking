@@ -13,16 +13,16 @@
     &nbsp;&nbsp;
     
     <span class="btn-group" data-toggle-name="ranking_item_best" data-toggle="buttons-radio">
-      <button {{bind-attr class="isBestClass"}} type="button" data-toggle-value="1" {{action 'setBest'}}>Best?</button>
-      <button {{bind-attr class="isWorstClass"}} type="button" data-toggle-value="0" {{action 'setWorst'}}>Worst?</button>
+      <button class="{{isBestClass}}" type="button" data-toggle-value="1" {{action 'setBest'}}>Best?</button>
+      <button class="{{isWorstClass}}" type="button" data-toggle-value="0" {{action 'setWorst'}}>Worst?</button>
     </span> 
     
     &nbsp;&nbsp;
     
     <div class="stars" style="display: inline; position: relative; top: 5px;">
-      <span {{bind-attr class="is5Star"}} {{action 'set5Star'}}></span><span {{bind-attr class="is4Star"}} {{action 'set4Star'}}></span>
-      <span {{bind-attr class="is3Star"}} {{action 'set3Star'}}></span><span {{bind-attr class="is2Star"}} {{action 'set2Star'}}></span>
-      <span {{bind-attr class="is1Star"}} {{action 'set1Star'}}></span>
+      <span class="{{is5Star}}" {{action 'set5Star'}}></span><span class="{{is4Star}}" {{action 'set4Star'}}></span>
+      <span class="{{is3Star}}" {{action 'set3Star'}}></span><span class="{{is2Star}}" {{action 'set2Star'}}></span>
+      <span class="{{is1Star}}" {{action 'set1Star'}}></span>
     </div>
   </div>
 </form>

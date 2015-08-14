@@ -9,7 +9,7 @@
 	{{/if}}
 	
 	{{#each currentPage in pages}}
-	  <li {{bind-attr class="currentPage.isCurrent:active"}}><a href="#" {{action 'goToPage' currentPage.number}}>{{currentPage.number}}</a></li>
+	  <li class="{{if currentPage.isCurrent 'active'}}"><a href="#" {{action 'goToPage' currentPage.number}}>{{currentPage.number}}</a></li>
 	{{/each}}
 	
 	{{#if showNextPageLink}}
