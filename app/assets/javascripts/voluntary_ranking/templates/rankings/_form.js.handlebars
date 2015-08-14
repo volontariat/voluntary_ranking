@@ -5,12 +5,16 @@
 	  &nbsp;&nbsp;is&nbsp;&nbsp; 
 {{/if}}
 	  
-{{#if currentUser}}
+{{#if userName}}	
+    {{#link-to 'user' userName}}{{userName}}{{/link-to}}  
+{{else}}
+  {{#if currentUser}}
 	  <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
-	    <button {{bind-attr class="globalRankingClass"}} type="button" data-toggle-value="1" {{action 'setGlobalRanking'}}>Global</button>
-	    <button {{bind-attr class="yourRankingClass"}} type="button" data-toggle-value="0" {{action 'setYourRanking'}}>Your</button>
+	    <button class="{{globalRankingClass}}" type="button" data-toggle-value="1" {{action 'setGlobalRanking'}}>Global</button>
+	    <button class="{{yourRankingClass}}" type="button" data-toggle-value="0" {{action 'setYourRanking'}}>Your</button>
 	  </span> 
     &nbsp;&nbsp; 
+  {{/if}}
 {{/if}}
     
 {{#if position}}
