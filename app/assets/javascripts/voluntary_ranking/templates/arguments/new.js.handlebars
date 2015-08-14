@@ -7,6 +7,8 @@
 		<div style="padding:25px">
 		  {{input type="text" value=topicName placeholder="Topic" data-autocomplete="/api/v1/argument_topics/autocomplete"}}
 		  {{input type="text" value=value placeholder="Value" class="moveToBottom4px"}}
+		  <p id="topic_suggestions">
+		  </p>
 		</div>
 		<div class="modal-footer">
 	    <button class="save_argument_button" {{action 'create'}}>Submit</button>

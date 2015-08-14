@@ -6,7 +6,7 @@ class Api::V1::ArgumentTopicsController < ActionController::Base
   def autocomplete
     render json: (
       ArgumentTopic.order(:name).where("name LIKE ?", "%#{params[:term]}%").
-      map{|t| { id: t.id, name: t.name }}
+      map{|t| { id: t.id, value: t.name }}
     ), root: false
   end
 end
