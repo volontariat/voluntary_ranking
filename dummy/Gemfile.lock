@@ -8,6 +8,17 @@ GIT
       rdiscount
 
 GIT
+  remote: git://github.com/volontariat/voluntary-ember_js.git
+  revision: 3ca0ffdc66d72d555de15ccd9f2381651ce88284
+  specs:
+    voluntary-ember_js (0.0.1)
+      active_model_serializers (~> 0.9.3)
+      ember-data-source (= 1.13.8)
+      ember-rails (~> 0.19.0)
+      ember-source (= 1.13.8)
+      voluntary (~> 0.4.0)
+
+GIT
   remote: git://github.com/volontariat/voluntary.git
   revision: c2d6896361b58c14bc5ccbf2cc16071ce014b757
   specs:
@@ -91,16 +102,6 @@ GIT
       phantomjs
       rack (>= 1.2.1)
       rake
-
-PATH
-  remote: ../../voluntary-ember_js
-  specs:
-    voluntary-ember_js (0.0.1)
-      active_model_serializers (~> 0.9.3)
-      ember-data-source (= 1.13.8)
-      ember-rails (~> 0.19.0)
-      ember-source (= 1.13.8)
-      voluntary (~> 0.4.0)
 
 PATH
   remote: /Users/gawlim/workspace/voluntary/voluntary_ranking
