@@ -8,7 +8,11 @@ class Api::V1::UserRankingItemsController < ActionController::Base
     options = {}
     
     if ranking.present?
-      options[:json] = (params[:user_id].present? ? user.ranking_items : UserRankingItem)
+      options[:json] = if params[:user_id].present? || params[:user_name].present?
+        user.ranking_items
+      else
+        UserRankingItem
+      end
       
       if params[:thing_name].present?
         options[:json] = options[:json].where(
@@ -76,6 +80,12 @@ class Api::V1::UserRankingItemsController < ActionController::Base
   private
   
   def user
-    @user ||= User.find(params[:user_id])
+    if @user
+      @user
+    elsif params[:user_id].present?
+      @user = User.find(params[:user_id])
+    elsif params[:user_name].present?
+      @user = User.where('LOWER(name) = ?', params[:user_name].downcase).first
+    end
   end
 end
