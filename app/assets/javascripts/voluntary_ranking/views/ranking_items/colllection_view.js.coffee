@@ -6,23 +6,22 @@ Volontariat.RankingItemsCollectionView = Ember.View.extend
     last_position = $('#ranking li:last').data('position')
 
     @$( '#ranking' ).sortable
+      handle: '.ranking_item_sortable'
       start: (event, ui) =>
         first_position = $('#ranking li:first').data('position')
         last_position = $('#ranking li:last').data('position')
+        console.log 'start:' + first_position + ' - ' + last_position
         
       update: (event, ui) =>
         source_item = $(ui.item).closest('li')
-        
+        console.log 'update:' + $(source_item).data('position')
         Volontariat.current_position = first_position
-        previous_element = null
         
         $.each $('#ranking li'), (index, element) ->
-          Volontariat.__container__.lookup('store:main').find('user_ranking_item', $(element).data('id')).then (user_ranking_item) ->
-            $(element).data('position', Volontariat.current_position)  
-            user_ranking_item.set('position', Volontariat.current_position)
-            
-            if $(element).data('id') == $(source_item).data('id')
-              $.post '/api/v1/user_ranking_items/' + $(element).data('id') + '/move', { _method: 'put', position: Volontariat.current_position }
-            
-            previous_element = $(element)
-            Volontariat.current_position += 1
+          $(element).data('position', Volontariat.current_position)  
+          $(element).find('.ranking_item_position').text(Volontariat.current_position)
+          
+          if $(element).data('id') == $(source_item).data('id')
+            $.post '/api/v1/user_ranking_items/' + $(element).data('id') + '/move', { _method: 'put', position: Volontariat.current_position }
+          
+          Volontariat.current_position += 1

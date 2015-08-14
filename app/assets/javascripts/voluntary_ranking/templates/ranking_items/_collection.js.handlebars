@@ -2,6 +2,7 @@
 	<table class="table" style="margin-bottom: 0px">
 	  <thead>
 	    <tr>
+	      <th width="2%"></th>
 	      <th width="5%" style="vertical-align:top;">Position</th>  
   {{#if yourRanking}}	          
 	      <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
@@ -17,8 +18,11 @@
 	    <li data-id="{{unbound id}}" data-position="{{unbound position}}">
 	      <table class="table">
 	        <tr>
+	          <td width="2%" style="text-align:center">
+	            <span class="ranking_item_sortable glyphicon glyphicon-move"></span>
+	          </td>
 	          <td class="list-element-striped" width="5%" style="text-align:right">
-	            {{#link-to 'ranking_item' thingName positiveOrNegativeAdjective rankingTopic rankingScope}}
+	            {{#link-to 'ranking_item' thingName positiveOrNegativeAdjective rankingTopic rankingScope class="ranking_item_position"}}
                 {{position}}
               {{/link-to}}
 	          </td>        
