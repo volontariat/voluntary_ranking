@@ -67,8 +67,8 @@ class Ranking < ActiveRecord::Base
   def one_ranking_per_topic_scope_and_one_of_the_adjectives
     if Ranking.where(
       '(' +
-      '(LOWER(adjective) = :adjective OR LOWER(negative_adjective) = :adjective) AND ' +
-      '(LOWER(adjective) = :negative_adjective OR LOWER(negative_adjective) = :negative_adjective)' +
+      'LOWER(adjective) = :adjective OR LOWER(negative_adjective) = :adjective OR ' +
+      'LOWER(adjective) = :negative_adjective OR LOWER(negative_adjective) = :negative_adjective' +
       ') AND ' + 
       'LOWER(topic) = :topic AND LOWER(scope) = :scope',
       adjective: adjective.downcase, negative_adjective: negative_adjective.downcase, 
