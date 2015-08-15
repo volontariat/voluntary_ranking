@@ -4,7 +4,7 @@ class UserRankingItem < ActiveRecord::Base
   attr_accessible :ranking, :ranking_id, :thing, :thing_id, :best, :stars
   
   belongs_to :user
-  belongs_to :ranking_item
+  belongs_to :ranking_item, counter_cache: true
   
   validates :user_id, presence: true
   validates :ranking_item_id, presence: true, uniqueness: { scope: [:user_id] }
@@ -12,6 +12,7 @@ class UserRankingItem < ActiveRecord::Base
   validate :stars_and_best
   
   after_validation :copy_validation_errors_from_ranking_item # or before?
+  after_destroy :destroy_ranking_item, if: 'UserRankingItem.where(ranking_item_id: ranking_item_id).count == 0'
   
   acts_as_list scope: [:user_id, :ranking_id]
   
@@ -59,5 +60,9 @@ class UserRankingItem < ActiveRecord::Base
     elsif self.stars <= 2 && self.best
       self.errors[:best] << 'Item cannot be best with less stars than 3.'
     end
+  end
+  
+  def destroy_ranking_item
+    ranking_item.destroy
   end
 end

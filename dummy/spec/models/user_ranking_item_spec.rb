@@ -62,4 +62,23 @@ describe 'UserRankingItem' do
       end
     end
   end
+  
+  describe '#destroy' do
+    it 'destroys ranking item if it has no user ranking items anymore' do
+      user_ranking_item1 = FactoryGirl.create :user_ranking_item
+      user_ranking_item2 = FactoryGirl.create(
+        :user_ranking_item, ranking_item: user_ranking_item1.ranking_item
+      )
+      
+      user_ranking_item2.ranking_item.user_ranking_items.count.should == 2
+      
+      user_ranking_item2.destroy
+      
+      user_ranking_item1.ranking_item.user_ranking_items.count.should == 1
+      
+      user_ranking_item1.destroy
+      
+      RankingItem.count.should == 0
+    end
+  end
 end
