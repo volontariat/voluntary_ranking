@@ -23,11 +23,9 @@ module Concerns
             ranking = ::Ranking.find_or_create_by_params(attributes)
             thing = Thing.find_or_create_by(name: attributes[:thing_name])
             ranking_item_attributes = { 
-              thing_type: 'Thing', thing_id: thing.id, best: attributes[:best], stars: attributes[:stars]
+              thing_id: thing.id, best: attributes[:best], stars: attributes[:stars]
             }
-            ranking_item = ranking.items.where(
-              thing_type: ranking_item_attributes[:thing_type], thing_id: ranking_item_attributes[:thing_id]
-            ).first_or_create
+            ranking_item = ranking.items.where(thing_id: ranking_item_attributes[:thing_id]).first_or_create
             
             user_ranking_item = ranking_items.new(
               ranking_item_attributes.merge(ranking_id: ranking.id)

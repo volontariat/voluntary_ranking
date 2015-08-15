@@ -7,16 +7,11 @@ class AddRankingProduct < ActiveRecord::Migration
       t.string :topic
       t.string :scope
       t.string :negative_adjective # worst
-      
-      # limit's the thing_type of list items (default: nil => means no limit)
-      t.string :thing_type
-      
       t.timestamps
     end
     
     create_table :ranking_items, force:  true do |t|
       t.integer :ranking_id
-      t.string :thing_type
       t.integer :thing_id
       t.integer :position
       t.boolean :best
@@ -34,7 +29,6 @@ class AddRankingProduct < ActiveRecord::Migration
       t.boolean :best
       t.integer :stars
       t.integer :ranking_id # cache column
-      t.string :thing_type # cache column
       t.integer :thing_id # cache column
       t.timestamps
     end

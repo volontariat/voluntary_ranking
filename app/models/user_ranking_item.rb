@@ -1,7 +1,7 @@
 class UserRankingItem < ActiveRecord::Base
   include Concerns::Model::BaseRankingItem
   
-  attr_accessible :ranking, :ranking_id, :thing, :thing_type, :thing_id, :best, :stars
+  attr_accessible :ranking, :ranking_id, :thing, :thing_id, :best, :stars
   
   belongs_to :user
   belongs_to :ranking_item

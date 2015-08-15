@@ -326,7 +326,6 @@ DROP TABLE IF EXISTS `ranking_items`;
 CREATE TABLE `ranking_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ranking_id` int(11) DEFAULT NULL,
-  `thing_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `thing_id` int(11) DEFAULT NULL,
   `position` int(11) DEFAULT NULL,
   `best` tinyint(1) DEFAULT NULL,
@@ -350,7 +349,6 @@ CREATE TABLE `rankings` (
   `topic` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `scope` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `negative_adjective` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `thing_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -402,7 +400,6 @@ CREATE TABLE `user_ranking_items` (
   `best` tinyint(1) DEFAULT NULL,
   `stars` int(11) DEFAULT NULL,
   `ranking_id` int(11) DEFAULT NULL,
-  `thing_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `thing_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

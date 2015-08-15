@@ -1,7 +1,7 @@
 Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontariat.RankingController, Volontariat.PaginationController,
   yourRanking: true, routeName: ''  
   yourRankingClass: 'your_ranking_button btn btn-default active', globalRankingClass: 'global_ranking_button btn-default btn'
-  thingType: '', adjective: '', negativeAdjective: '', topic: '', scope: ''
+  adjective: '', negativeAdjective: '', topic: '', scope: ''
   thingName: '', best: true, stars: 3
   isBestClass: 'btn btn-default active', isWorstClass: 'btn btn-default'
   is1Star: '', is2Star: '', is3Star: 'active', is4Star: '', is5Star: ''

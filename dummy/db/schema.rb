@@ -177,7 +177,6 @@ ActiveRecord::Schema.define(version: 20150809155617) do
 
   create_table "ranking_items", force: :cascade do |t|
     t.integer  "ranking_id", limit: 4
-    t.string   "thing_type", limit: 255
     t.integer  "thing_id",   limit: 4
     t.integer  "position",   limit: 4
     t.boolean  "best"
@@ -191,7 +190,6 @@ ActiveRecord::Schema.define(version: 20150809155617) do
     t.string   "topic",              limit: 255
     t.string   "scope",              limit: 255
     t.string   "negative_adjective", limit: 255
-    t.string   "thing_type",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -211,7 +209,6 @@ ActiveRecord::Schema.define(version: 20150809155617) do
     t.boolean  "best"
     t.integer  "stars",              limit: 4
     t.integer  "ranking_id",         limit: 4
-    t.string   "thing_type",         limit: 255
     t.integer  "thing_id",           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"

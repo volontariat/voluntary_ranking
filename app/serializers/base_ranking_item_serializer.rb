@@ -1,5 +1,5 @@
 class BaseRankingItemSerializer < ActiveModel::Serializer
-  attributes :id, :position, :thing_type, :thing_id, :thing_name, :best, :stars, :ranking_adjective, :ranking_negative_adjective, :ranking_topic, :ranking_scope
+  attributes :id, :position, :thing_id, :thing_name, :best, :stars, :ranking_adjective, :ranking_negative_adjective, :ranking_topic, :ranking_scope
 
   def thing_name
     object.thing.name

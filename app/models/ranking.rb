@@ -1,5 +1,5 @@
 class Ranking < ActiveRecord::Base
-  attr_accessible :adjective, :topic, :scope, :thing_type, :negative_adjective
+  attr_accessible :adjective, :topic, :scope, :negative_adjective
   
   has_many :items, class_name: 'RankingItem', dependent: :destroy
   
@@ -8,7 +8,7 @@ class Ranking < ActiveRecord::Base
   end 
   
   validates :adjective, presence: true
-  validates :topic, presence: true, uniqueness: { scope: [:adjective, :scope] }
+  validates :topic, presence: true, uniqueness: { scope: [:adjective, :scope], case_sensitive: false }
   validates :scope, presence: true
   validate :one_ranking_per_topic_scope_and_one_of_the_adjectives
   
@@ -42,9 +42,7 @@ class Ranking < ActiveRecord::Base
       ranking  = Ranking.new
       
       attributes.each do |param, value| 
-        next if value.nil?
-        
-        if ranking.respond_to?(param)
+        if ranking.respond_to?(param) && value.present?
           rankings = rankings.where("LOWER(#{param}) = ?", value.downcase)
         else
           attributes.delete(param)
@@ -60,11 +58,12 @@ class Ranking < ActiveRecord::Base
   def one_ranking_per_topic_scope_and_one_of_the_adjectives
     if Ranking.where(
       '(' +
-      '(adjective = :adjective OR negative_adjective = :adjective) AND ' +
-      '(adjective = :negative_adjective OR negative_adjective = :negative_adjective)' +
+      '(LOWER(adjective) = :adjective OR LOWER(negative_adjective) = :adjective) AND ' +
+      '(LOWER(adjective) = :negative_adjective OR LOWER(negative_adjective) = :negative_adjective)' +
       ') AND ' + 
-      'topic = :topic AND scope = :scope',
-      adjective: adjective, negative_adjective: negative_adjective, topic: topic, scope: scope
+      'LOWER(topic) = :topic AND LOWER(scope) = :scope',
+      adjective: adjective.downcase, negative_adjective: negative_adjective.downcase, 
+      topic: topic.downcase, scope: scope.downcase
     ).any?
       errors[:base] << I18n.t(
         'activerecord.errors.models.ranking.attributes.base.' + 
