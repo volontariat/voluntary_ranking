@@ -9,6 +9,7 @@ Volontariat.ProfileRankingsRoute = Ember.Route.extend
     @controllerFor('profile.rankings').set('page', parseInt(params.page))
    
     if Volontariat.User.current() == undefined
+      @transitionTo 'index'
       alert 'Please sign in to see your ranking!'
     else
       @store.query(
@@ -19,7 +20,9 @@ Volontariat.ProfileRankingsRoute = Ember.Route.extend
       )
     
   setupController: (controller, model) ->
-    controller.send('goToPageWithoutRedirect', controller.get('page'))
+    unless Volontariat.User.current() == undefined
+      controller.send('goToPageWithoutRedirect', controller.get('page'))
+    
     controller.set('content', model)
     
   renderTemplate: ->
