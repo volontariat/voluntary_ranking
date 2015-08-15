@@ -8,7 +8,7 @@
   	<li class="prev"><a {{action 'goToPage' previousPage}}>&laquo; Previous</a></li>
 	{{/if}}
 	
-	{{#each currentPage in pages}}
+	{{#each pages as |currentPage|}}
 	  <li class="{{if currentPage.isCurrent 'active'}}"><a href="#" {{action 'goToPage' currentPage.number}}>{{currentPage.number}}</a></li>
 	{{/each}}
 	
