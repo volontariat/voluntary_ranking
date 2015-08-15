@@ -12,6 +12,9 @@ class UserRankingItem < ActiveRecord::Base
   validate :stars_and_best
   
   after_validation :copy_validation_errors_from_ranking_item # or before?
+  after_create :add_stars_to_ranking_item
+  after_update :remove_or_add_stars_to_ranking_item, if: 'stars_changed?'
+  
   after_destroy :destroy_ranking_item, if: 'UserRankingItem.where(ranking_item_id: ranking_item_id).count == 0'
   
   acts_as_list scope: [:user_id, :ranking_id]
@@ -64,5 +67,37 @@ class UserRankingItem < ActiveRecord::Base
   
   def destroy_ranking_item
     ranking_item.destroy
+  end
+  
+  def add_stars_to_ranking_item
+    ranking_item.stars_sum += stars
+    
+    if ranking_item.stars_sum == 0
+      ranking_item.stars = 0
+    else
+      ranking_item.stars = (ranking_item.stars_sum / ranking_item.user_ranking_items_count).round
+    end
+    
+    ranking_item.save
+    ranking_item.update_position
+  end
+  
+  def remove_or_add_stars_to_ranking_item
+    if stars > stars_was
+      #puts "remove_or_add_stars_to_ranking_item.1: #{ranking_item.stars_sum} += (#{stars} - #{stars_was})"
+      ranking_item.stars_sum += (stars - stars_was)
+    else
+      #puts "remove_or_add_stars_to_ranking_item.2: #{ranking_item.stars_sum} -= (#{stars_was} - #{stars})"
+      ranking_item.stars_sum -= (stars_was - stars)
+    end
+    
+    if ranking_item.stars_sum == 0
+      ranking_item.stars = 0
+    else
+      ranking_item.stars = (ranking_item.stars_sum / ranking_item.user_ranking_items_count).round
+    end
+    
+    ranking_item.save
+    ranking_item.update_position
   end
 end

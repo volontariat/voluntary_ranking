@@ -36,7 +36,7 @@ CREATE TABLE `areas` (
   UNIQUE KEY `index_areas_on_slug` (`slug`),
   UNIQUE KEY `index_areas_on_name` (`name`),
   KEY `index_areas_on_ancestry` (`ancestry`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `argument_topics` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +267,7 @@ CREATE TABLE `professions` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -325,15 +325,20 @@ DROP TABLE IF EXISTS `ranking_items`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ranking_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `position` int(11) DEFAULT NULL,
   `ranking_id` int(11) DEFAULT NULL,
   `thing_id` int(11) DEFAULT NULL,
-  `position` int(11) DEFAULT NULL,
   `best` tinyint(1) DEFAULT NULL,
+  `user_ranking_items_count` int(11) DEFAULT NULL,
+  `stars_sum` int(11) DEFAULT NULL,
   `stars` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_ranking_items_on_ranking_id_and_thing_id` (`ranking_id`,`thing_id`),
+  UNIQUE KEY `index_ranking_items_on_ranking_id_and_position` (`ranking_id`,`position`),
+  KEY `index_ranking_items_on_ranking_id_and_stars_sum` (`ranking_id`,`stars_sum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -352,7 +357,7 @@ CREATE TABLE `rankings` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,7 +387,7 @@ CREATE TABLE `things` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_things_on_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,9 +408,10 @@ CREATE TABLE `user_ranking_items` (
   `thing_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `formatted_position` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_user_ranking_items_on_ranking_id_and_thing_id` (`ranking_id`,`thing_id`),
+  UNIQUE KEY `index_user_ranking_items_on_user_id_and_ranking_id_and_position` (`user_id`,`ranking_id`,`position`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +476,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_name` (`name`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   KEY `index_users_on_profession_id` (`profession_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -482,7 +488,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-09 17:56:42
+-- Dump completed on 2015-08-15 18:17:01
 INSERT INTO schema_migrations (version) VALUES ('20130814161240');
 
 INSERT INTO schema_migrations (version) VALUES ('20130814161241');

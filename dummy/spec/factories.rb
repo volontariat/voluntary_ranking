@@ -38,8 +38,6 @@ FactoryGirl.define do
   factory :user_ranking_item do
     association :user
     association :ranking_item
-    association :ranking
-    association :thing
     best true
     stars 3
   end

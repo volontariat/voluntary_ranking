@@ -7,6 +7,114 @@ describe 'UserRankingItem' do
     @attributes = { adjective: 'best', negative_adjective: 'worst', topic: 'movie', scope: 'ever' }
   end
   
+  describe '#save' do
+    context 'ranking with 2 items' do
+      it 'updates the stars sum and position of ranking item by stars' do
+        ranking_item = FactoryGirl.create :ranking_item, thing: FactoryGirl.create(:thing, name: 'Thing 1')
+        ranking = ranking_item.ranking
+        FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 4, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        ranking_item = FactoryGirl.create(
+          :ranking_item, ranking: ranking, thing: FactoryGirl.create(:thing, name: 'Thing 2')
+        )
+        user_ranking_item1 = FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 3, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        user_ranking_item2 = FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 5, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 2', 8], [2, 'Thing 1', 4]
+        ]
+        
+        user_ranking_item2.stars = 0
+        user_ranking_item2.best = false
+        user_ranking_item2.save!
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 4], [2, 'Thing 2', 3]
+        ]
+        
+        user_ranking_item1.stars = 0
+        user_ranking_item1.best = false
+        user_ranking_item1.save!
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 4], [2, 'Thing 2', 0]
+        ]
+      end
+    end
+    
+    context 'ranking with 3 items' do
+      it 'updates the stars sum and position of ranking item by stars' do
+        ranking_item = FactoryGirl.create :ranking_item, thing: FactoryGirl.create(:thing, name: 'Thing 1')
+        ranking = ranking_item.ranking
+        FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 5, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        ranking_item = FactoryGirl.create(
+          :ranking_item, 
+          ranking: ranking, thing: FactoryGirl.create(:thing, name: 'Thing 2')
+        )
+        ranking = ranking_item.ranking
+        FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 0, best: false, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 5], [2, 'Thing 2', 0]
+        ]
+        
+        ranking_item = FactoryGirl.create(
+          :ranking_item, ranking: ranking, thing: FactoryGirl.create(:thing, name: 'Thing 3')
+        )
+        user_ranking_item1 = FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 2, best: false, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 5], [2, 'Thing 3', 2], [3, 'Thing 2', 0]
+        ]
+        
+        user_ranking_item2 = FactoryGirl.create(
+          :user_ranking_item, 
+          ranking_item: ranking_item, stars: 3, ranking: ranking, thing: ranking_item.thing
+        )
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 5], [2, 'Thing 3', 5], [3, 'Thing 2', 0]
+        ]
+        
+        user_ranking_item2.stars = 0
+        user_ranking_item2.best = false
+        user_ranking_item2.save!
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 5], [2, 'Thing 3', 2], [3, 'Thing 2', 0]
+        ]
+        
+        user_ranking_item1.stars = 0
+        user_ranking_item1.best = false
+        user_ranking_item1.save!
+        
+        RankingItem.order('position ASC').map{|i| [i.position, i.thing.name, i.stars_sum]}.should == [
+          [1, 'Thing 1', 5], [2, 'Thing 2', 0], [3, 'Thing 3', 0]
+        ]
+      end
+    end
+  end
+  
   describe '#set_position' do
     it 'copies stars from the item in the list to replace' do
       user.add_ranking_item @attributes.merge(thing_name: 'Thing 1', best: true, stars: 5)
@@ -65,9 +173,14 @@ describe 'UserRankingItem' do
   
   describe '#destroy' do
     it 'destroys ranking item if it has no user ranking items anymore' do
-      user_ranking_item1 = FactoryGirl.create :user_ranking_item
+      ranking_item = FactoryGirl.create :ranking_item
+      user_ranking_item1 = FactoryGirl.create(
+        :user_ranking_item, 
+        ranking_item: ranking_item, ranking: ranking_item.ranking, thing: ranking_item.thing
+      )
       user_ranking_item2 = FactoryGirl.create(
-        :user_ranking_item, ranking_item: user_ranking_item1.ranking_item
+        :user_ranking_item, 
+        ranking_item: ranking_item, ranking: ranking_item.ranking, thing: ranking_item.thing
       )
       
       user_ranking_item2.ranking_item.user_ranking_items.count.should == 2
