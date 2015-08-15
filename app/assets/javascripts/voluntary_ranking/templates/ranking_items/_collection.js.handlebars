@@ -2,13 +2,15 @@
   <table class="table" style="margin-bottom: 0px">
     <thead>
       <tr>
+  {{#if controller.yourRanking}}
         <th width="2%"></th>
+  {{/if}}
         <th width="5%" style="vertical-align:top;">Position</th>  
   {{#if controller.yourRanking}}           
         <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
         <th width="78%" style="vertical-align:top;">Name</th>
   {{else}}
-        <th width="83%" style="vertical-align:top;">Name</th>
+        <th width="85%" style="vertical-align:top;">Name</th>
   {{/if}}
         <th width="10%" style="vertical-align:top;">Stars</th>
       </tr>
@@ -20,9 +22,11 @@
       <li data-id="{{unbound id}}" data-position="{{unbound position}}">
         <table class="table">
           <tr>
+      {{#if controller.yourRanking}}
             <td width="2%" style="text-align:center">
               <span class="ranking_item_sortable glyphicon glyphicon-move"></span>
             </td>
+      {{/if}}
             <td class="list-element-striped" width="5%" style="text-align:right">
               {{#link-to 'ranking_item' thingName positiveOrNegativeAdjective rankingTopic rankingScope class="ranking_item_position"}}
                 {{position}}
@@ -37,7 +41,7 @@
               {{#link-to 'thing' thingName}}{{thingName}}{{/link-to}}
             </td> 
       {{else}}
-            <td class="list-element-striped" width="83%" style="padding-left:10px;">
+            <td class="list-element-striped" width="85%" style="padding-left:10px;">
               {{#link-to 'thing' thingName}}{{thingName}}{{/link-to}}
             </td>
       {{/if}}
