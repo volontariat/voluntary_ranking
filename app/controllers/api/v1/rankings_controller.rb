@@ -21,4 +21,8 @@ class Api::V1::RankingsController < ActionController::Base
       format.json { render options }
     end
   end
+  
+  def autocomplete_attribute
+    render json: Ranking.autocomplete_attribute(params[:attribute], params[:term]), root: false
+  end
 end

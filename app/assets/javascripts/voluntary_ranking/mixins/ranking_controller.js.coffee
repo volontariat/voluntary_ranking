@@ -11,6 +11,8 @@ Volontariat.RankingController = Em.Mixin.create
       @set('yourRanking', true); @set('yourRankingClass', 'your_ranking_button btn btn-default active'); @set('globalRankingClass', 'global_ranking_button btn btn-default')
       
     getRanking: ->
+      @transitionToRoute 'no_data'
+      
       if @get('yourRanking')
         @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('page'))
       else

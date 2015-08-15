@@ -11,7 +11,11 @@ Rails.application.routes.draw do
       end
       
       resources :arguments
+      
       resources :rankings
+      
+      get '/rankings/attributes/:attribute/autocomplete', to: 'rankings#autocomplete_attribute'
+      
       resources :ranking_items
       
       resources :things, only: [:show] do

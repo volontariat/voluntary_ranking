@@ -53,6 +53,15 @@ class Ranking < ActiveRecord::Base
     end
   end
   
+  def self.autocomplete_attribute(attribute, term)
+    unless ['adjective', 'negative_adjective', 'topic', 'scope'].include? attribute
+      raise ActiveRecord::RecordNotFound
+    end
+    
+    Ranking.select("DISTINCT(#{attribute})").order(attribute).limit(10).
+    where("#{attribute} LIKE ?", "%#{term.strip}%").map(&attribute.to_sym).map{|v| { value: v }}
+  end
+  
   private
   
   def one_ranking_per_topic_scope_and_one_of_the_adjectives
