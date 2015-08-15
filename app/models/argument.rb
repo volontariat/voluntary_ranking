@@ -28,8 +28,13 @@ class Argument < ActiveRecord::Base
     end
     
     if topic.valid?
-      thing = Thing.where('LOWER(name) = ?', attributes[:thing_name].downcase).first
-      argument = Argument.create(topic_id: topic.id, thing_id: thing.id, value: attributes[:value])
+      thing_id = if attributes[:thing_name].present?
+        Thing.where('LOWER(name) = ?', attributes[:thing_name].downcase).first.id
+      else
+        Thing.where(id: attributes[:thing_id]).first.try(:id)
+      end
+      
+      argument = Argument.create(topic_id: topic.id, thing_id: thing_id, value: attributes[:value])
       
       if argument.valid?
         argument
