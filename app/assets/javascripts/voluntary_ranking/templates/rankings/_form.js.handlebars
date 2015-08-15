@@ -1,18 +1,18 @@
 <form class="form-inline" id="new_ranking_form">
-	<p>
+  <p>
 {{#if rankingItemThingName}}
-	  {{#link-to 'thing' rankingItemThingName}}{{rankingItemThingName}}{{/link-to}} 
-	  &nbsp;&nbsp;is&nbsp;&nbsp; 
+    {{#link-to 'thing' rankingItemThingName}}{{rankingItemThingName}}{{/link-to}} 
+    &nbsp;&nbsp;is&nbsp;&nbsp; 
 {{/if}}
-	  
-{{#if userName}}	
+    
+{{#if userName}}  
     {{#link-to 'user' userName}}{{userName}}{{/link-to}}  
 {{else}}
   {{#if currentUser}}
-	  <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
-	    <button class="{{globalRankingClass}}" type="button" data-toggle-value="1" {{action 'setGlobalRanking'}}>Global</button>
-	    <button class="{{yourRankingClass}}" type="button" data-toggle-value="0" {{action 'setYourRanking'}}>Your</button>
-	  </span> 
+    <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
+      <button class="{{globalRankingClass}}" type="button" data-toggle-value="1" {{action 'setGlobalRanking'}}>Global</button>
+      <button class="{{yourRankingClass}}" type="button" data-toggle-value="0" {{action 'setYourRanking'}}>Your</button>
+    </span> 
     &nbsp;&nbsp; 
   {{/if}}
 {{/if}}
