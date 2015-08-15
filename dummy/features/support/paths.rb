@@ -32,7 +32,7 @@ module NavigationHelpers
 
     # arguments
     when /the thing arguments page/
-      "/products/ranking#/things/#{@thing.id}/arguments/page/1"
+      "/products/ranking#/things/#{URI.encode(@thing.name, /\W/)}/arguments/page/1"
 
     # product
     when /the product page/
