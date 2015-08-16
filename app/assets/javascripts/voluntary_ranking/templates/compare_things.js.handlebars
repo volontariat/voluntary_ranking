@@ -1,9 +1,9 @@
 <h1>
-{{input type="text" value=leftThingName placeholder="One thing" data-autocomplete="/api/v1/things/autocomplete"}} 
+{{input type="text" size="50" value=leftThingName placeholder="One thing" data-autocomplete="/api/v1/things/autocomplete"}} 
 {{#link-to 'thing' leftThingName}}<span aria-hidden="true" class="glyphicon glyphicon-link"></span>{{/link-to}} 
-vs. 
+vs 
 {{#link-to 'thing' rightThingName}}<span aria-hidden="true" class="glyphicon glyphicon-link"></span>{{/link-to}}  
-{{input type="text" value=rightThingName placeholder="Other thing" data-autocomplete="/api/v1/things/autocomplete"}}
+{{input type="text" size="50" value=rightThingName placeholder="Other thing" data-autocomplete="/api/v1/things/autocomplete"}}
 <button class="compare_button" {{action 'compare'}}>Compare</button>
 </h1>
 
