@@ -21,15 +21,15 @@
     #{{position}}
 {{/if}}
     
-    {{input value=adjective placeholder="Adjective" class="adjective" data-autocomplete="/api/v1/rankings/attributes/adjective/autocomplete"}} 
+    {{input size="10" value=adjective placeholder="Adjective" class="adjective" data-autocomplete="/api/v1/rankings/attributes/adjective/autocomplete"}} 
     &nbsp;&nbsp;
     and 
     &nbsp;&nbsp;
-    {{input value=negativeAdjective placeholder="Negative adjective" class="negative_adjective" data-autocomplete="/api/v1/rankings/attributes/negative_adjective/autocomplete"}}
+    {{input size="10" value=negativeAdjective placeholder="Negative adjective" class="negative_adjective" data-autocomplete="/api/v1/rankings/attributes/negative_adjective/autocomplete"}}
     &nbsp;&nbsp;
     {{input value=topic placeholder="Topic" class="topic" data-autocomplete="/api/v1/rankings/attributes/topic/autocomplete"}}
     &nbsp;&nbsp;
-    {{input value=scope placeholder="Scope" class="scope" data-autocomplete="/api/v1/rankings/attributes/scope/autocomplete"}} 
+    {{input size="10" value=scope placeholder="Scope" class="scope" data-autocomplete="/api/v1/rankings/attributes/scope/autocomplete"}} 
     &nbsp;&nbsp;
     <button class="get_ranking_button btn btn-default" type="button" {{action 'getRanking'}}>Get</button>
   </p>
