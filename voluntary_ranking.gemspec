@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'voluntary'
   s.add_dependency 'voluntary-ember_js', '0.0.1'
-  s.add_dependency 'twitter-typeahead-rails', '~> 0.10.5'
   
   # group :development
   

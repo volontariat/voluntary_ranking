@@ -16,7 +16,7 @@ class Api::V1::ThingsController < ActionController::Base
   def autocomplete
     render json: (
       Thing.order(:name).where("name LIKE ?", "%#{params[:term]}%").
-      map{|t| { id: t.id, name: t.name }}
+      map{|t| { id: t.id, value: t.name }}
     ), root: false
   end
   

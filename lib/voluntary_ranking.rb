@@ -1,7 +1,6 @@
 require 'voluntary'
 
 require 'devise/orm/active_record'
-require 'twitter-typeahead-rails'
 
 require 'voluntary/ember_js'
 

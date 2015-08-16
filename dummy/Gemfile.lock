@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 276351a3dbbd7454af7403def5829a221a489de2
+  revision: 19bf007d3f2ed3af181536520b793801d392cd70
   specs:
     voluntary (0.4.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -108,7 +108,6 @@ PATH
   remote: /Users/gawlim/workspace/voluntary/voluntary_ranking
   specs:
     voluntary_ranking (0.0.1)
-      twitter-typeahead-rails (~> 0.10.5)
       voluntary
       voluntary-ember_js (= 0.0.1)
 
@@ -576,10 +575,6 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     timecop (0.6.3)
-    twitter-typeahead-rails (0.10.5)
-      actionpack (>= 3.1)
-      jquery-rails
-      railties (>= 3.1)
     typhoeus (0.5.4)
       ethon (~> 0.5.7)
     tzinfo (1.2.2)

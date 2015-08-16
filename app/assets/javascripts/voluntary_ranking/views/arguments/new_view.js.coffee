@@ -1,8 +1,8 @@
 Volontariat.ArgumentsNewView = Ember.View.extend
   didInsertElement: ->
-    $('input[data-autocomplete]').each (k, v) ->
+    $('input[data-append-autocomplete]').each (k, v) ->
       $(v).autocomplete
-        source: $(this).attr('data-autocomplete'),
+        source: $(this).attr('data-append-autocomplete'),
         appendTo: '#topic_suggestions'
         select: (event, ui) ->
           $(this).val(ui.item.value)

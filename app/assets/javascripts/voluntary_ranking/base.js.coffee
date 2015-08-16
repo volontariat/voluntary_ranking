@@ -1,12 +1,3 @@
 Ember.TextField.reopen attributeBindings: [
-  'data-autocomplete', 'data-jquery-autocomplete'
+  'data-autocomplete', 'data-append-autocomplete', 'data-append-to'
 ]
-
-document.body.addEventListener 'DOMNodeInserted', ((event) ->
-  $('input[data-jquery-autocomplete]').each (k, v) ->
-    $(v).autocomplete
-      source: $(this).data('jquery-autocomplete'),
-      select: (event, ui) ->
-        $(this).val(ui.item.value)
-        false
-)
