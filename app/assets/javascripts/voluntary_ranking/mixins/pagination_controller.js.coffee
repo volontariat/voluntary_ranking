@@ -36,11 +36,13 @@ Volontariat.PaginationController = Em.Mixin.create
 
       switch @get('paginationRoute')
         when 'rankings.show', 'profile.rankings'
-          @transitionToRoute(@get('paginationRoute'), @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), page)
+          @transitionToRoute @get('paginationRoute'), @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), page
         when 'rankings.index', 'arguments.index'
-          @transitionToRoute(@get('paginationRoute'), @get('thingName'), page)
+          @transitionToRoute @get('paginationRoute'), @get('thingName'), page
         when 'compare_things.arguments'
-          @transitionToRoute(@get('paginationRoute'), @get('leftThingName'), @get('rightThingName'), @get('side'), page)
-          
+          @transitionToRoute @get('paginationRoute'), @get('leftThingName'), @get('rightThingName'), @get('side'), page
+        when 'ranking_item'
+          @transitionToRoute @get('paginationRoute'), @get('thingName'), @get('positiveOrNegativeAdjective'), @get('topic'), @get('scope'), page
+    
     goToPageWithoutRedirect: (page) ->
       @_goToPage(page)
