@@ -77,6 +77,12 @@ class Api::V1::UserRankingItemsController < ActionController::Base
     end
   end
   
+  def destroy
+    current_user.ranking_items.find(params[:id]).destroy!
+    
+    render nothing: true
+  end
+  
   private
   
   def user

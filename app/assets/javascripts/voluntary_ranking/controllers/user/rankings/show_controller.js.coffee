@@ -52,18 +52,18 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
         adjective: @get('adjective'), negativeAdjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope') 
       )
       user_ranking_item.save().then =>
-        @transitionToRoute('no_data')
-        @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('page'))
-          
+        @send('reload')
+        
+    destroy: (id)  ->
+      $.ajax("/api/v1/user_ranking_items/#{id}", type: 'DELETE').done((data) =>
+        @send('reload')
+      ).fail((data) ->
+        alert 'Removing item failed!'
+      ) 
+         
     reload: ->
-      @set(
-        'model', 
-        @store.query(
-          'user_ranking_item', 
-          user_id: Volontariat.User.current().id, adjective: @get('adjective'), negative_adjective: @get('negativeAdjective'), 
-          topic: @get('topic'), scope: @get('scope'), page: @get('page')
-        )
-      )
+      @transitionToRoute 'no_data'
+      @transitionToRoute 'profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('page')
       
     moveToPreviousPage: (id) ->
       if @get('previousPage') <= 0

@@ -8,11 +8,14 @@
         <th width="5%" style="vertical-align:top;">Position</th>  
   {{#if controller.yourRanking}}           
         <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
-        <th width="73%" style="vertical-align:top;">Name</th>
+        <th width="70%" style="vertical-align:top;">Name</th>
   {{else}}
         <th width="80%" style="vertical-align:top;">Name</th>
   {{/if}}
         <th width="15%" style="vertical-align:top; text-align:center;">Stars</th>
+  {{#if controller.yourRanking}}  
+        <th width="5%"></th>
+  {{/if}}
       </tr>
     </thead>
   </table>
@@ -37,7 +40,7 @@
               <a {{action 'moveToPreviousPage' rankingItem.id}} title="move to previous page"><span class="glyphicon glyphicon-chevron-left"></span></a> 
               <a {{action 'moveToNextPage' rankingItem.id}} title="move to next page"><span class="glyphicon glyphicon-chevron-right"></span></a>
             </td>
-            <td class="list-element-striped" width="73%" style="padding-left:10px;">
+            <td class="list-element-striped" width="70%" style="padding-left:10px;">
               {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
             </td> 
       {{else}}
@@ -54,6 +57,11 @@
                 {{#if rankingItem.is1StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
               </div>
             </td>
+      {{#if controller.yourRanking}}       
+            <td width="3%" style="text-align:center;">
+              <span class="glyphicon glyphicon-remove" {{action 'destroy' rankingItem.id}}></span> 
+            </td>
+      {{/if}}
           </tr>
         </table>
       </li>
