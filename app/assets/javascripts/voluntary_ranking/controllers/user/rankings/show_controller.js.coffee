@@ -52,7 +52,7 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
         adjective: @get('adjective'), negativeAdjective: @get('negativeAdjective'), topic: @get('topic'), scope: @get('scope') 
       )
       user_ranking_item.save().then =>
-        @send('reload')
+        @send('getRanking')
         
     updateStars: (id, stars_was, stars) ->
       stars -= 1 if stars_was == stars
@@ -60,19 +60,15 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
       @store.find('user_ranking_item', id).then (user_ranking_item) =>
         user_ranking_item.set 'stars', stars
         user_ranking_item.save().then =>
-          @send('reload')
+          @send('getRanking')
           
     destroy: (id)  ->
       $.ajax("/api/v1/user_ranking_items/#{id}", type: 'DELETE').done((data) =>
-        @send('reload')
+        @send('getRanking')
       ).fail((data) ->
         alert 'Removing item failed!'
       ) 
          
-    reload: ->
-      @transitionToRoute 'no_data'
-      @transitionToRoute 'profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('page')
-      
     moveToPreviousPage: (id) ->
       if @get('previousPage') <= 0
         alert 'No previous page available.'
@@ -80,7 +76,7 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
         
       $.post '/api/v1/user_ranking_items/' + id + '/move_to_page', { _method: 'put', page: @get('previousPage') }, (data) =>
         @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('previousPage'))
-        @send('reload')
+        @send('getRanking')
         return
 
        
@@ -91,6 +87,6 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
         
       $.post '/api/v1/user_ranking_items/' + id + '/move_to_page', { _method: 'put', page: @get('nextPage') }, (data) =>
         @transitionToRoute('profile.rankings', @get('adjective'), @get('negativeAdjective'), @get('topic'), @get('scope'), @get('nextPage'))
-        @send('reload')
+        @send('getRanking')
         return 
 )
