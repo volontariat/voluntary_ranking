@@ -32,17 +32,7 @@ module Concerns
             )
             user_ranking_item.ranking_item_id = ranking_item.id
            
-            position = if attributes[:best]
-              ranking_items.order('stars ASC, position DESC').where('ranking_id = ? AND stars >= ?', ranking.id, attributes[:stars]).first.try(:position).to_i + 1 || 1
-            else
-              item = ranking_items.order('stars DESC, position ASC').where('ranking_id = ? AND stars <= ?', ranking.id, attributes[:stars]).first
-              
-              if item.present?
-                item.position
-              else
-                ranking_items.order('stars ASC, position DESC').where('ranking_id = ? AND stars >= ?', ranking.id, attributes[:stars]).first.try(:position).to_i + 1
-              end
-            end
+            position = UserRankingItem.position_for_user_by_stars id, ranking.id, nil, attributes[:stars]
             
             begin
               user_ranking_item.insert_at(position)

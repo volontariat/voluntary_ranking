@@ -48,11 +48,8 @@ class Api::V1::UserRankingItemsController < ActionController::Base
   end
   
   def update
-    user_ranking_item = UserRankingItem.find(params[:id])
-    
-    raise CanCan::AccessDenied unless can? :update, user_ranking_item
-    
-    user_ranking_item.update_attributes(params[:user_ranking_item])
+    user_ranking_item = current_user.ranking_items.find(params[:id])
+    user_ranking_item.update_stars params[:user_ranking_item][:stars]
     respond_with user_ranking_item
   end
   

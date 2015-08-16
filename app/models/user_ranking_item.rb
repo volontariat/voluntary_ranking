@@ -19,6 +19,32 @@ class UserRankingItem < ActiveRecord::Base
   
   acts_as_list scope: [:user_id, :ranking_id]
   
+  def self.position_for_user_by_stars(user_id, ranking_id, user_ranking_item_id, stars)
+    ranking_items = where(user_id: user_id, ranking_id: ranking_id)
+    ranking_items_count = ranking_items.count
+    ranking_items = ranking_items.where('id <> ?', user_ranking_item_id) if user_ranking_item_id.present?
+    
+    if stars.to_i >= 3
+      ranking_items.order('stars ASC, position DESC').where('stars >= ?', stars).first.try(:position).to_i + 1 || 1
+    else
+      item = ranking_items.order('stars DESC, position ASC').where('stars <= ?', stars).first
+      
+      if item.present?
+        if user_ranking_item_id.present? && item.stars < stars
+          item.position - 1
+        else
+          item.position
+        end
+      else
+        position = ranking_items.order('stars ASC, position DESC').where('stars >= ?', stars).first.try(:position).to_i + 1
+        
+        position -= 1 if position > ranking_items_count
+
+        position
+      end
+    end
+  end
+  
   def move_to_top_of_page(page)
     item_on_top_of_page = user.ranking_items.where(ranking_id: ranking_id).order('position').paginate(page: page, per_page: 10).first
     self.stars = item_on_top_of_page.stars
@@ -36,6 +62,13 @@ class UserRankingItem < ActiveRecord::Base
     insert_at(value)
     
     reload
+  end
+  
+  def update_stars(stars)
+    self.stars = stars
+    self.best = stars >= 3
+    save!
+    insert_at UserRankingItem.position_for_user_by_stars(user_id, ranking.id, id, stars)
   end
   
   private

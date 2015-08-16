@@ -54,6 +54,14 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
       user_ranking_item.save().then =>
         @send('reload')
         
+    updateStars: (id, stars_was, stars) ->
+      stars -= 1 if stars_was == stars
+        
+      @store.find('user_ranking_item', id).then (user_ranking_item) =>
+        user_ranking_item.set 'stars', stars
+        user_ranking_item.save().then =>
+          @send('reload')
+          
     destroy: (id)  ->
       $.ajax("/api/v1/user_ranking_items/#{id}", type: 'DELETE').done((data) =>
         @send('reload')
