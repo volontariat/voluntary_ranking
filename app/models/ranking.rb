@@ -2,9 +2,15 @@ class Ranking < ActiveRecord::Base
   attr_accessible :adjective, :topic, :scope, :negative_adjective
   
   has_many :items, class_name: 'RankingItem', dependent: :destroy
+  has_many :user_items, class_name: 'UserRankingItem', dependent: :destroy
   
+  scope :for_user, ->(user_name) do
+    all.select('DISTINCT(rankings.id), rankings.*').joins(:user_items).
+    where('user_ranking_items.user_id = ?', User.where('LOWER(name) = ?', user_name.downcase).first.id)
+  end 
+
   scope :for_thing, ->(thing_id) do
-    select('DISTINCT(rankings.id), rankings.*').joins(:items).where('ranking_items.thing_id = ?', thing_id)
+    all.select('DISTINCT(rankings.id), rankings.*').joins(:items).where('ranking_items.thing_id = ?', thing_id)
   end 
   
   validates :adjective, presence: true

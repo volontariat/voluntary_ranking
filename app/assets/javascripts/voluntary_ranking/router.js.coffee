@@ -6,7 +6,7 @@ Volontariat.Router.map ->
   @resource 'profile', ->
     @route 'rankings', path: 'rankings/:adjective/and/:negative_adjective/:topic/:scope/page/:page' 
   
-  @resource 'user', path: '/users/:name'
+  @resource 'user', path: '/users/:name/page/:page'
  
   @route 'user_ranking', path: '/users/:user_name/rankings/:adjective/and/:negative_adjective/:topic/:scope/page/:page'
  

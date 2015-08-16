@@ -9,7 +9,8 @@ Volontariat.PaginationController = Em.Mixin.create
   showLastPageLink: (-> @get('page') != @get('totalPages')).property('page')
 
   _goToPage: (page) ->
-    @set('page', parseInt(page))
+    page = parseInt(page)
+    @set('page', page)
     @set('totalPages', (@get('metadata') || @store.metadataFor(@get('paginationResource'))).pagination.total_pages)
     pages = []; i = page - 4
     
@@ -29,7 +30,7 @@ Volontariat.PaginationController = Em.Mixin.create
     ) 
     
     @set('pages', pages)   
-
+    
   actions:
     goToPage: (page) ->
       @_goToPage(page)
@@ -43,6 +44,8 @@ Volontariat.PaginationController = Em.Mixin.create
           @transitionToRoute @get('paginationRoute'), @get('leftThingName'), @get('rightThingName'), @get('side'), page
         when 'ranking_item'
           @transitionToRoute @get('paginationRoute'), @get('thingName'), @get('positiveOrNegativeAdjective'), @get('topic'), @get('scope'), page
+        when 'user'
+          @transitionToRoute @get('paginationRoute'), @get('name'), page
     
     goToPageWithoutRedirect: (page) ->
       @_goToPage(page)

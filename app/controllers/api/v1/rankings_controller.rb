@@ -7,8 +7,9 @@ class Api::V1::RankingsController < ActionController::Base
     options = {}
   
     rankings = Ranking
+    rankings = Ranking.for_user(params[:user_name]) if params[:user_name].present?
     rankings = Ranking.for_thing(params[:thing_id]) if params[:thing_id].present?
-    options[:json] = rankings.paginate(page: params[:page], per_page: 10)
+    options[:json] = rankings.paginate page: params[:page], per_page: 1, count: { group: 'rankings.id' }
     
     options[:meta] = { 
       pagination: {
