@@ -6,7 +6,8 @@
 {{/if}}
     
 {{#if userName}}  
-    {{#link-to 'user' userName}}{{userName}}{{/link-to}}  
+    {{#link-to 'user' userName 1}}{{name-with-apostrophe userName}}{{/link-to}} 
+    &nbsp;&nbsp; 
 {{else}}
   {{#if currentUser}}
     <span class="btn-group" data-toggle-name="ranking_form_your_ranking" data-toggle="buttons-radio">
