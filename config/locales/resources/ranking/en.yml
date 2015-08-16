@@ -6,3 +6,5 @@ en:
           attributes:
             base: 
               one_ranking_per_topic_scope_and_one_of_the_adjectives: Only one ranking per topic, scope and one of the adjectives allowed!
+            name:
+              unwanted_special_characters_included: Name must not include slash.

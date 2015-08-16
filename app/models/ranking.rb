@@ -86,4 +86,12 @@ class Ranking < ActiveRecord::Base
       )
     end
   end
+  
+  def special_characters_excluded
+    if adjective.match(/\//) || negative_adjective.match(/\//) || topic.match(/\//) || scope.match(/\//)
+      errors[:name] << I18n.t(
+        'activerecord.errors.models.ranking.attributes.name.unwanted_special_characters_included'
+      )
+    end
+  end
 end
