@@ -1,10 +1,12 @@
 {{#if anyItems}}
 <table class="table table-striped" style="margin-top:15px;">
   <tbody>
-  {{#each model}}
+  {{#each model as |ranking|}}
     <tr>
       <td>
-        {{#link-to 'rankings.show' adjective negativeAdjective topic scope 1}}{{adjective}} and {{negativeAdjective}} {{topic}} {{scope}}{{/link-to}}
+        {{#link-to 'rankings.show' ranking.adjective ranking.negativeAdjective ranking.topic ranking.scope 1}}
+          {{ranking.adjective}} and {{ranking.negativeAdjective}} {{ranking.topic}} {{ranking.scope}}
+        {{/link-to}}
       </td>
     </tr>
   {{/each}}

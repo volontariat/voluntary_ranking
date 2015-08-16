@@ -5,19 +5,19 @@
 {{#if anyUserRankingItems}}
 <table class="table table-striped" style="margin-top:15px;">
   <tbody>
-  {{#each userRankingItems}}
+  {{#each userRankingItems as |userRankingItem|}}
     <tr>
       <td style="width:50px;">
-        {{position}}
+        {{userRankingItem.position}}
       </td>
       <td>
-        {{#link-to 'user_ranking' user_name ranking_adjective ranking_negative_adjective ranking_topic ranking_scope 1}}
-          {{user_name}}
+        {{#link-to 'user_ranking' userRankingItem.user_name userRankingItem.ranking_adjective userRankingItem.ranking_negative_adjective userRankingItem.ranking_topic userRankingItem.ranking_scope 1}}
+          {{userRankingItem.user_name}}
         {{/link-to}}
       </td>
       <td>
         <div class="stars">
-          {{stars-html stars}}
+          {{stars-html userRankingItem.stars}}
         </div>
       </td>
     </tr>

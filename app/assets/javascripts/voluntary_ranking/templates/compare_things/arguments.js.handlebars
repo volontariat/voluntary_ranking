@@ -1,19 +1,19 @@
 {{#if anyItems}}
 <table class="table table-striped" style="margin-top:15px;">
   <tbody>
-  {{#each model}}
+  {{#each model as |argument|}}
     <tr>
       <td>
-        {{topic.name}}
+        {{argument.topic.name}}
       </td>
       <td>
-        {{left.value}}
+        {{argument.left.value}}
       </td>
       <td>
         vs
       </td>
       <td>
-        {{right.value}}
+        {{argument.right.value}}
       </td>
     </tr>
   {{/each}}

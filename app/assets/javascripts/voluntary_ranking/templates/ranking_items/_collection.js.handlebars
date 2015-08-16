@@ -8,18 +8,18 @@
         <th width="5%" style="vertical-align:top;">Position</th>  
   {{#if controller.yourRanking}}           
         <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
-        <th width="78%" style="vertical-align:top;">Name</th>
+        <th width="73%" style="vertical-align:top;">Name</th>
   {{else}}
-        <th width="85%" style="vertical-align:top;">Name</th>
+        <th width="80%" style="vertical-align:top;">Name</th>
   {{/if}}
-        <th width="10%" style="vertical-align:top;">Stars</th>
+        <th width="15%" style="vertical-align:top; text-align:center;">Stars</th>
       </tr>
     </thead>
   </table>
   
   <ul class="nav nav-tabs nav-stacked list-striped" id="ranking">
-    {{#each model}}
-      <li data-id="{{unbound id}}" data-position="{{unbound position}}">
+    {{#each model as |rankingItem|}}
+      <li data-id="{{unbound rankingItem.id}}" data-position="{{unbound rankingItem.position}}">
         <table class="table">
           <tr>
       {{#if controller.yourRanking}}
@@ -28,26 +28,30 @@
             </td>
       {{/if}}
             <td class="list-element-striped" width="5%" style="text-align:right">
-              {{#link-to 'ranking_item' thingName positiveOrNegativeAdjective rankingTopic rankingScope class="ranking_item_position"}}
-                {{position}}
+              {{#link-to 'ranking_item' rankingItem.thingName rankingItem.positiveOrNegativeAdjective rankingItem.rankingTopic rankingItem.rankingScope class="ranking_item_position"}}
+                {{rankingItem.position}}
               {{/link-to}}
             </td>        
       {{#if controller.yourRanking}} 
             <td class="list-element-striped" width="5%" style="text-align:center">
-              <a {{action 'moveToPreviousPage' id}} title="move to previous page"><span class="glyphicon glyphicon-chevron-left"></span></a> 
-              <a {{action 'moveToNextPage' id}} title="move to next page"><span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a {{action 'moveToPreviousPage' rankingItem.id}} title="move to previous page"><span class="glyphicon glyphicon-chevron-left"></span></a> 
+              <a {{action 'moveToNextPage' rankingItem.id}} title="move to next page"><span class="glyphicon glyphicon-chevron-right"></span></a>
             </td>
-            <td class="list-element-striped" width="78%" style="padding-left:10px;">
-              {{#link-to 'thing' thingName}}{{thingName}}{{/link-to}}
+            <td class="list-element-striped" width="73%" style="padding-left:10px;">
+              {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
             </td> 
       {{else}}
-            <td class="list-element-striped" width="85%" style="padding-left:10px;">
-              {{#link-to 'thing' thingName}}{{thingName}}{{/link-to}}
+            <td class="list-element-striped" width="80%" style="padding-left:10px;">
+              {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
             </td>
       {{/if}}
-            <td class="list-element-striped" width="10%">
-              <div class="stars">
-                {{#if is5StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is4StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is3StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is2StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}{{#if is1StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+            <td class="list-element-striped" width="15%" style="text-align:center;">
+              <div class="stars" style="white-space:nowrap;">
+                {{#if rankingItem.is5StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+                {{#if rankingItem.is4StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+                {{#if rankingItem.is3StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+                {{#if rankingItem.is2StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
+                {{#if rankingItem.is1StarClass}}<span class="active"></span>{{else}}<span></span>{{/if}}
               </div>
             </td>
           </tr>
