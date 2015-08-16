@@ -1,6 +1,6 @@
 Volontariat.UserRankingRoute = Ember.Route.extend
   model: (params) ->
-    if Volontariat.User.current().name.toLowerCase() == params.user_name.toLowerCase()
+    if Volontariat.User.current() != undefined && Volontariat.User.current().name.toLowerCase() == params.user_name.toLowerCase()
       @controllerFor('user_ranking').set('yourRanking', true)
     else
       @controllerFor('user_ranking').set('yourRanking', false)
