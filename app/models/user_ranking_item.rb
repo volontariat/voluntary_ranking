@@ -25,7 +25,11 @@ class UserRankingItem < ActiveRecord::Base
     ranking_items = ranking_items.where('id <> ?', user_ranking_item_id) if user_ranking_item_id.present?
     
     if stars.to_i >= 3
-      ranking_items.order('stars ASC, position DESC').where('stars >= ?', stars).first.try(:position).to_i + 1 || 1
+      position = ranking_items.order('stars ASC, position DESC').where('stars >= ?', stars).first.try(:position).to_i + 1 || 1
+      
+      position -= 1 if user_ranking_item_id.present? && position > ranking_items_count
+      
+      position
     else
       item = ranking_items.order('stars DESC, position ASC').where('stars <= ?', stars).first
       
