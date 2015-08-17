@@ -1,81 +1,83 @@
 {{#if anyItems}}
-  <table class="table" style="margin-bottom: 0px">
-    <thead>
-      <tr>
+<table class="table" style="margin-bottom: 0px">
+  <thead>
+    <tr>
   {{#if controller.yourRanking}}
-        <th width="2%"></th>
+      <th width="2%"></th>
   {{/if}}
-        <th width="5%" style="vertical-align:top;">Position</th>  
+      <th width="5%" style="vertical-align:top;">Position</th>  
   {{#if controller.yourRanking}}           
-        <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
-        <th width="70%" style="vertical-align:top;">Name</th>
+      <th width="5%" style="vertical-align:top; text-align:center;">Move</th>
+      <th width="70%" style="vertical-align:top;">Name</th>
   {{else}}
-        <th width="80%" style="vertical-align:top;">Name</th>
+      <th width="80%" style="vertical-align:top;">Name</th>
   {{/if}}
-        <th width="15%" style="vertical-align:top; text-align:center;">Stars</th>
+      <th width="15%" style="vertical-align:top; text-align:center;">Stars</th>
   {{#if controller.yourRanking}}  
-        <th width="5%"></th>
+      <th width="5%"></th>
   {{/if}}
-      </tr>
-    </thead>
-  </table>
-  
-  <ul class="nav nav-tabs nav-stacked list-striped" id="ranking">
-    {{#each model as |rankingItem|}}
-      <li class="ranking_item_{{unbound rankingItem.id}}" data-id="{{unbound rankingItem.id}}" data-position="{{unbound rankingItem.position}}">
-        <table class="table">
-          <tr>
-      {{#if controller.yourRanking}}
-            <td width="2%" style="text-align:center">
-              <span class="ranking_item_sortable glyphicon glyphicon-move"></span>
-            </td>
-      {{/if}}
-            <td class="list-element-striped" width="5%" style="text-align:right">
-              {{#link-to 'ranking_item' rankingItem.thingName rankingItem.positiveOrNegativeAdjective rankingItem.rankingTopic rankingItem.rankingScope 1 class="ranking_item_position"}}
-                {{rankingItem.position}}
-              {{/link-to}}
-            </td>        
-      {{#if controller.yourRanking}} 
-            <td class="list-element-striped" width="5%" style="text-align:center">
-              <a {{action 'moveToPreviousPage' rankingItem.id}} title="move to previous page"><span class="glyphicon glyphicon-chevron-left"></span></a> 
-              <a {{action 'moveToNextPage' rankingItem.id}} title="move to next page"><span class="glyphicon glyphicon-chevron-right"></span></a>
-            </td>
-            <td class="list-element-striped" width="70%" style="padding-left:10px;">
-              {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
-            </td> 
-      {{else}}
-            <td class="list-element-striped" width="80%" style="padding-left:10px;">
-              {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
-            </td>
-      {{/if}}
-            <td class="list-element-striped" width="15%" style="text-align:center;">
-              <div class="stars" style="white-space:nowrap;">
-      {{#if controller.yourRanking}}         
-                <span class="5stars {{if rankingItem.is5StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 5}}></span>
-                <span class="4stars {{if rankingItem.is4StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 4}}></span>
-                <span class="3stars {{if rankingItem.is3StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 3}}></span>
-                <span class="2stars {{if rankingItem.is2StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 2}}></span>
-                <span class="1stars {{if rankingItem.is1StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 1}}></span>
-      {{else}}
-                <span class="{{if rankingItem.is5StarClass 'active'}}"></span>
-                <span class="{{if rankingItem.is4StarClass 'active'}}"></span>
-                <span class="{{if rankingItem.is3StarClass 'active'}}"></span>
-                <span class="{{if rankingItem.is2StarClass 'active'}}"></span>
-                <span class="{{if rankingItem.is1StarClass 'active'}}"></span>
-      {{/if}}        
-              </div>
-            </td>
-      {{#if controller.yourRanking}}       
-            <td width="3%" style="text-align:center;">
-              <span class="glyphicon glyphicon-remove" {{action 'destroy' rankingItem.id}}></span> 
-            </td>
-      {{/if}}
-          </tr>
-        </table>
-      </li>
-    {{/each}}
-  </ul>
+    </tr>
+  </thead>
+</table>
+{{/if}}
 
+<ul class="nav nav-tabs nav-stacked list-striped" id="ranking">
+  {{#each model as |rankingItem|}}
+    <li class="ranking_item_{{unbound rankingItem.id}}" data-id="{{unbound rankingItem.id}}" data-position="{{unbound rankingItem.position}}">
+      <table class="table">
+        <tr>
+    {{#if controller.yourRanking}}
+          <td width="2%" style="text-align:center">
+            <span class="ranking_item_sortable glyphicon glyphicon-move"></span>
+          </td>
+    {{/if}}
+          <td class="list-element-striped" width="5%" style="text-align:right">
+            {{#link-to 'ranking_item' rankingItem.thingName rankingItem.positiveOrNegativeAdjective rankingItem.rankingTopic rankingItem.rankingScope 1 class="ranking_item_position"}}
+              {{rankingItem.position}}
+            {{/link-to}}
+          </td>        
+    {{#if controller.yourRanking}} 
+          <td class="list-element-striped" width="5%" style="text-align:center">
+            <a {{action 'moveToPreviousPage' rankingItem.id}} title="move to previous page"><span class="glyphicon glyphicon-chevron-left"></span></a> 
+            <a {{action 'moveToNextPage' rankingItem.id}} title="move to next page"><span class="glyphicon glyphicon-chevron-right"></span></a>
+          </td>
+          <td class="list-element-striped" width="70%" style="padding-left:10px;">
+            {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
+          </td> 
+    {{else}}
+          <td class="list-element-striped" width="80%" style="padding-left:10px;">
+            {{#link-to 'thing' rankingItem.thingName}}{{rankingItem.thingName}}{{/link-to}}
+          </td>
+    {{/if}}
+          <td class="list-element-striped" width="15%" style="text-align:center;">
+            <div class="stars" style="white-space:nowrap;">
+    {{#if controller.yourRanking}}         
+              <span class="5stars {{if rankingItem.is5StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 5}}></span>
+              <span class="4stars {{if rankingItem.is4StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 4}}></span>
+              <span class="3stars {{if rankingItem.is3StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 3}}></span>
+              <span class="2stars {{if rankingItem.is2StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 2}}></span>
+              <span class="1stars {{if rankingItem.is1StarClass 'active'}}" {{action 'updateStars' rankingItem.id rankingItem.stars 1}}></span>
+    {{else}}
+              <span class="{{if rankingItem.is5StarClass 'active'}}"></span>
+              <span class="{{if rankingItem.is4StarClass 'active'}}"></span>
+              <span class="{{if rankingItem.is3StarClass 'active'}}"></span>
+              <span class="{{if rankingItem.is2StarClass 'active'}}"></span>
+              <span class="{{if rankingItem.is1StarClass 'active'}}"></span>
+    {{/if}}        
+            </div>
+          </td>
+    {{#if controller.yourRanking}}       
+          <td width="3%" style="text-align:center;">
+            <span class="glyphicon glyphicon-remove" {{action 'destroy' rankingItem.id}}></span> 
+          </td>
+    {{/if}}
+        </tr>
+      </table>
+    </li>
+  {{/each}}
+</ul>
+
+{{#if anyItems}}
   {{partial 'shared/pagination'}}
 {{else}}
   <p style="padding-top:10px;">No items found.</p>
