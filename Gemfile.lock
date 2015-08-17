@@ -9,20 +9,20 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary-ember_js.git
-  revision: 3ca0ffdc66d72d555de15ccd9f2381651ce88284
+  revision: d7f34ec8713b9e3f139b71e941c1e65924639643
   specs:
     voluntary-ember_js (0.0.1)
       active_model_serializers (~> 0.9.3)
       ember-data-source (= 1.13.8)
       ember-rails (~> 0.19.0)
       ember-source (= 1.13.8)
-      voluntary (~> 0.4.0)
+      voluntary (~> 0.5.0)
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 91253bf0ce0c32e7596cdde77f93e27efd2f9702
+  revision: 8b5f3671e0e36356e4eacc465c32687b3d4f29cd
   specs:
-    voluntary (0.4.0)
+    voluntary (0.5.0)
       activerecord-deprecated_finders (~> 1.0.3)
       activerecord-import (~> 0.4.1)
       acts-as-taggable-on (~> 2.4.1)
@@ -108,9 +108,8 @@ PATH
   remote: .
   specs:
     voluntary_ranking (0.0.1)
-      twitter-typeahead-rails (~> 0.10.5)
-      voluntary
-      voluntary-ember_js (= 0.0.1)
+      voluntary (~> 0.5.0)
+      voluntary-ember_js (~> 0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -383,7 +382,7 @@ GEM
     mongoid_slug (3.2.1)
       mongoid (> 3.0)
       stringex (~> 2.0)
-    moped (2.0.6)
+    moped (2.0.7)
       bson (~> 3.0)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
@@ -554,7 +553,7 @@ GEM
       spring (>= 0.9.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (3.3.0)
+    sprockets (3.3.1)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
@@ -576,10 +575,6 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     timecop (0.6.3)
-    twitter-typeahead-rails (0.10.5)
-      actionpack (>= 3.1)
-      jquery-rails
-      railties (>= 3.1)
     typhoeus (0.5.4)
       ethon (~> 0.5.7)
     tzinfo (1.2.2)
