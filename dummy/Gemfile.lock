@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary-ember_js.git
-  revision: f1b0813ef73d3d4795509478751592ee235bbb9a
+  revision: c6b0642ccd9838f392abfb794f61736fff073cbc
   specs:
     voluntary-ember_js (0.0.1)
       active_model_serializers (~> 0.9.3)
