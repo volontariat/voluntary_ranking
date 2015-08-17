@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary-ember_js.git
-  revision: 3ca0ffdc66d72d555de15ccd9f2381651ce88284
+  revision: f1b0813ef73d3d4795509478751592ee235bbb9a
   specs:
     voluntary-ember_js (0.0.1)
       active_model_serializers (~> 0.9.3)
@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 19bf007d3f2ed3af181536520b793801d392cd70
+  revision: 445b4188d60d22be2536c24582eb27acce3c1f47
   specs:
     voluntary (0.4.0)
       activerecord-deprecated_finders (~> 1.0.3)
