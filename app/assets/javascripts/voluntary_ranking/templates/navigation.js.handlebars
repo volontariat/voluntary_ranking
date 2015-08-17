@@ -12,6 +12,9 @@
         </a>
         <ul class="dropdown-menu">
           {{#link-to 'user' currentUser.name 1 tagName='li'}}<a>Your rankings</a>{{/link-to}}
+          <li>
+            <a {{action 'signOut'}}>Sign out</a>
+          </li>
         </ul>
       </li>
 {{else}}
