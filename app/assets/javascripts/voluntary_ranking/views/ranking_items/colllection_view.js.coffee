@@ -10,11 +10,9 @@ Volontariat.RankingItemsCollectionView = Ember.View.extend
       start: (event, ui) =>
         first_position = $('#ranking li:first').data('position')
         last_position = $('#ranking li:last').data('position')
-        console.log 'start:' + first_position + ' - ' + last_position
         
       update: (event, ui) =>
         source_item = $(ui.item).closest('li')
-        console.log 'update:' + $(source_item).data('position')
         Volontariat.current_position = first_position
         
         $.each $('#ranking li'), (index, element) ->
