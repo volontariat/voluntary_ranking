@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809155617) do
+ActiveRecord::Schema.define(version: 20150818161329) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -54,12 +54,16 @@ ActiveRecord::Schema.define(version: 20150809155617) do
   end
 
   create_table "arguments", force: :cascade do |t|
-    t.integer  "topic_id",   limit: 4
-    t.integer  "thing_id",   limit: 4
-    t.string   "value",      limit: 255
+    t.integer  "topic_id",          limit: 4
+    t.string   "value",             limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "argumentable_type", limit: 255
+    t.integer  "argumentable_id",   limit: 4
   end
+
+  add_index "arguments", ["argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable", using: :btree
+  add_index "arguments", ["topic_id", "argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable_topic", unique: true, using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "commentable_type", limit: 255
@@ -187,7 +191,6 @@ ActiveRecord::Schema.define(version: 20150809155617) do
     t.datetime "updated_at"
   end
 
-  add_index "ranking_items", ["ranking_id", "position"], name: "index_ranking_items_on_ranking_id_and_position", using: :btree
   add_index "ranking_items", ["ranking_id", "stars_sum"], name: "index_ranking_items_on_ranking_id_and_stars_sum", using: :btree
   add_index "ranking_items", ["ranking_id", "thing_id"], name: "index_ranking_items_on_ranking_id_and_thing_id", unique: true, using: :btree
 
@@ -219,9 +222,6 @@ ActiveRecord::Schema.define(version: 20150809155617) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "user_ranking_items", ["user_id", "ranking_id", "thing_id"], name: "index_user_ranking_items_on_user_id_and_ranking_id_and_thing_id", unique: true, using: :btree
-  add_index "user_ranking_items", ["user_id", "ranking_id", "position"], name: "index_user_ranking_items_on_user_id_and_ranking_id_and_position", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                    limit: 255

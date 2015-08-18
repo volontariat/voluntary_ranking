@@ -3,7 +3,7 @@ Volontariat.ArgumentsIndexRoute = Ember.Route.extend
     @controllerFor('arguments.index').set 'page', parseInt(params.page)
     @controllerFor('arguments.index').set 'thingName', @modelFor('thing')._internalModel._data.name
     
-    @store.query 'argument', thing_id: @modelFor('thing').id, page: params.page
+    @store.query 'argument', argumentable_type: 'Thing', argumentable_id: @modelFor('thing').id, page: params.page
   
   setupController: (controller, model) ->
     controller.send('goToPageWithoutRedirect', controller.get('page'))

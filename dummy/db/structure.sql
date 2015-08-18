@@ -89,7 +89,7 @@ CREATE TABLE `argument_topics` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,12 +102,15 @@ DROP TABLE IF EXISTS `arguments`;
 CREATE TABLE `arguments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic_id` int(11) DEFAULT NULL,
-  `thing_id` int(11) DEFAULT NULL,
   `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `argumentable_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `argumentable_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `arguments_index_on_argumentable_topic` (`topic_id`,`argumentable_id`,`argumentable_type`),
+  KEY `arguments_index_on_argumentable` (`argumentable_id`,`argumentable_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,16 +332,15 @@ CREATE TABLE `ranking_items` (
   `ranking_id` int(11) DEFAULT NULL,
   `thing_id` int(11) DEFAULT NULL,
   `best` tinyint(1) DEFAULT NULL,
-  `user_ranking_items_count` int(11) DEFAULT NULL,
-  `stars_sum` int(11) DEFAULT NULL,
-  `stars` int(11) DEFAULT NULL,
+  `user_ranking_items_count` int(11) DEFAULT '0',
+  `stars_sum` int(11) DEFAULT '0',
+  `stars` int(11) DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_ranking_items_on_ranking_id_and_thing_id` (`ranking_id`,`thing_id`),
-  UNIQUE KEY `index_ranking_items_on_ranking_id_and_position` (`ranking_id`,`position`),
   KEY `index_ranking_items_on_ranking_id_and_stars_sum` (`ranking_id`,`stars_sum`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -357,7 +359,7 @@ CREATE TABLE `rankings` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -387,7 +389,7 @@ CREATE TABLE `things` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_things_on_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,15 +405,13 @@ CREATE TABLE `user_ranking_items` (
   `ranking_item_id` int(11) DEFAULT NULL,
   `position` int(11) DEFAULT NULL,
   `best` tinyint(1) DEFAULT NULL,
-  `stars` int(11) DEFAULT NULL,
+  `stars` int(11) DEFAULT '0',
   `ranking_id` int(11) DEFAULT NULL,
   `thing_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_user_ranking_items_on_ranking_id_and_thing_id` (`ranking_id`,`thing_id`),
-  UNIQUE KEY `index_user_ranking_items_on_user_id_and_ranking_id_and_position` (`user_id`,`ranking_id`,`position`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +476,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_name` (`name`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   KEY `index_users_on_profession_id` (`profession_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -488,7 +488,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-15 18:17:01
+-- Dump completed on 2015-08-18 18:13:44
 INSERT INTO schema_migrations (version) VALUES ('20130814161240');
 
 INSERT INTO schema_migrations (version) VALUES ('20130814161241');
@@ -534,4 +534,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150809155615');
 INSERT INTO schema_migrations (version) VALUES ('20150809155616');
 
 INSERT INTO schema_migrations (version) VALUES ('20150809155617');
+
+INSERT INTO schema_migrations (version) VALUES ('20150818161329');
 

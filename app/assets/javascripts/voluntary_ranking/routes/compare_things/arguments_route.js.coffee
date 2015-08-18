@@ -4,7 +4,7 @@ Volontariat.CompareThingsArgumentsRoute = Ember.Route.extend
     @controllerFor('compare_things.arguments').set 'rightThingName', @modelFor('compare_things').rightThingName
     @controllerFor('compare_things.arguments').set 'page', parseInt(params.page)
     
-    Ember.$.getJSON("/api/v1/things/#{@modelFor('compare_things').leftThingName}/vs/#{@modelFor('compare_things').rightThingName}/arguments.json?page=#{params.page}&side=#{params.side}").then (json) =>
+    Ember.$.getJSON("/api/v1/things/#{@modelFor('compare_things').leftThingName}/vs/#{@modelFor('compare_things').rightThingName}/arguments.json?argumentable_type=Thing&page=#{params.page}&side=#{params.side}").then (json) =>
       @controllerFor('compare_things.arguments').set('metadata', json.meta)  
       json.arguments
       

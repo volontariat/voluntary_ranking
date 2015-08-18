@@ -17,10 +17,6 @@ end
 FactoryGirl.define do
   Voluntary::Test::RspecHelpers::Factories.code.call(self)
   
-  factory :argument_topic do
-    sequence(:name) { |n| "topic #{n}#{r_str}" } 
-  end
-  
   factory :ranking do
     adjective 'best'
     negative_adjective 'worst'

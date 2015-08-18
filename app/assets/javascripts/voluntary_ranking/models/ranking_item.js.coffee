@@ -1,6 +1,6 @@
 Volontariat.RankingItem = DS.Model.extend
   ranking: DS.belongsTo('ranking')
-  thing: DS.belongsTo('thing', { polymorphic: true })
+  thing: DS.belongsTo('thing')
   thingId: DS.attr('number')
   thingName: DS.attr('string')
   position: DS.attr('number')
