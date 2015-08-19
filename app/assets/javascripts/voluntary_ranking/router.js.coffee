@@ -25,6 +25,3 @@ Volontariat.Router.map ->
     @route 'arguments', path: ':side/arguments/page/:page'
   
   @resource 'ranking_item', path: '/things/:thing_name/is_one_of_the/:adjective/:topic/:scope/page/:page'
-        
-  # This route will be used to reload the current route by going to this route and then back to the current route
-  @route 'no_data'
