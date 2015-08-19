@@ -24,8 +24,6 @@ Rails.application.routes.draw do
           put :move
         end
       end
-      
-      resources :users
     end
   end
 end
