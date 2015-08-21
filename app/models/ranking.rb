@@ -65,7 +65,7 @@ class Ranking < ActiveRecord::Base
     end
     
     Ranking.select("DISTINCT(#{attribute})").order(attribute).limit(10).
-    where("#{attribute} LIKE ?", "%#{term.strip}%").map(&attribute.to_sym).map{|v| { value: v }}
+    where("LOWER(#{attribute}) LIKE ?", "%#{term.strip.downcase}%").map(&attribute.to_sym).map{|v| { value: v }}
   end
   
   private
