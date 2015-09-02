@@ -1,8 +1,16 @@
 <h1>
-{{name}} 
+{{model.name}} 
 vs. 
 {{input type="text" value=otherThingName placeholder="Other thing" data-autocomplete="/api/v1/things/autocomplete"}}
-<button class="compare_button" {{action 'compare'}}>Compare</button>
+<button class="btn btn-default compare_button" {{action 'compare'}}>Compare</button>
+{{#if controller.onComparisonList}}
+<button class="btn btn-default" {{action 'removeFromComparisonList' model.name}}>{{t 'things.show.remove_from_comparison_list'}}</button>
+{{else}}
+<button class="btn btn-default" {{action 'addToComparisonList' model.name}}>{{t 'things.show.add_to_comparison_list'}}</button>
+{{/if}}
+<a {{action 'goToComparisonList'}} style="font-size:14px;">
+  {{t 'things.show.comparison_list'}} ({{thingComparisonListCount}})
+</a>
 </h1>
 
 <ul class="nav nav-pills">

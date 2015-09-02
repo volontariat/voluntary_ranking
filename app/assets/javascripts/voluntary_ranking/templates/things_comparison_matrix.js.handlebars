@@ -1,0 +1,22 @@
+<h1>{{t 'arguments.matrix.title' }}</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+{{#each model.argumentables as |argumentable|}}      
+      <th>{{#link-to 'thing' argumentable.name}}{{argumentable.name}}{{/link-to}}</th>
+{{/each}}
+    </tr>
+  </thead>
+  <tbody>
+{{#each model.matrix as |argument|}}  
+    <tr>
+      <td>{{argument.topic_name}}</td>
+  {{#each argument.values as |value|}}
+      <td>{{value}}</td>
+  {{/each}}  
+    </tr>
+{{/each}}
+  </tbody>
+</table>

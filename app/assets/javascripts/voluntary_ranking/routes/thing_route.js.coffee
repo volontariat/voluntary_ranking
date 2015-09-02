@@ -4,4 +4,15 @@ Volontariat.ThingRoute = Ember.Route.extend
       @transitionTo('rankings.index', params.name, 1)
     
     @controllerFor('thing').set 'name', params.name
-    @store.find('thing', params.name)
+    
+    thingIds = []
+    
+    if Cookies.get('thingComparisonList') == undefined
+      @controllerFor('thing').set 'thingComparisonListCount', 0
+    else
+      thingIds = Cookies.getJSON('thingComparisonList')
+      @controllerFor('thing').set 'thingComparisonListCount', thingIds.length
+      
+    @store.find('thing', params.name).then (thing) =>
+      @controllerFor('thing').set 'thingId', thing.id
+      @controllerFor('thing').set 'onComparisonList', jQuery.inArray(thing.id, thingIds) > -1

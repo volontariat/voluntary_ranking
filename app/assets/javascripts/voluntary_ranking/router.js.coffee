@@ -24,4 +24,6 @@ Volontariat.Router.map ->
   @resource 'compare_things', path: '/things/:left_thing_name/vs/:right_thing_name', ->
     @route 'arguments', path: ':side/arguments/page/:page'
   
+  @route 'things_comparison_matrix'
+  
   @resource 'ranking_item', path: '/things/:thing_name/is_one_of_the/:adjective/:topic/:scope/page/:page'
