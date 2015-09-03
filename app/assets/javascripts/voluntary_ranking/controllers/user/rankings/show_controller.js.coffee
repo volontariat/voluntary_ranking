@@ -63,11 +63,13 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
           @send('getRanking')
           
     destroy: (id)  ->
-      $.ajax("/api/v1/user_ranking_items/#{id}", type: 'DELETE').done((data) =>
-        @send('getRanking')
-      ).fail((data) ->
+      $.ajax("/api/v1/user_ranking_items/#{id}", type: 'DELETE').fail((data) ->
         alert 'Removing item failed!'
       ) 
+        
+      setTimeout (=>  
+        @send('getRanking')
+      ), 1000 
          
     moveToPreviousPage: (id) ->
       if @get('previousPage') <= 0
