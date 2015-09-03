@@ -89,7 +89,7 @@ CREATE TABLE `argument_topics` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,10 +107,14 @@ CREATE TABLE `arguments` (
   `updated_at` datetime DEFAULT NULL,
   `argumentable_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `argumentable_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `vote` tinyint(1) DEFAULT NULL,
+  `likes_count` int(11) DEFAULT '0',
+  `dislikes_count` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `arguments_index_on_argumentable_topic` (`topic_id`,`argumentable_id`,`argumentable_type`),
   KEY `arguments_index_on_argumentable` (`argumentable_id`,`argumentable_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -411,7 +415,7 @@ CREATE TABLE `user_ranking_items` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,7 +492,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-18 18:13:44
+-- Dump completed on 2015-09-03 14:05:13
 INSERT INTO schema_migrations (version) VALUES ('20130814161240');
 
 INSERT INTO schema_migrations (version) VALUES ('20130814161241');
@@ -536,4 +540,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150809155616');
 INSERT INTO schema_migrations (version) VALUES ('20150809155617');
 
 INSERT INTO schema_migrations (version) VALUES ('20150818161329');
+
+INSERT INTO schema_migrations (version) VALUES ('20150903120404');
+
+INSERT INTO schema_migrations (version) VALUES ('20150903120405');
 

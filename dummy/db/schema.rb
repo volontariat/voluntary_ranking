@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818161329) do
+ActiveRecord::Schema.define(version: 20150903120405) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 20150818161329) do
     t.datetime "updated_at"
     t.string   "argumentable_type", limit: 255
     t.integer  "argumentable_id",   limit: 4
+    t.integer  "user_id",           limit: 4
+    t.boolean  "vote"
+    t.integer  "likes_count",       limit: 4,   default: 0
+    t.integer  "dislikes_count",    limit: 4,   default: 0
   end
 
   add_index "arguments", ["argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable", using: :btree
