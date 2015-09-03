@@ -16,3 +16,4 @@ Volontariat.ThingRoute = Ember.Route.extend
     @store.find('thing', params.name).then (thing) =>
       @controllerFor('thing').set 'thingId', thing.id
       @controllerFor('thing').set 'onComparisonList', jQuery.inArray(thing.id, thingIds) > -1
+      thing
