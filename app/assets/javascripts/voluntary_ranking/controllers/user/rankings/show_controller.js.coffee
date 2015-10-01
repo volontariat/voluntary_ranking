@@ -64,7 +64,6 @@ Volontariat.UserRankingsShowController = Volontariat.Controller.extend(Volontari
           
     destroy: (id)  ->
       $.ajax("/api/v1/user_ranking_items/#{id}", type: 'DELETE').done((data) =>
-        #@send('getRanking')
         window.location.reload()
       ).fail((data) ->
         alert 'Removing item failed!'
