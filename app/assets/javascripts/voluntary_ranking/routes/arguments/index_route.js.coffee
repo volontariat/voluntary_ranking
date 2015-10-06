@@ -5,7 +5,9 @@ Volontariat.ArgumentsIndexRoute = Ember.Route.extend
     #@controllerFor('arguments.index').set 'thingName', @modelFor('thing').name
     @controllerFor('arguments.index').set 'thingName', window.location.hash.split('/')[2]
     
-    @store.query 'argument', argumentable_type: 'Thing', argumentable_id: @modelFor('thing').id, page: params.page
+    @store.query('argument', argumentable_type: 'Thing', argumentable_id: @modelFor('thing').id, page: params.page).then (result) =>
+      @controllerFor('arguments.index').set 'metadata', result.get('meta')
+      result
   
   setupController: (controller, model) ->
     controller.send('goToPageWithoutRedirect', controller.get('page'))

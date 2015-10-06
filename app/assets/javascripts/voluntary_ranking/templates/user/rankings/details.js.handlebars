@@ -4,4 +4,8 @@
   {{partial 'ranking_items/form'}}
 {{/if}}
 
-{{view 'ranking_items_collection'}}
+{{partial 'ranking_items/collection'}}
+
+{{#if yourRanking}}
+  {{#ranking-items-collection}}{{/ranking-items-collection}}
+{{/if}}

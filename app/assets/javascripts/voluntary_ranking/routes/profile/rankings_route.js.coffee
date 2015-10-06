@@ -17,7 +17,9 @@ Volontariat.ProfileRankingsRoute = Ember.Route.extend
         user_id: Volontariat.User.current().id, adjective: params.adjective, 
         negative_adjective: params.negative_adjective, topic: params.topic, 
         scope: params.scope, page: params.page
-      )
+      ).then (result) =>
+        @controllerFor('profile.rankings').set 'metadata', result.get('meta')
+        result
     
   setupController: (controller, model) ->
     unless Volontariat.User.current() == undefined

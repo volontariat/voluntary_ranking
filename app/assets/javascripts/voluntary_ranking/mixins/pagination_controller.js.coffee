@@ -11,7 +11,12 @@ Volontariat.PaginationController = Em.Mixin.create
   _goToPage: (page) ->
     page = parseInt(page)
     @set('page', page)
-    @set('totalPages', (@get('metadata') || @store.metadataFor(@get('paginationResource'))).pagination.total_pages)
+    
+    if @get('metadata')
+      @set 'totalPages', @get('metadata').pagination.total_pages
+    else
+      @set 'totalPages', 1
+
     pages = []; i = page - 4
     
     while i <= page

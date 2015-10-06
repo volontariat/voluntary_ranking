@@ -3,7 +3,7 @@
 vs. 
 {{input type="text" value=otherThingName placeholder="Other thing" data-autocomplete="/api/v1/things/autocomplete"}}
 <button class="btn btn-default compare_button" {{action 'compare'}}>Compare</button>
-{{#if controller.onComparisonList}}
+{{#if onComparisonList}}
 <button class="btn btn-default" {{action 'removeFromComparisonList' model.name}}>{{t 'things.show.remove_from_comparison_list'}}</button>
 {{else}}
 <button class="btn btn-default" {{action 'addToComparisonList' model.name}}>{{t 'things.show.add_to_comparison_list'}}</button>

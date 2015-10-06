@@ -12,7 +12,9 @@ Volontariat.RankingsShowRoute = Ember.Route.extend
       'ranking_item',
       adjective: params.adjective, negative_adjective: params.negative_adjective, topic: params.topic, 
       scope: params.scope, page: params.page
-    )
+    ).then (result) =>
+      @controllerFor('rankings.show').set 'metadata', result.get('meta')
+      result
     
   setupController: (controller, model) ->
     controller.send('goToPageWithoutRedirect', controller.get('page'))

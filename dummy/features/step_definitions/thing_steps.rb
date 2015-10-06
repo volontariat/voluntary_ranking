@@ -1,3 +1,3 @@
 Given /^a thing$/ do
-  @thing = Factory(:thing)
+  @thing = Factory(:thing, name: 'Dummy')
 end

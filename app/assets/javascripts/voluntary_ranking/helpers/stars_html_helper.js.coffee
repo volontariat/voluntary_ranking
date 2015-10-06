@@ -1,4 +1,5 @@
-Ember.Handlebars.helper 'stars-html', (value, options) ->
+Volontariat.StarsHtmlHelper = Ember.Helper.helper((params) ->
+  value = params[0]
   text = ''
   
   if value == 5
@@ -27,3 +28,4 @@ Ember.Handlebars.helper 'stars-html', (value, options) ->
     text += '<span></span>'   
     
   new (Ember.Handlebars.SafeString)(text)
+)
