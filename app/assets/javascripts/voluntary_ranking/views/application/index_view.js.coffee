@@ -1,1 +1,0 @@
-Volontariat.ApplicationIndexView = Ember.View.extend()
