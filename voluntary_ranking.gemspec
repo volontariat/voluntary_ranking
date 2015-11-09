@@ -11,12 +11,12 @@ Gem::Specification.new do |s|
   s.email       = ["gawlista@gmail.com"]
   s.homepage    = "http://github.com/volontariat/voluntary_ranking"
   s.summary     = "Ranking plugin for crowdsourcing management system Voluntary.Software."
-  s.description = "Ranking plugin for #crowdsourcing gem voluntary: http://bit.ly/vr-0-0-1"
+  s.description = "Ranking plugin for #crowdsourcing gem voluntary: http://bit.ly/vr-0-1-0"
 
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'voluntary', '~> 0.5'
-  s.add_dependency 'voluntary-ember_js', '~> 0.1.0'
+  s.add_dependency 'voluntary', '>= 0.5.2', '< 1.0'
+  s.add_dependency 'voluntary-ember_js', '>= 0.1.0', '< 1.0'
   
   # group :development
   
