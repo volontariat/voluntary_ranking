@@ -20,8 +20,9 @@ Volontariat.ThingController = Ember.Controller.extend
       list.push @get('thingId')
 
       Cookies.set 'thingComparisonList', list, expires: 7
-      @controllerFor('thing').set 'thingComparisonListCount', list.length
+      @set 'thingComparisonListCount', list.length
       @set 'onComparisonList', true
+      false
         
     removeFromComparisonList: ->
       list = jQuery.grep(Cookies.getJSON('thingComparisonList'), (id) =>
@@ -29,7 +30,7 @@ Volontariat.ThingController = Ember.Controller.extend
       )
       
       Cookies.set 'thingComparisonList', list, expires: 7
-      @controllerFor('thing').set 'thingComparisonListCount', list.length
+      @set 'thingComparisonListCount', list.length
       @set 'onComparisonList', false
       
     goToComparisonList: ->
